@@ -8,7 +8,7 @@ means ready for production nor complete in any way.
 
 Add this line to your application's Gemfile:
 
-    gem 'b3_form'
+    gem 'b3form'
 
 And then execute:
 
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install b3_form
+    $ gem install b3form
 
 ## Usage
 
