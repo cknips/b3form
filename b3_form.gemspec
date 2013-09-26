@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = B3Form::VERSION
   spec.authors       = ["Tilo Dietrich"]
   spec.email         = ["tilo.dietrich@knips-konsorten.de"]
-  spec.description   = %q{Use this form builder for creating forms that use the Bootstrap 3 CSS Framework}
+  spec.description   = %q{Use this form builder for creating forms that use the Bootstrap 3 CSS framework}
   spec.summary       = "A Rails form builder for Bootstrap 3"
-  spec.homepage      = "knips-konsorten.de"
+  spec.homepage      = "https://github.com/cknips/b3form"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -20,4 +20,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency 'rspec'
 end
