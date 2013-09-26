@@ -17,3 +17,8 @@ test/version_tmp
 tmp
 
 *.sublime-*
+bin/
+spec/dummy/tmp
+spec/dummy/log
+spec/dummy/Gemfile.lock
+spec/dummy/db/*.sqlite3

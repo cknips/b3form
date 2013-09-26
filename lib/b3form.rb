@@ -1,6 +1,5 @@
-require "b3form/version"
-
-require 'action_view'
+require 'b3form/version'
+require 'b3form/railtie'
 
 require 'b3form/form_builder'
 
