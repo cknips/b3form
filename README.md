@@ -1,7 +1,7 @@
 # B3Form
 
 B3Form is a form builder specifically made for
-[http://getbootstrap.com][Bootstrap 3]. It is in very early stage and by no
+[Bootstrap 3](http://getbootstrap.com). It is in very early stage and by no
 means ready for production nor complete in any way.
 
 ## Installation
