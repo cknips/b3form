@@ -1,21 +1,18 @@
 module B3Form
   class FormBuilder < ActionView::Helpers::FormBuilder
-    attr_reader :renderer_objects
-    def initialize(*)
-      super
-      @renderer_objects = {}
-    end
+    delegate :content_tag, :tag, to: :@template
 
-    def input(type, attribute, options = {})
-      renderer(type).render attribute, options
+
+    def input(type, field, options = {})
+      renderer(type, field, options).render
     end
 
 
     private
 
-    def renderer(type)
+    def renderer(type, field, options)
       renderer_class = "B3Form::FormElements::#{type.to_s.camelize}".constantize
-      renderer_objects[type] ||= renderer_class.new(self)
+      renderer_class.new(self, field, options)
     rescue
       raise ArgumentError, "Unknown input type: #{type}"
     end

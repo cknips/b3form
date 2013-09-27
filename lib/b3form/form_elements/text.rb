@@ -1,14 +1,10 @@
 module B3Form
   module FormElements
     class Text < Base
-      def render(attribute, options)
-        if options.include? :class
-          options[:class] << ' form-control'
-        else
-          options[:class] = 'form-control'
-        end
-        
-        builder.text_field(attribute, options)
+      private
+
+      def render_input
+        builder.text_field(field, input_html)
       end
     end
   end

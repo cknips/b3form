@@ -8,7 +8,6 @@ describe 'form' do
 # <%= b3_form_for @model do |f| %>
 # <% end %>
 #
-#
 # HTML:
 #
 # <form role="form">
@@ -17,6 +16,6 @@ describe 'form' do
   it 'renders a form with role = "form" attribute' do
     render template: 'tasks/new.html.erb'
 
-    expect(page rendered).to have_css 'form[role=form]'
+    expect(page).to have_css 'form[role=form]'
   end
 end
