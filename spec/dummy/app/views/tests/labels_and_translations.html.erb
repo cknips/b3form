@@ -1,0 +1,8 @@
+<%= b3_form_for @task do |f| %>
+  <%= f.text_input :title,                        id: 'input-default-label' %>
+  <%= f.text_input :title, label: 'Custom Input', id: 'input-custom-label' %>
+  <%= f.text_input :title, label: false,          id: 'input-ommited-label' %>
+
+  <%= f.submit_button                             id: 'button-default-label' %>
+  <%= f.submit_button label: 'Custom Button',     id: 'button-custom-label' %>
+<% end %>

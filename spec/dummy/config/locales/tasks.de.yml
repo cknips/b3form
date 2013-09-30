@@ -1,0 +1,8 @@
+de:
+  helpers:
+    label:
+      task:
+        title: Titel
+    submit:
+      task:
+        create: Aufgabe speichern

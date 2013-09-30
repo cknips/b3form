@@ -13,7 +13,7 @@ module B3Form
       render_wrapper do
         render_label +
         render_input +
-        render_error_messages
+        render_errors
       end
     end
 
@@ -28,7 +28,13 @@ module B3Form
 
 
     def render_label
-      builder.label(field, label_html)
+      if label_text == false
+        ''.html_safe
+      elsif label_text.nil?
+        builder.label(field, label_html)
+      else
+        builder.label(field, label_text, label_html)
+      end
     end
 
 
@@ -37,7 +43,7 @@ module B3Form
     end
 
 
-    def render_error_messages
+    def render_errors
       errors.map { |message|
         builder.content_tag :small, class: 'help-block' do
           message
@@ -84,6 +90,11 @@ module B3Form
       end
 
       label_options
+    end
+
+
+    def label_text
+      options[:label]
     end
 
 
