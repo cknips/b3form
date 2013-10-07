@@ -3,17 +3,10 @@ module B3Form
     delegate :content_tag, :tag, to: :@template
 
 
-#   Inputs    
-
-    def text_input(field, options = {})
-      Input::Text.new(self, field, options).render
-    end
-
-
-#   Buttons
-
     def submit_button(options = {})
-      Button::Submit.new(self, options).render
+      button = Button::Submit.new(self, options)
+
+      button.render_button
     end
   end
 end

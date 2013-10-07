@@ -8,17 +8,6 @@ module B3Form
       @options = options
     end
 
-    
-    def render
-      render_wrapper do
-        render_label +
-        render_input +
-        render_errors
-      end
-    end
-
-
-    private
 
     def render_wrapper
       builder.content_tag :div, wrapper_html do
@@ -28,28 +17,35 @@ module B3Form
 
 
     def render_label
-      if label_text == false
-        ''.html_safe
-      elsif label_text.nil?
-        builder.label(field, label_html)
-      else
+      if label_text
         builder.label(field, label_text, label_html)
+      else
+        ''.html_safe
       end
-    end
-
-
-    def render_input
-      raise NotImplementedError, 'implement in subclass'
     end
 
 
     def render_errors
       errors.map { |message|
-        builder.content_tag :small, class: 'help-block' do
+        builder.content_tag :div, class: 'help-block' do
           message
         end
       }.join(', ').html_safe
     end
+
+
+    def render_hint
+      if hint_text
+        builder.content_tag :div, class: 'hint' do
+          hint_text
+        end
+      else
+        ''.html_safe
+      end
+    end
+
+
+    private
 
 
     def wrapper_html
@@ -76,6 +72,8 @@ module B3Form
         input_options[:class] = 'form-control'
       end
 
+      input_options[:placeholder] = placeholder_text if placeholder_text
+
       input_options
     end
 
@@ -94,7 +92,46 @@ module B3Form
 
 
     def label_text
-      options[:label]
+      option_or_i18n(:label)
+    end
+
+    
+    def placeholder_text
+      option_or_i18n(:placeholder)
+    end
+
+
+    def hint_text
+      option_or_i18n(:hint)
+    end
+
+
+    def option_or_i18n(key)
+      option = options[key]
+
+      if option.nil?
+        helper_text_from_i18n(key)
+      else
+        option
+      end
+    end
+
+    def helper_text_from_i18n(key)
+      translation =
+        I18n.t "helpers.#{key}.#{builder.object.class.model_name.i18n_key}.#{field}",
+                default: '__missing__'
+
+      if translation == '__missing__'
+        translation =
+          I18n.t "helpers.#{key}.#{builder.object.class.model_name.i18n_key}.#{field}_html",
+                  default: '__missing__'
+      end
+
+      if translation == '__missing__'
+        false
+      else
+        translation.html_safe
+      end
     end
 
 

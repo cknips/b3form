@@ -1,7 +1,5 @@
 module B3Form
   class Button::Submit < Button
-    private
-
     def render_button
       button_html[:type] = :submit
 

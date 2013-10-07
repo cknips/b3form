@@ -2,7 +2,16 @@ de:
   helpers:
     label:
       task:
-        title: Titel
+        title: Title
+        label_test: Label Test
+        label_test_html: Label <b>Test</b>
+    hint:
+      task:
+        hint_test: Hint Test Description
+        hint_test_html: Hint Test <b>Description</b>
+    placeholder:
+      task:
+        placeholder_test: Placeholder Test
     submit:
       task:
-        create: Aufgabe speichern
+        create: Submit Task (create)

@@ -8,17 +8,7 @@ module B3Form
     end
 
 
-    def render
-      render_button
-    end
-
-
     private
-
-    def render_button
-      raise NotImplementedError, 'implement in subclass'
-    end
-
 
     def button_html
       button_options = options[:button_html] || {}

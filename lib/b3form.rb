@@ -2,6 +2,7 @@ require 'b3form/version'
 require 'b3form/railtie'
 
 require 'b3form/form_builder'
+require 'b3form/form_builder/basic_form_builder'
 require 'b3form/button'
 require 'b3form/button/submit'
 require 'b3form/input'

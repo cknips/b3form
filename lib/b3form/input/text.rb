@@ -1,8 +1,6 @@
 module B3Form
   class Input::Text < Input
-    private
-
-    def render_input
+    def render_field
       builder.text_field(field, input_html)
     end
   end
