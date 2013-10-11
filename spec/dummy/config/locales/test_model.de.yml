@@ -1,0 +1,17 @@
+de:
+  helpers:
+    label:
+      test_model:
+        email: Email
+        label_test: Label Test
+        label_test_html: Label <b>Test</b>
+    hint:
+      test_model:
+        hint_test: Hint Test Description
+        hint_test_html: Hint Test <b>Description</b>
+    placeholder:
+      test_model:
+        placeholder_test: Placeholder Test
+    submit:
+      test_model:
+        create: Submit TestModel (create)
