@@ -8,6 +8,8 @@ module B3Form
       @options = options
     end
 
+    delegate :object, to: :builder
+
 
     def render_wrapper
       builder.content_tag :div, wrapper_html do
@@ -118,12 +120,12 @@ module B3Form
 
     def helper_text_from_i18n(key)
       translation =
-        I18n.t "helpers.#{key}.#{builder.object.class.model_name.i18n_key}.#{field}",
+        I18n.t "helpers.#{key}.#{object.class.model_name.i18n_key}.#{field}",
                 default: '__missing__'
 
       if translation == '__missing__'
         translation =
-          I18n.t "helpers.#{key}.#{builder.object.class.model_name.i18n_key}.#{field}_html",
+          I18n.t "helpers.#{key}.#{object.class.model_name.i18n_key}.#{field}_html",
                   default: '__missing__'
       end
 
@@ -136,7 +138,7 @@ module B3Form
 
 
     def errors
-      @errors ||= builder.object.errors.messages[field] || []
+      @errors ||= object.errors.messages[field] || []
     end
 
 

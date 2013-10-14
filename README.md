@@ -54,8 +54,25 @@ This will generate the markup as described in the Bootstrap 3 documentation:
 ```
 
 If there are validation errors on the object, B3Form will render the errors
-under the input for the field. Error messages for `:base` (and only those for
-base) are rendered at the top of the form.
+under the input for the field.
+
+To manually render error messages for a field, you can use the
+`error_alert :field` helper. This is usually used to render the error messages
+for `:base` at the top of the form:
+
+```erb
+<%= b3_form_for @task do |f| %>
+  <%= f.error_alert :base %>
+<% end %>
+```
+
+The error messages are rendered in a red alert box:
+
+```html
+<form action="..." method="post" role="form">
+  <div class="alert alert-danger">Translation for error message</div>
+</form>
+```
 
 
 

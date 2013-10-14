@@ -1,4 +1,9 @@
 de:
+  activerecord:
+    errors:
+      models:
+        test_model:
+          generic_error: Translation for generic error
   helpers:
     label:
       test_model:

@@ -7,6 +7,8 @@ require 'b3form/button'
 require 'b3form/button/submit'
 require 'b3form/input'
 require 'b3form/input/text'
+require 'b3form/output'
+require 'b3form/output/error_alert'
 require 'b3form/view_helpers/form_builder_helper'
 
 module B3Form

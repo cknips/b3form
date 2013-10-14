@@ -31,17 +31,28 @@ describe 'generic input features' do
 
 # View:
 #
-# <%= f.text_input :email %>   <- with :email having a validation error
+# <%= b3_form_for @test_model do |f| %>
+#   <%= f.error_alert :base %>
+#   <%= f.text_input :email %>
+# <% end %>
+#
+# with @test_model.email having a validation error and an error in :base
 #
 # HTML:
 #
-# <div class="form-group has-error">
-#   <label for="test_model_title" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_title">
-#   <div class="help-block">Error message</div>
-# </div>
+# <form action="..." role="form">
+#   <div class="alert alert-danger">Translation for generic error</div>
+#   <div class="form-group has-error">
+#     <label for="test_model_title" class="control-label">Text</label>
+#     <input type="text" class="form-control" name="test_model_title">
+#     <div class="help-block">Error message</div>
+#   </div>
+# </form>
 
-    before { test_model.email = '' and test_model.valid? }
+    before do
+      test_model.errors.add :email, :blank
+      test_model.errors.add :base,  :generic_error
+    end
 
     it 'adds has-error class to form-group if object has an error on the field '\
        'and puts error message under input tag' do
@@ -49,6 +60,13 @@ describe 'generic input features' do
 
       expect(page).to have_css 'form div.form-group.has-error'
       expect(page).to have_css 'form div.help-block'
+    end
+
+    it 'renderes the error messages for :base at the top of the form' do
+      render template: 'test_models/generic_input'
+
+      expect(page).to have_css 'form div.alert.alert-danger'
+      expect(page).to have_content 'Translation for generic error'
     end
 
     it 'omits the field_with_errors div rendered by the rails by default' do
