@@ -95,14 +95,19 @@ of a model. See the section *Forms without Models* further down.
 
 ### Available Inputs and Buttons
 
-B3Form supports all the inputs and buttons supported by the standard form
-builder. To avoid conflicts, other names are used for the elements. You can call
-the methods from the standard form builder (like `f.text_field :description`) if
+B3Form supports many inputs and buttons supported by the standard form builder.
+To avoid conflicts, other names are used for the elements. You can call the
+methods from the standard form builder (like `f.text_field :description`) if
 you want to render "non-bootstrapified" input elements.
 
 Available inputs are:
 
   * text_input
+  * password_input
+  * search_field
+  * url_field
+  * email_field
+  * number_field
 
 Avalable buttons are:
 
