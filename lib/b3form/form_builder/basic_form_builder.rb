@@ -1,41 +1,31 @@
 module B3Form
   class FormBuilder::BasicFormBuilder < FormBuilder
     def text_input(field, options = {})
-      text_style_input(Input::Text, field, options)
+      Input::Text.new(self, field, options).render
     end
 
     def password_input(field, options = {})
-      text_style_input(Input::Password, field, options)
+      Input::Password.new(self, field, options).render
     end
 
     def search_input(field, options = {})
-      text_style_input(Input::Search, field, options)
+      Input::Search.new(self, field, options).render
     end
 
     def url_input(field, options = {})
-      text_style_input(Input::Url, field, options)
+      Input::Url.new(self, field, options).render
     end
 
     def email_input(field, options = {})
-      text_style_input(Input::Email, field, options)
+      Input::Email.new(self, field, options).render
     end
 
     def number_input(field, options = {})
-      text_style_input(Input::Number, field, options)
+      Input::Number.new(self, field, options).render
     end
 
-
-    private
-
-    def text_style_input(input_class, field, options)
-      input = input_class.new(self, field, options)
-
-      input.render_wrapper do
-        input.render_label +
-        input.render_field +
-        input.render_errors +
-        input.render_hint
-      end
+    def checkbox_input(field, options = {})
+      Input::Checkbox.new(self, field, options).render
     end
   end
 end

@@ -11,16 +11,23 @@ module B3Form
     delegate :object, to: :builder
 
 
-    def render_wrapper
-      builder.content_tag :div, wrapper_html do
-        yield
-      end
+    def render
+      raise NotImplementedError, 'implement in subclass'
     end
 
 
-    def render_label
-      if label_text
-        builder.label(field, label_text, label_html)
+    def render_wrapper(&block)
+      builder.content_tag :div, wrapper_html, &block
+    end
+
+
+    def render_label(&block)
+      rendered_label_text = label_text(&block)
+
+      if rendered_label_text
+        builder.label(field, label_html) do
+          rendered_label_text
+        end
       else
         ''.html_safe
       end
@@ -49,14 +56,14 @@ module B3Form
 
     private
 
-
     def wrapper_html
       wrapper_options = options[:wrapper_html] || {}
 
       if wrapper_options.include? :class
-        wrapper_options[:class] << ' form-group'
+        wrapper_options[:class] << ' '
+        wrapper_options[:class] << wrapper_css_class
       else
-        wrapper_options[:class] = 'form-group'
+        wrapper_options[:class] = wrapper_css_class
       end
 
       wrapper_options[:class] << ' has-error' if has_error?
@@ -66,40 +73,17 @@ module B3Form
 
 
     def input_html
-      input_options = options[:input_html] || {}
-
-      if input_options.include? :class
-        input_options[:class] << ' form-control'
-      else
-        input_options[:class] = 'form-control'
-      end
-
-      input_options[:placeholder] = placeholder_text if placeholder_text
-
-      input_options
+      raise NotImplementedError, 'implement in subclass'
     end
 
 
     def label_html
-      label_options = options[:label_html] || {}
-
-      if label_options.include? :class
-        label_options[:class] << ' control-label'
-      else
-        label_options[:class] = 'control-label'
-      end
-
-      label_options
+      raise NotImplementedError, 'implement in subclass'
     end
 
 
-    def label_text
-      option_or_i18n(:label)
-    end
-
-    
-    def placeholder_text
-      option_or_i18n(:placeholder)
+    def label_text(&block)
+      raise NotImplementedError, 'implement in subclass'
     end
 
 
@@ -144,6 +128,11 @@ module B3Form
 
     def has_error?
       @has_error ||= errors.any?
+    end
+
+
+    def wrapper_css_class
+      raise NotImplementedError, 'implement in subclass'
     end
   end
 end
