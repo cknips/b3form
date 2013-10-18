@@ -28,6 +28,11 @@ module B3Form
       Input::Checkbox.new(self, field, options).render
     end
 
+    def radio_value(value, options = {})
+      Input::Radio.new(self, value, options).render
+    end
+
+
 
     def stacked_checkboxes(field = nil, options = {}, &block)
       Input::StackedCheckboxes.new(self, field, options).render(&block)
@@ -35,6 +40,14 @@ module B3Form
 
     def inline_checkboxes(field = nil, options = {}, &block)
       Input::InlineCheckboxes.new(self, field, options).render(&block)
+    end
+
+    def stacked_radios(field, options = {}, &block)
+      Input::StackedRadios.new(self, field, options).render(&block)
+    end
+
+    def inline_radios(field, options = {}, &block)
+      Input::InlineRadios.new(self, field, options).render(&block)
     end
   end
 end

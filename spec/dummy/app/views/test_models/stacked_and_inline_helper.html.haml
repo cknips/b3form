@@ -1,10 +1,20 @@
-= b3_form_for @test_model, html: { id: 'stacked' } do |f|
+= b3_form_for @test_model, html: { id: 'stacked-checkboxes' } do |f|
   = f.stacked_checkboxes do
     = f.checkbox_input :done
     = f.checkbox_input :really_done
 
-= b3_form_for @test_model, html: { id: 'inline' } do |f|
+= b3_form_for @test_model, html: { id: 'inline-checkboxes' } do |f|
   = f.inline_checkboxes do
     = f.checkbox_input :done
     = f.checkbox_input :really_done
+    
+= b3_form_for @test_model, html: { id: 'stacked-radios' } do |f|
+  = f.stacked_radios :priority do
+    = f.radio_value :high
+    = f.radio_value :low
+
+= b3_form_for @test_model, html: { id: 'inline-radios' } do |f|
+  = f.inline_radios :priority do
+    = f.radio_value :high
+    = f.radio_value :low
     

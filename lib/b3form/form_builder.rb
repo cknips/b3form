@@ -1,6 +1,7 @@
 module B3Form
   class FormBuilder < ActionView::Helpers::FormBuilder
     DEFAULT_CHECKBOX_LAYOUT = :stacked
+    DEFAULT_RADIO_LAYOUT    = :stacked
 
 
     delegate :content_tag, :tag, :capture, to: :@template
@@ -12,7 +13,8 @@ module B3Form
       super
 
       @modifier = {
-        checkbox_layout: DEFAULT_CHECKBOX_LAYOUT
+        checkbox_layout: DEFAULT_CHECKBOX_LAYOUT,
+        radio_layout:    DEFAULT_RADIO_LAYOUT
       }
     end
 

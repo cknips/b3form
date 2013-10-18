@@ -16,12 +16,5 @@ module B3Form
         end
       end
     end
-
-
-    private
-
-    def wrapper_css_class
-      'form-group'
-    end
   end
 end

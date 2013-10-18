@@ -5,7 +5,9 @@ module B3Form
         render_inner
       else
         render_wrapper do
-          render_inner
+          render_input_column do
+            render_inner
+          end
         end
       end
     end
@@ -24,13 +26,11 @@ module B3Form
           render_field
         end
       else
-        render_input_column do
-          builder.content_tag(:div, class: 'checkbox') do
-            render_label do
-              render_field
-            end +
-            render_errors
-          end
+        builder.content_tag(:div, class: 'checkbox') do
+          render_label do
+            render_field
+          end +
+          render_errors
         end
       end
     end
@@ -44,9 +44,7 @@ module B3Form
     def label_html
       if builder.modifier[:checkbox_layout] == :inline
         label_options = super
-
         add_to_options(label_options, :class, 'checkbox-inline')
-
         label_options
       else
         super

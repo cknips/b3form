@@ -12,7 +12,7 @@ class TestModel < ActiveRecord::Base
   attr_accessor :label_test, :label_test_html, :label_test_omitted,
                 :hint_test,  :hint_test_html,  :hint_test_omitted,
                 :placeholder_test, :placeholder_test_omitted,
-                :done, :really_done
+                :done, :really_done, :priority
 
   validates :email, presence: true
 end

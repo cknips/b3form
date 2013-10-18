@@ -47,7 +47,7 @@ This will generate the markup as described in the Bootstrap 3 documentation:
   <div class="form-group">
     <label for="task_title" class="control-label">Description</label>
     <div>
-      <input type="text" class="form-control" name="task_description">
+      <input type="text" class="form-control" name="task[description]">
     </div>
   </div>
   <button type="submit" class="btn btn-default">Create Task</button>
@@ -132,7 +132,7 @@ below):
   <div>
     <div class="checkbox">
       <label for="task_done">
-        <input type="checkbox" name="task_done">
+        <input type="checkbox" name="task[done]">
         Task done?
       </label>
     </div>
@@ -148,11 +148,11 @@ rendered above the checkboxes. The virtual field is translated like a real field
 of the object:
 
 ```haml
-= f.stacked_checkboxes do
+= f.stacked_checkboxes :task_done_states do
   = f.checkbox_input :done
   = f.checkbox_input :really_done
 
-= f.inline_checkboxes do
+= f.inline_checkboxes :task_done_states do
   = f.checkbox_input :done
   = f.checkbox_input :really_done
 ```
@@ -163,7 +163,7 @@ of the object:
   <div>
     <div class="checkbox">
       <label for="task_done">
-        <input type="checkbox" name="task_done">
+        <input type="checkbox" name="task[done]">
         Task done?
       </label>
     </div>
@@ -171,7 +171,7 @@ of the object:
   <div>
     <div class="checkbox">
       <label for="task_really_done">
-        <input type="checkbox" name="task_really_done">
+        <input type="checkbox" name="task[really_done]">
         Task really done?
       </label>
     </div>
@@ -182,11 +182,11 @@ of the object:
   <label for="task_done_states">Task done states</label>
   <div>
     <label for="task_done" class="checkbox-inline">
-      <input type="checkbox" name="task_done">
+      <input type="checkbox" name="task[done]">
       Task done?
     </label>
     <label for="task_really_done" class="checkbox-inline">
-      <input type="checkbox" name="task_really_done">
+      <input type="checkbox" name="task[really_done]">
       Task really done?
     </label>
   </div>
@@ -199,9 +199,59 @@ If the virtual field is ommited, the label tag will not be rendered.
 
 ### Radio Buttons
 
+Radio buttons can only rendered inside a `stacked_radios` or `inline_radios`
+helper. The field is set in the helper, the value is the first parameter passed
+to `radio_input`.
+
+```haml
+= f.stacked_radios :priority do
+  = f.radio_input :high
+  = f.radio_input :low
+
+= f.inline_radios :priority do
+  = f.radio_input :high
+  = f.radio_input :low
+```
+
+```html
+<div class="form-group">
+  <label for="task_priority">Priority</label>
+  <div>
+    <div class="radio">
+      <label for="task_priority">
+        <input type="radio" name="task[priority]" value="high">
+        High
+      </label>
+    </div>
+  </div>
+  <div>
+    <div class="radio">
+      <label for="task_priority">
+        <input type="radio" name="task[priority]" value="low">
+        Low
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="task_priority">Priority</label>
+  <div>
+    <label for="task_priority" class="radio-inline">
+      <input type="radio" name="task[priority]" value="high">
+      High
+    </label>
+    <label for="task_priority" class="radio-inline">
+      <input type="radio" name="task[priority]" value="low">
+      Low
+    </label>
+  </div>
+</div>
+```
 
 
 ### Buttons
+
 Avalable buttons are:
 
   * submit_button
@@ -227,7 +277,7 @@ the input tag. The CSS class *form-group* is mandatory and will be set automatic
 
 ## I18n
 
-Labels, Hints, Placeholders, Button Texts, Error Messages
+Labels, Hints, Placeholders, Button Texts, Error Messages, Options
 TODO I18n
 TODO pass option to input
 

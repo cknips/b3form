@@ -1,11 +1,8 @@
 = b3_form_for @task do |f|
   = f.text_input :title
 
-  = f.inline_checkboxes do
-    = f.checkbox_input :title
-    = f.checkbox_input :title
-    = f.checkbox_input :title
-
-  = f.checkbox_input :title, wrapper_html: { id: 'checkbox' }
+  = f.inline_radios :title do
+    = f.radio_value :bla
+    = f.radio_value :blub
 
   = f.submit_button
