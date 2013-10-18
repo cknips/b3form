@@ -27,44 +27,62 @@ describe 'labels' do
 # HTML
 # --------
 # <div class="form-group">
-#   <input type="text" class="form-control" name="test_model_title">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_title">
+#   </div>
 # </div>
 #
 # <div class="form-group">
 #   <label for="test_model_label_test_omitted" class="control-label">Overridden Omitted Label</label>
-#   <input type="text" class="form-control" name="test_model_label_test_omitted">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_label_test_omitted">
+#   </div>
 # </div>
 #
 # <div class="form-group">
-#   <input type="text" class="form-control" name="test_model_label_test_omitted">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_label_test_omitted">
+#   </div>
 # </div>
 #
 # <div class="form-group">
 #   <label for="test_model_label_test" class="control-label">Label Test</label>
-#   <input type="text" class="form-control" name="test_model_label_test">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_label_test">
+#   </div>
 # </div>
 #
 # <div class="form-group">
 #   <label for="test_model_label_test" class="control-label">Overridden Label Test</label>
-#   <input type="text" class="form-control" name="test_model_label_test">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_label_test">
+#   </div>
 # </div>
 #
 # <div class="form-group">
-#   <input type="text" class="form-control" name="test_model_label_test">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_label_test">
+#   </div>
 # </div>
 #
 # <div class="form-group">
 #   <label for="test_model_label_test_html" class="control-label">Label <b>Test</b></label>
-#   <input type="text" class="form-control" name="test_model_label_test_html">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_label_test_html">
+#   </div>
 # </div>
 #
 # <div class="form-group">
 #   <label for="test_model_label_test_html" class="control-label">Overridden Label Test Html</label>
-#   <input type="text" class="form-control" name="test_model_label_test_html">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_label_test_html">
+#   </div>
 # </div>
 #
 # <div class="form-group">
-#   <input type="text" class="form-control" name="test_model_label_test_html">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_label_test_html">
+#   </div>
 # </div>
 
   it 'omits the label if none is defined in translation file or passed as option' do

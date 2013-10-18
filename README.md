@@ -46,7 +46,9 @@ This will generate the markup as described in the Bootstrap 3 documentation:
 <form action="..." method="post" role="form">
   <div class="form-group">
     <label for="task_title" class="control-label">Description</label>
-    <input type="text" class="form-control" name="task_description">
+    <div>
+      <input type="text" class="form-control" name="task_description">
+    </div>
   </div>
   <button type="submit" class="btn btn-default">Create Task</button>
 </form>
@@ -121,66 +123,81 @@ Render a single checkbox:
 = f.checkbox_input :done
 ```
 
-Default sytle is "stacked", the label is automatically rendered inline:
+Default style is "stacked", the label is automatically rendered inline (the
+form helper for checkboxes also renders a hidden field, this in not shown
+below):
 
 ```html
-<div class="checkbox">
-  <label for="task_done">
-    <input type="checkbox" name="task_done">
-    Task done?
-  </label>
+<div class="form-group">
+  <div>
+    <div class="checkbox">
+      <label for="task_done">
+        <input type="checkbox" name="task_done">
+        Task done?
+      </label>
+    </div>
+  </div>
 </div>
 ```
 
 To render a group of checkboxes and set another layout you can use the
 `stacked_checkboxes` and `inline_checkboxes` helpers.
 
+You can also pass a virtual field to the helper which is used as label and
+rendered above the checkboxes. The virtual field is translated like a real field
+of the object:
+
 ```haml
+= f.stacked_checkboxes do
+  = f.checkbox_input :done
+  = f.checkbox_input :really_done
+
 = f.inline_checkboxes do
   = f.checkbox_input :done
   = f.checkbox_input :really_done
 ```
 
 ```html
-<div class="checkbox-inline">
-  <label for="task_done">
-    <input type="checkbox" name="task_done">
-    Task done?
-  </label>
+<div class="form-group">
+  <label for="task_done_states">Task done states</label>
+  <div>
+    <div class="checkbox">
+      <label for="task_done">
+        <input type="checkbox" name="task_done">
+        Task done?
+      </label>
+    </div>
+  </div>
+  <div>
+    <div class="checkbox">
+      <label for="task_really_done">
+        <input type="checkbox" name="task_really_done">
+        Task really done?
+      </label>
+    </div>
+  </div>
 </div>
-<div class="checkbox-inline">
-  <label for="task_done">
-    <input type="checkbox" name="task_done">
-    Task really done?
-  </label>
+
+<div class="form-group">
+  <label for="task_done_states">Task done states</label>
+  <div>
+    <div class="checkbox-inline">
+      <label for="task_done">
+        <input type="checkbox" name="task_done">
+        Task done?
+      </label>
+    </div>
+    <div class="checkbox-inline">
+      <label for="task_really_done">
+        <input type="checkbox" name="task_really_done">
+        Task really done?
+      </label>
+    </div>
+  </div>
 </div>
 ```
 
-You can also pass a virtual field to the helper which is used as label and
-rendered above the checkboxes. The virtual field is translated like a real field
-of the object:
-
-```haml
-= f.stacked_checkboxes :done_states do
-  = f.checkbox_input :done
-  = f.checkbox_input :really_done
-```
-
-```html
-<label for="task_done_states">Task done states</label>
-<div class="checkbox">
-  <label for="task_done">
-    <input type="checkbox" name="task_done">
-    Task done?
-  </label>
-</div>
-<div class="checkbox">
-  <label for="task_done">
-    <input type="checkbox" name="task_done">
-    Task really done?
-  </label>
-</div>
-```
+If the virtual field is ommited, the label tag will not be rendered.
 
 
 

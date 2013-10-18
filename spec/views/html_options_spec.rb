@@ -16,7 +16,9 @@ describe 'html options' do
 #
 # <div class="form-group">
 #   <label for="test_model_title" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_title" placeholder="text">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_title" placeholder="text">
+#   </div>
 # </div>
 
     it 'passes through attributes for the label tag, preserves given classes' do
@@ -39,7 +41,9 @@ describe 'html options' do
 #
 # <div class="form-group">
 #   <label for="test_model_title" class="control-label">Text</label>
-#   <input type="text" class="form-control input-lg" name="test_model_title" placeholder="text">
+#   <div>
+#     <input type="text" class="form-control input-lg" name="test_model_title" placeholder="text">
+#   </div>
 # </div>
 
     it 'passes through attributes for the input tag, preserves given classes' do
@@ -62,7 +66,9 @@ describe 'html options' do
 #
 # <div class="form-group" id="wrapper_id">
 #   <label for="test_model_title" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_title" placeholder="text">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_title" placeholder="text">
+#   </div>
 # </div>
 
     it 'passes through attributes for the wrapper div tag, preserves given classes' do

@@ -34,6 +34,11 @@ module B3Form
     end
 
 
+    def render_input_column(&block)
+      builder.content_tag :div, &block
+    end
+
+
     def render_errors
       errors.map { |message|
         builder.content_tag :div, class: 'help-block' do
@@ -59,14 +64,8 @@ module B3Form
     def wrapper_html
       wrapper_options = options[:wrapper_html] || {}
 
-      if wrapper_options.include? :class
-        wrapper_options[:class] << ' '
-        wrapper_options[:class] << wrapper_css_class
-      else
-        wrapper_options[:class] = wrapper_css_class
-      end
-
-      wrapper_options[:class] << ' has-error' if has_error?
+      add_to_options(wrapper_options, :class, 'form-group')
+      add_to_options(wrapper_options, :class, 'has-error') if has_error?
 
       wrapper_options
     end
@@ -124,6 +123,15 @@ module B3Form
     end
 
 
+    def add_to_options(hash, key, value)
+      if hash.include? key
+        hash[key] << ' ' + value
+      else
+        hash[key] = value
+      end
+    end
+
+
     def errors
       @errors ||= object.errors.messages[field] || []
     end
@@ -131,11 +139,6 @@ module B3Form
 
     def has_error?
       @has_error ||= errors.any?
-    end
-
-
-    def wrapper_css_class
-      raise NotImplementedError, 'implement in subclass'
     end
   end
 end

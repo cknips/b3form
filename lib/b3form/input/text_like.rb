@@ -3,7 +3,9 @@ module B3Form
     def render
       render_wrapper do
         render_label  +
-        render_field  +
+        render_input_column do
+          render_field
+        end +
         render_errors +
         render_hint
       end
@@ -12,19 +14,10 @@ module B3Form
 
     private
 
-    def wrapper_css_class
-      'form-group'
-    end
-
-
     def label_html
       label_options = super
-
-      if label_options.include? :class
-        label_options[:class] << ' control-label'
-      else
-        label_options[:class] = 'control-label'
-      end
+      
+      add_to_options(label_options, :class, 'control-label')
 
       label_options
     end
@@ -33,12 +26,7 @@ module B3Form
     def input_html
       input_options = super
 
-      if input_options.include? :class
-        input_options[:class] << ' form-control'
-      else
-        input_options[:class] = 'form-control'
-      end
-
+      add_to_options(input_options, :class, 'form-control')
       input_options[:placeholder] = placeholder_text if placeholder_text
 
       input_options

@@ -22,19 +22,27 @@ describe 'Hints' do
 #
 # <div class="form-group">
 #   <label for="test_model_placeholder_test_omitted" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_placeholder_test_omitted">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_placeholder_test_omitted">
+#   </div>
 # </div>
 # <div class="form-group">
 #   <label for="test_model_placeholder_test" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_placeholder_test" placeholder="Placeholder Test">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_placeholder_test" placeholder="Placeholder Test">
+#   </div>
 # </div>
 # <div class="form-group">
 #   <label for="test_model_placeholder_test_omitted" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_placeholder_test_omitted" placeholder="Overridden Omitted Placeholder">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_placeholder_test_omitted" placeholder="Overridden Omitted Placeholder">
+#   </div>
 # </div>
 # <div class="form-group">
 #   <label for="test_model_placeholder_test" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_placeholder_test" placeholder="Overridden Test Placeholder">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_placeholder_test" placeholder="Overridden Test Placeholder">
+#   </div>
 # </div>
 
   it 'does not add a placeholder if none is defined in translation file or '\

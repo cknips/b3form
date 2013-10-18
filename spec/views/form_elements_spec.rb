@@ -18,33 +18,49 @@ describe 'form_elements' do
 #
 # <div class="form-group" id="text">
 #   <label for="test_model_email" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_email">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_email">
+#   </div>
 # </div>
 # <div class="form-group" id="password">
 #   <label for="test_model_email" class="control-label">Text</label>
-#   <input type="password" class="form-control" name="test_model_email">
+#   <div>
+#     <input type="password" class="form-control" name="test_model_email">
+#   </div>
 # </div>
 # <div class="form-group" id="search">
 #   <label for="test_model_email" class="control-label">Text</label>
-#   <input type="search" class="form-control" name="test_model_email">
+#   <div>
+#     <input type="search" class="form-control" name="test_model_email">
+#   </div>
 # </div>
 # <div class="form-group" id="url">
 #   <label for="test_model_email" class="control-label">Text</label>
-#   <input type="url" class="form-control" name="test_model_email">
+#   <div>
+#     <input type="url" class="form-control" name="test_model_email">
+#   </div>
 # </div>
 # <div class="form-group" id="email">
 #   <label for="test_model_email" class="control-label">Text</label>
-#   <input type="email" class="form-control" name="test_model_email">
+#   <div>
+#     <input type="email" class="form-control" name="test_model_email">
+#   </div>
 # </div>
 # <div class="form-group" id="number">
 #   <label for="test_model_email" class="control-label">Text</label>
-#   <input type="number" class="form-control" name="test_model_email">
+#   <div>
+#     <input type="number" class="form-control" name="test_model_email">
+#   </div>
 # </div>
-# <div class="checkbox">
-#   <label for="test_model_email">
-#     <input type="checkbox" name="test_model_email">
-#     Text
-#   </label>
+# <div class="form-group" id="checkbox">
+#   <div>
+#     <div class="checkbox">
+#       <label for="test_model_email">
+#         <input type="checkbox" name="test_model_email">
+#         Text
+#       </label>
+#     </div>
+#   </div>
 # </div>
 
   shared_examples_for 'a text style input' do
@@ -55,8 +71,8 @@ describe 'form_elements' do
       expect(page).to have_css "form div.form-group##{input_type} label[for=test_model_email]"
       expect(page).to have_css "form div.form-group##{input_type} label.control-label"
 
-      expect(page).to have_css "form div.form-group##{input_type} input[type=#{input_type}]"
-      expect(page).to have_css "form div.form-group##{input_type} input.form-control"
+      expect(page).to have_css "form div.form-group##{input_type} div input[type=#{input_type}]"
+      expect(page).to have_css "form div.form-group##{input_type} div input.form-control"
     end
   end
 
@@ -103,8 +119,8 @@ describe 'form_elements' do
        'class="checkbox"' do
       render template: 'test_models/form_elements'
 
-      expect(page).to have_css "form div#checkbox label[for=test_model_email]"
-      expect(page).to have_css "form div#checkbox label[for=test_model_email] input[type=checkbox]"
+      expect(page).to have_css "form div.form-group#checkbox div div.checkbox label[for=test_model_email]"
+      expect(page).to have_css "form div.form-group#checkbox div div.checkbox label[for=test_model_email] input[type=checkbox]"
     end
   end
 end

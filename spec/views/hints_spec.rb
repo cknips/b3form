@@ -25,31 +25,43 @@ describe 'Hints' do
 # --------
 # <div class="form-group">
 #   <label for="test_model_hint_test_omitted" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_hint_test_omitted">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_hint_test_omitted">
+#   </div>
 # </div>
 # <div class="form-group">
 #   <label for="test_model_hint_test" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_hint_test">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_hint_test">
+#   </div>
 #   <div class="hint">Hint Test Description</div>
 # </div>
 # <div class="form-group">
 #   <label for="test_model_hint_test_html" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_hint_test_html">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_hint_test_html">
+#   </div>
 #   <div class="hint">Hint Test <b>Description</b></div>
 # </div>
 # <div class="form-group">
 #   <label for="test_model_hint_test_omitted" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_hint_test_omitted">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_hint_test_omitted">
+#   </div>
 #   <div class="hint">Overridden hint_test_omitted</div>
 # </div>
 # <div class="form-group">
 #   <label for="test_model_hint_test" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_hint_test">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_hint_test">
+#   </div>
 #   <div class="hint">Overridden Hint Test</div>
 # </div>
 # <div class="form-group">
 #   <label for="test_model_hint_test_html" class="control-label">Text</label>
-#   <input type="text" class="form-control" name="test_model_hint_test_html">
+#   <div>
+#     <input type="text" class="form-control" name="test_model_hint_test_html">
+#   </div>
 #   <div class="hint">Overridden Hint Test Html</div>
 # </div>
 
