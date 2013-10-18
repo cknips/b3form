@@ -10,7 +10,7 @@ describe 'html options' do
 
 # View:
 #
-# <%= f.text_input :title, label_html: { id: 'label_id' }
+# = f.text_input :title, label_html: { id: 'label_id' }
 #
 # HTML:
 #

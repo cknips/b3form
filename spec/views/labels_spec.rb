@@ -6,15 +6,15 @@ describe 'labels' do
 
 # View
 # --------
-# <%= f.text_input :label_test_omitted %>
-# <%= f.text_input :label_test_omitted, label: 'Overridden Omitted Label' %>
-# <%= f.text_input :label_test_omitted, label: false %>
-# <%= f.text_input :label_test %>
-# <%= f.text_input :label_test, label: 'Overridden Label Test' %>
-# <%= f.text_input :label_test, label: false %>
-# <%= f.text_input :label_test_html %>
-# <%= f.text_input :label_test_html, label: 'Overridden Label Test Html' %>
-# <%= f.text_input :label_test_html, label: false %>
+# = f.text_input :label_test_omitted
+# = f.text_input :label_test_omitted, label: 'Overridden Omitted Label'
+# = f.text_input :label_test_omitted, label: false
+# = f.text_input :label_test
+# = f.text_input :label_test, label: 'Overridden Label Test'
+# = f.text_input :label_test, label: false
+# = f.text_input :label_test_html
+# = f.text_input :label_test_html, label: 'Overridden Label Test Html'
+# = f.text_input :label_test_html, label: false
 #
 # de.yml
 # --------

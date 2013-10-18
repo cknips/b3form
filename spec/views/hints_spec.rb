@@ -6,12 +6,12 @@ describe 'Hints' do
 
 # View:
 # --------
-# <%= f.text_input :hint_test_omitted %>
-# <%= f.text_input :hint_test %>
-# <%= f.text_input :hint_test_html %>
-# <%= f.text_input :hint_test_omitted, hint: 'Overridden Title' %>
-# <%= f.text_input :hint_test, hint: 'Overridden Hint Test' %>
-# <%= f.text_input :hint_test_html, hint: 'Overridden Hint Test Html' %>
+# = f.text_input :hint_test_omitted
+# = f.text_input :hint_test
+# = f.text_input :hint_test_html
+# = f.text_input :hint_test_omitted, hint: 'Overridden Title'
+# = f.text_input :hint_test, hint: 'Overridden Hint Test'
+# = f.text_input :hint_test_html, hint: 'Overridden Hint Test Html'
 #
 # de.yml:
 # --------

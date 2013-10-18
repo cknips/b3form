@@ -6,8 +6,8 @@ describe 'submit button' do
 
 # View
 # --------
-# <%= f.submit_button %>
-# <%= f.submit_button 'Overridden Button' %>
+# = f.submit_button
+# = f.submit_button 'Overridden Button'
 #
 # de.yml
 # --------

@@ -25,6 +25,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec-rails', '~> 2.14'
   spec.add_development_dependency 'capybara'
   spec.add_development_dependency 'pry-rails'
-
+  spec.add_development_dependency 'haml-rails'
   spec.add_development_dependency 'sqlite3'
 end

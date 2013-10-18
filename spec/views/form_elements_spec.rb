@@ -6,13 +6,13 @@ describe 'form_elements' do
 
 # View:
 #
-# <%= f.text_input     :email, wrapper_html: { id: 'text' } %>
-# <%= f.password_input :email, wrapper_html: { id: 'password' } %>
-# <%= f.search_input   :email, wrapper_html: { id: 'search' } %>
-# <%= f.url_input      :email, wrapper_html: { id: 'url' } %>
-# <%= f.email_input    :email, wrapper_html: { id: 'email' } %>
-# <%= f.number_input   :email, wrapper_html: { id: 'number' } %>
-# <%= f.checkbox_input :email, wrapper_html: { id: 'checkbox' } %>
+# = f.text_input     :email, wrapper_html: { id: 'text' }
+# = f.password_input :email, wrapper_html: { id: 'password' }
+# = f.search_input   :email, wrapper_html: { id: 'search' }
+# = f.url_input      :email, wrapper_html: { id: 'url' }
+# = f.email_input    :email, wrapper_html: { id: 'email' }
+# = f.number_input   :email, wrapper_html: { id: 'number' }
+# = f.checkbox_input :email, wrapper_html: { id: 'checkbox' }
 #
 # HTML:
 #

@@ -6,10 +6,9 @@ describe 'error features' do
 
 # View:
 #
-# <%= b3_form_for @test_model do |f| %>
-#   <%= f.error_alert :base %>
-#   <%= f.text_input :email %>
-# <% end %>
+# = b3_form_for @test_model do |f|
+#   = f.error_alert :base
+#   = f.text_input :email
 #
 # with @test_model.email having a validation error and an error in :base
 #

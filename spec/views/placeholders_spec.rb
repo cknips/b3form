@@ -6,10 +6,10 @@ describe 'Hints' do
 
 # View
 # --------
-# <%= f.text_input :placeholder_test_omitted %>
-# <%= f.text_input :placeholder_test %>
-# <%= f.text_input :placeholder_test_omitted, placeholder: 'Overridden Omitted Placeholder' %>
-# <%= f.text_input :placeholder_test, placeholder: 'Overridden Test Placeholder' %>
+# = f.text_input :placeholder_test_omitted
+# = f.text_input :placeholder_test
+# = f.text_input :placeholder_test_omitted, placeholder: 'Overridden Omitted Placeholder'
+# = f.text_input :placeholder_test, placeholder: 'Overridden Test Placeholder'
 #
 # de.yml
 # --------

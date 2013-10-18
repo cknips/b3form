@@ -1,0 +1,5 @@
+= b3_form_for @test_model do |f|
+  = f.text_input :placeholder_test_omitted
+  = f.text_input :placeholder_test
+  = f.text_input :placeholder_test_omitted, placeholder: 'Overridden Omitted Placeholder'
+  = f.text_input :placeholder_test, placeholder: 'Overridden Test Placeholder'
