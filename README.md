@@ -205,12 +205,12 @@ to `radio_input`.
 
 ```haml
 = f.stacked_radios :priority do
-  = f.radio_input :high
-  = f.radio_input :low
+  = f.radio_value :high
+  = f.radio_value :low
 
 = f.inline_radios :priority do
-  = f.radio_input :high
-  = f.radio_input :low
+  = f.radio_value :high
+  = f.radio_value :low
 ```
 
 ```html
