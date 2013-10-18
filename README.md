@@ -181,18 +181,14 @@ of the object:
 <div class="form-group">
   <label for="task_done_states">Task done states</label>
   <div>
-    <div class="checkbox-inline">
-      <label for="task_done">
-        <input type="checkbox" name="task_done">
-        Task done?
-      </label>
-    </div>
-    <div class="checkbox-inline">
-      <label for="task_really_done">
-        <input type="checkbox" name="task_really_done">
-        Task really done?
-      </label>
-    </div>
+    <label for="task_done" class="checkbox-inline">
+      <input type="checkbox" name="task_done">
+      Task done?
+    </label>
+    <label for="task_really_done" class="checkbox-inline">
+      <input type="checkbox" name="task_really_done">
+      Task really done?
+    </label>
   </div>
 </div>
 ```

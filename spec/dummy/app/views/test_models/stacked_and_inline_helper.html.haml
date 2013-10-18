@@ -1,0 +1,10 @@
+= b3_form_for @test_model, html: { id: 'stacked' } do |f|
+  = f.stacked_checkboxes do
+    = f.checkbox_input :done
+    = f.checkbox_input :really_done
+
+= b3_form_for @test_model, html: { id: 'inline' } do |f|
+  = f.inline_checkboxes do
+    = f.checkbox_input :done
+    = f.checkbox_input :really_done
+    

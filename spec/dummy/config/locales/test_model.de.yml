@@ -10,6 +10,9 @@ de:
         email: Email
         label_test: Label Test
         label_test_html: Label <b>Test</b>
+        done: Task done?
+        really_done: Task really done?
+        task_done_states: Task done states
     hint:
       test_model:
         hint_test: Hint Test Description
