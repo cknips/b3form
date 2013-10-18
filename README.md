@@ -8,7 +8,7 @@ any way.**
 
 
 
-## Installation
+# Installation
 
 Add this line to your application's Gemfile:
 
@@ -29,16 +29,15 @@ another gem or manually.
 
 
 
-## Usage
+# Usage
 
 B3Form is designed to be used as a form builder in Rails views. It is invoked
 using a helper method:
 
-```erb
-<%= b3_form_for @task do |f| %>
-  <%= f.text_input :description %>
-  <%= f.submit_button %>
-<% end %>
+```haml
+= b3_form_for @task do |f|
+  = f.text_input :description
+  = f.submit_button
 ```
 
 This will generate the markup as described in the Bootstrap 3 documentation:
@@ -60,10 +59,9 @@ To manually render error messages for a field, you can use the
 `error_alert :field` helper. This is usually used to render the error messages
 for `:base` at the top of the form:
 
-```erb
-<%= b3_form_for @task do |f| %>
-  <%= f.error_alert :base %>
-<% end %>
+```haml
+= b3_form_for @task do |f|
+  = f.error_alert :base
 ```
 
 The error messages are rendered in a red alert box:
@@ -76,7 +74,7 @@ The error messages are rendered in a red alert box:
 
 
 
-### Form Layouts
+## Form Layouts
 
 Boostrap 3 supports three different form layouts: basic, horizontal and inline.
 B3Form defines three helper methods accordingly:
@@ -93,25 +91,108 @@ of a model. See the section *Forms without Models* further down.
 
 
 
-### Available Inputs and Buttons
+## Form Elements
 
 B3Form supports many inputs and buttons supported by the standard form builder.
 To avoid conflicts, other names are used for the elements. You can call the
 methods from the standard form builder (like `f.text_field :description`) if
 you want to render "non-bootstrapified" input elements.
 
+
+
+### Text-like Inputs
+
 Available inputs are:
 
   * text_input
   * password_input
-  * search_field
-  * url_field
-  * email_field
-  * number_field
+  * search_input
+  * url_input
+  * email_input
+  * number_input
 
+
+
+### Checkboxes
+
+Render a single checkbox:
+
+```haml
+= f.checkbox_input :done
+```
+
+Default sytle is "stacked", the label is automatically rendered inline:
+
+```html
+<div class="checkbox">
+  <label for="task_done">
+    <input type="checkbox" name="task_done">
+    Task done?
+  </label>
+</div>
+```
+
+To render a group of checkboxes and set another layout you can use the
+`stacked_checkboxes` and `inline_checkboxes` helpers.
+
+```haml
+= f.inline_checkboxes do
+  = f.checkbox_input :done
+  = f.checkbox_input :really_done
+```
+
+```html
+<div class="checkbox-inline">
+  <label for="task_done">
+    <input type="checkbox" name="task_done">
+    Task done?
+  </label>
+</div>
+<div class="checkbox-inline">
+  <label for="task_done">
+    <input type="checkbox" name="task_done">
+    Task really done?
+  </label>
+</div>
+```
+
+You can also pass a virtual field to the helper which is used as label and
+rendered above the checkboxes. The virtual field is translated like a real field
+of the object:
+
+```haml
+= f.stacked_checkboxes :done_states do
+  = f.checkbox_input :done
+  = f.checkbox_input :really_done
+```
+
+```html
+<label for="task_done_states">Task done states</label>
+<div class="checkbox">
+  <label for="task_done">
+    <input type="checkbox" name="task_done">
+    Task done?
+  </label>
+</div>
+<div class="checkbox">
+  <label for="task_done">
+    <input type="checkbox" name="task_done">
+    Task really done?
+  </label>
+</div>
+```
+
+
+
+### Radio Buttons
+
+
+
+### Buttons
 Avalable buttons are:
 
   * submit_button
+
 
 
 ### General Options
@@ -131,7 +212,7 @@ the input tag. The CSS class *form-group* is mandatory and will be set automatic
 
 
 
-### I18n
+## I18n
 
 Labels, Hints, Placeholders, Button Texts, Error Messages
 TODO I18n
@@ -140,13 +221,13 @@ TODO pass option to input
 
 
 
-### Forms without Models
+## Forms without Models
 
 TODO
 
 
 
-## Contributing
+# Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)

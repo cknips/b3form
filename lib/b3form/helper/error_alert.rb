@@ -1,5 +1,5 @@
 module B3Form
-  class Output::ErrorAlert < Output
+  class Helper::ErrorAlert < Helper
     def render
       errors = object.errors
 

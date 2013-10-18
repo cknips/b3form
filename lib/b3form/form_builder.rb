@@ -1,19 +1,29 @@
 module B3Form
   class FormBuilder < ActionView::Helpers::FormBuilder
-    delegate :content_tag, :tag, to: :@template
+    DEFAULT_CHECKBOX_LAYOUT = :stacked
+
+
+    delegate :content_tag, :tag, :capture, to: :@template
+
+
+    attr_reader :modifier
+
+    def initialize(*)
+      super
+
+      @modifier = {
+        checkbox_layout: DEFAULT_CHECKBOX_LAYOUT
+      }
+    end
 
 
     def error_alert(field, options = {})
-      error_alert = Output::ErrorAlert.new(self, field, options)
-
-      error_alert.render
+      Helper::ErrorAlert.new(self, field, options).render
     end
 
 
     def submit_button(options = {})
-      button = Button::Submit.new(self, options)
-
-      button.render_button
+      Button::Submit.new(self, options).render_button
     end
   end
 end

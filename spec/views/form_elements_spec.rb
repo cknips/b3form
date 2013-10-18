@@ -42,7 +42,7 @@ describe 'form_elements' do
 # </div>
 # <div class="checkbox">
 #   <label for="test_model_email">
-#     <input type="checkbox" name="text_model_email">
+#     <input type="checkbox" name="test_model_email">
 #     Text
 #   </label>
 # </div>

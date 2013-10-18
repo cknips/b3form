@@ -17,13 +17,8 @@ module B3Form
     end
 
 
-    def label_text(&block)
-      option_or_i18n(:label)
-    end
-
-
     def label_html
-      label_options = options[:label_html] || {}
+      label_options = super
 
       if label_options.include? :class
         label_options[:class] << ' control-label'
@@ -36,7 +31,7 @@ module B3Form
 
 
     def input_html
-      input_options = options[:input_html] || {}
+      input_options = super
 
       if input_options.include? :class
         input_options[:class] << ' form-control'

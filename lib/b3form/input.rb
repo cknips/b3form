@@ -3,9 +3,9 @@ module B3Form
     attr_reader :builder, :field, :options
 
     def initialize(builder, field, options)
-      @builder = builder
-      @field   = field
-      @options = options
+      @builder  = builder
+      @field    = field
+      @options  = options
     end
 
     delegate :object, to: :builder
@@ -73,17 +73,17 @@ module B3Form
 
 
     def input_html
-      raise NotImplementedError, 'implement in subclass'
+      options[:input_html] || {}
     end
 
 
     def label_html
-      raise NotImplementedError, 'implement in subclass'
+      options[:label_html] || {}
     end
 
 
     def label_text(&block)
-      raise NotImplementedError, 'implement in subclass'
+      option_or_i18n(:label)
     end
 
 
@@ -102,7 +102,10 @@ module B3Form
       end
     end
 
+    
     def helper_text_from_i18n(key)
+      return false unless field
+
       translation =
         I18n.t "helpers.#{key}.#{object.class.model_name.i18n_key}.#{field}",
                 default: '__missing__'

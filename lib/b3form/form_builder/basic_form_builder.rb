@@ -27,5 +27,10 @@ module B3Form
     def checkbox_input(field, options = {})
       Input::Checkbox.new(self, field, options).render
     end
+
+
+    def stacked_checkboxes(field = nil, options = {}, &block)
+      Input::StackedCheckboxes.new(self, field, options).render(&block)
+    end
   end
 end

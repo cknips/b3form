@@ -1,5 +1,5 @@
 module B3Form
-  class Output
+  class Helper
     attr_reader :builder, :field, :options
 
     def initialize(builder, field, options)

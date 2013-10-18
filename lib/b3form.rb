@@ -14,8 +14,9 @@ require 'b3form/input/url'
 require 'b3form/input/email'
 require 'b3form/input/number'
 require 'b3form/input/checkbox'
-require 'b3form/output'
-require 'b3form/output/error_alert'
+require 'b3form/input/stacked_checkboxes'
+require 'b3form/helper'
+require 'b3form/helper/error_alert'
 require 'b3form/view_helpers/form_builder_helper'
 
 module B3Form

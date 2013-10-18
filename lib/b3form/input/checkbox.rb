@@ -9,6 +9,7 @@ module B3Form
       end
     end
 
+
     def render_field
       builder.check_box(field, input_html)
     end
@@ -22,17 +23,7 @@ module B3Form
 
     
     def label_text(&block)
-      block.call + option_or_i18n(:label)
-    end
-
-    
-    def label_html
-      options[:label_html] || {}
-    end
-
-    
-    def input_html
-      options[:input_html] || {}
+      block.call + super
     end
   end
 end
