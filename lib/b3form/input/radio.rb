@@ -54,12 +54,6 @@ module B3Form
                 default: '__missing__'
 
       if translation == '__missing__'
-        translation =
-          I18n.t "helpers.options.#{object.class.model_name.i18n_key}.#{field}.#{value}_html",
-                  default: '__missing__'
-      end
-
-      if translation == '__missing__'
         value
       else
         translation.html_safe
