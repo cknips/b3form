@@ -32,6 +32,10 @@ module B3Form
       Input::Radio.new(self, value, options).render
     end
 
+    def text_area_input(value, options = {})
+      Input::TextArea.new(self, value, options).render
+    end
+
 
 
     def stacked_checkboxes(field = nil, options = {}, &block)

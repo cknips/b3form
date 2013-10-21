@@ -130,6 +130,7 @@ Available text-like inputs are:
   * url_input
   * email_input
   * number_input
+  * text_area_input
 
 
 

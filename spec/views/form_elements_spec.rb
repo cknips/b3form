@@ -6,13 +6,14 @@ describe 'form_elements' do
 
 # View:
 #
-# = f.text_input     :email, wrapper_html: { id: 'text' }
-# = f.password_input :email, wrapper_html: { id: 'password' }
-# = f.search_input   :email, wrapper_html: { id: 'search' }
-# = f.url_input      :email, wrapper_html: { id: 'url' }
-# = f.email_input    :email, wrapper_html: { id: 'email' }
-# = f.number_input   :email, wrapper_html: { id: 'number' }
-# = f.checkbox_input :email, wrapper_html: { id: 'checkbox' }
+# = f.text_input      :email, wrapper_html: { id: 'text' }
+# = f.password_input  :email, wrapper_html: { id: 'password' }
+# = f.search_input    :email, wrapper_html: { id: 'search' }
+# = f.url_input       :email, wrapper_html: { id: 'url' }
+# = f.email_input     :email, wrapper_html: { id: 'email' }
+# = f.number_input    :email, wrapper_html: { id: 'number' }
+# = f.checkbox_input  :email, wrapper_html: { id: 'checkbox' }
+# = f.text_area_input :email, wrapper_html: { id: 'text-area' }
 #
 # HTML:
 #
@@ -60,6 +61,12 @@ describe 'form_elements' do
 #         Text
 #       </label>
 #     </div>
+#   </div>
+# </div>
+# <div class="form-group" id="number">
+#   <label for="test_model_email" class="control-label">Text</label>
+#   <div>
+#     <textarea class="form-control" name="test_model_email">
 #   </div>
 # </div>
 
@@ -121,6 +128,20 @@ describe 'form_elements' do
 
       expect(page).to have_css "form div.form-group#checkbox div div.checkbox label[for=test_model_email]"
       expect(page).to have_css "form div.form-group#checkbox div div.checkbox label[for=test_model_email] input[type=checkbox]"
+    end
+  end
+
+
+  describe 'text area input' do
+    it 'renders a text area with class="form-control" and a label with '\
+       'class="control-label", wrapped in a div with class="form-group"' do
+      render template: 'test_models/form_elements'
+
+      expect(page).to have_css "form div.form-group#text-area label[for=test_model_email]"
+      expect(page).to have_css "form div.form-group#text-area label.control-label"
+
+      expect(page).to have_css "form div.form-group#text-area div textarea"
+      expect(page).to have_css "form div.form-group#text-area div textarea.form-control"
     end
   end
 end
