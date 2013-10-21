@@ -36,7 +36,7 @@ using a helper method:
 
 ```haml
 = b3_form_for @task do |f|
-  = f.text_input :description
+  = f.text_input :title
   = f.submit_button
 ```
 
@@ -45,9 +45,9 @@ This will generate the markup as described in the Bootstrap 3 documentation:
 ```html
 <form action="..." method="post" role="form">
   <div class="form-group">
-    <label for="task_title" class="control-label">Description</label>
+    <label for="task_title" class="control-label">Title</label>
     <div>
-      <input type="text" class="form-control" name="task[description]">
+      <input type="text" class="form-control" name="task[title]">
     </div>
   </div>
   <button type="submit" class="btn btn-default">Create Task</button>
@@ -97,14 +97,31 @@ of a model. See the section *Forms without Models* further down.
 
 B3Form supports many inputs and buttons supported by the standard form builder.
 To avoid conflicts, other names are used for the elements. You can call the
-methods from the standard form builder (like `f.text_field :description`) if
+methods from the standard form builder (e.g. `f.text_field :description`) if
 you want to render "non-bootstrapified" input elements.
 
 
 
 ### Text-like Inputs
 
-Available inputs are:
+To render a text-like input use the form helper as shown on top of the read me:
+
+```haml
+= f.text_input :title
+```
+
+This will render:
+
+```html
+<div class="form-group">
+  <label for="task_title" class="control-label">Title</label>
+  <div>
+    <input type="text" class="form-control" name="task[title]">
+  </div>
+</div>
+```
+
+Available text-like inputs are:
 
   * text_input
   * password_input
@@ -258,7 +275,15 @@ Avalable buttons are:
 
 
 
-### General Options
+## I18n
+
+Labels, Hints, Placeholders, Button Texts, Error Messages, Options
+TODO I18n
+TODO pass option to input
+
+
+
+## General Options
 
 To every input you can pass three options as hashes:
 
@@ -275,12 +300,9 @@ the input tag. The CSS class *form-group* is mandatory and will be set automatic
 
 
 
-## I18n
+### Extra options passed to the input
 
-Labels, Hints, Placeholders, Button Texts, Error Messages, Options
-TODO I18n
-TODO pass option to input
-
+TODO
 
 
 
