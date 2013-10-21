@@ -22,7 +22,8 @@ Or install it yourself as:
 
     $ gem install b3form
 
-The Bootstrap 3 stylesheets and JavaScript files are not included in the gem. B3Form is tested with
+The Bootstrap 3 stylesheets and JavaScript files are not included in the gem.
+B3Form is tested with
 [bootstrap-sass](https://github.com/thomas-mcdonald/bootstrap-sass) but should
 also work if the stylesheets and JavaScript files are installed through
 another gem or manually.
@@ -162,7 +163,7 @@ To render a group of checkboxes and set another layout you can use the
 
 You can also pass a virtual field to the helper which is used as label and
 rendered above the checkboxes. The virtual field is translated like a real field
-of the object:
+of the object and is used *only* for translation purposes:
 
 ```haml
 = f.stacked_checkboxes :task_done_states do
@@ -210,7 +211,7 @@ of the object:
 </div>
 ```
 
-If the virtual field is ommited, the label tag will not be rendered.
+If the virtual field is ommited, the label will not be rendered.
 
 
 
@@ -266,6 +267,28 @@ to `radio_value`.
 </div>
 ```
 
+You can also pass a `collection` option if you don't want to render the radio
+button values one by one.
+
+The collection option must be:
+
+  * an Array of symbols: `[:value_1, :value_2]`. The entries are used as values
+    for the radio buttons. The labels are taken from the translation file (see
+    the I18n section below).
+  * a Hash of the form: `{ value_1: 'label for value_1', value_2: 'label for
+    value_2' }`.
+  * a nested Array of the form: `[[:value_1, 'label for value_1'], [:value_2,
+    'label for value_2']]`
+
+So to render the same HTML as above, you can do (using an Array and a Hash,
+usage of the nested Array is not shown):
+
+```haml
+= stacked_radios :priority, collection: [:high, :low]
+= inline_radios :priority, collection: { high: 'High', low: 'Low' }
+```
+
+
 
 ### Buttons
 
@@ -277,9 +300,115 @@ Avalable buttons are:
 
 ## I18n
 
-Labels, Hints, Placeholders, Button Texts, Error Messages, Options
-TODO I18n
-TODO pass option to input
+For labeling the different elements B3Form uses the standard I18n system. It
+uses the `helpers` section and extends it with it's own attributes. Here are the
+translations for a fictional task model (shown as annotated with the 
+[Annotate](https://github.com/ctran/annotate_models) gem):
+
+```ruby
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  description :text
+#  done        :boolean
+#  really_done :boolean
+#  priority    :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+class Task < ActiveRecord::Base  
+end
+```
+
+```yaml
+en:
+  helpers:
+    labels:
+      task:
+        title:       Title label
+        done_states: Done states label
+        done: Done
+        really_done: Really Done
+        priority:    Priority label
+    placeholders:
+      task:
+        title:       Title Placeholder
+    hints:
+      task:
+        title:       Small hint below the text field
+        done_states: Small hint below the checkboxes
+        priority:    Small hint below the radio button group
+    options:
+      task:
+        priority:
+          high:      High
+          low:       Low
+```
+
+`done_states` is a virtual attribute to label the two checkboxes which set the
+state (*done* and *really_done*). It doesn't have to be an accessible
+attribute of the model.
+
+
+
+### Labels
+
+Labels are automatically read from `'helpers.labels'` in I18n. To manually set a
+label on an element, you can pass a `label`-option:
+
+```haml
+= f.text_input :title, label: 'Custom label for title'
+```
+
+```html
+<div class="form-group">
+  <label for="task_title" class="control-label">Custom label for title</label>
+  <div>
+    <input type="text" class="form-control" name="task[title]">
+  </div>
+</div>
+```
+
+The label option is used as:
+
+  * label for input elements, incl. values of checkboxes and radio buttons
+  * caption for buttons (`value` attribute in HTML)
+
+If no label is given (neither by label option or I18n lookup), the label is
+ommited or the default label (e.g. the value of a the radio button for radio
+button labels) is used.
+
+
+
+### Hints
+
+TODO
+
+
+
+### Placholders
+
+TODO
+
+
+
+### Button captions
+
+TODO
+
+
+
+### Error messages
+
+TODO
+
+
+
+### Radio button and select options
 
 
 
@@ -296,13 +425,15 @@ additional classes if you want.
 additional classes if you want.
 
 `wrapper_html` sets the HTML attributes of the div wrapped around the label and
-the input tag. The CSS class *form-group* is mandatory and will be set automatically. You can add additional classes if you want.
+the input tag. The CSS class *form-group* is mandatory and will be set
+automatically. You can add additional classes if you want.
 
 
 
 ### Extra options passed to the input
 
 TODO
+disabled
 
 
 

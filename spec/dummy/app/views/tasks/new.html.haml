@@ -1,8 +1,6 @@
 = b3_form_for @task do |f|
   = f.text_input :title
 
-  = f.inline_radios :title do
-    = f.radio_value :bla
-    = f.radio_value :blub
+  = f.inline_radios :title, collection: { bla: 'Bla Label', blub: 'Blub Label' }
 
   = f.submit_button

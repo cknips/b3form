@@ -33,7 +33,7 @@ module B3Form
 
 
     def label_text(&block)
-      block.call + value_translation
+      block.call + label_option_or_translation
     end
 
 
@@ -48,7 +48,9 @@ module B3Form
     end
 
 
-    def value_translation
+    def label_option_or_translation
+      return options[:label] if options[:label].present?
+
       translation =
         I18n.t "helpers.options.#{object.class.model_name.i18n_key}.#{field}.#{value}",
                 default: '__missing__'

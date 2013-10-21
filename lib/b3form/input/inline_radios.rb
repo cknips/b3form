@@ -1,10 +1,13 @@
 module B3Form
   class Input::InlineRadios < Input
+    include Input::Concerns::RenderRadios
+
+
     def render(&block)
       builder.modifier[:radio_layout] = :inline
       builder.modifier[:radio_field]  = field
       
-      radios_html = block_given? ? builder.capture(&block) : ''
+      radios_html = render_radios(&block)
       
       builder.modifier[:radio_layout] = FormBuilder::DEFAULT_RADIO_LAYOUT
       builder.modifier.delete(:radio_field)

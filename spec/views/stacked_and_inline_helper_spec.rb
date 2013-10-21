@@ -115,23 +115,64 @@ describe 'stacked_and_inline_helper' do
 #   </div>
 # </div>
 
-  it 'renders the radios stacked' do
-    render template: 'test_models/stacked_and_inline_helper'
+  shared_examples_for 'radio buttons' do
+    it 'renders the radios stacked' do
+      render template: 'test_models/stacked_and_inline_helper'
 
-    expect(page).to have_css 'form#stacked-radios div.form-group label'
+      expect(page).to have_css "form#stacked-radios-#{form_nr} div.form-group label"
 
-    expect(page).to have_css 'form#stacked-radios div.form-group div div.radio label'
-    expect(page).to have_css 'form#stacked-radios div.form-group div div.radio label input[type=radio][value=low]'
-    expect(page).to have_css 'form#stacked-radios div.form-group div div.radio label input[type=radio][value=high]'
+      expect(page).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label"
+      expect(page).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label input[type=radio][value=low]"
+      expect(page).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label input[type=radio][value=high]"
+    end
+
+    it 'renders the radios inline' do
+      render template: 'test_models/stacked_and_inline_helper'
+
+      expect(page).to have_css "form#inline-radios-#{form_nr} div.form-group label"
+
+      expect(page).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline"
+      expect(page).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline input[type=radio][value=low]"
+      expect(page).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline input[type=radio][value=high]"
+    end
   end
 
-  it 'renders the radios inline' do
-    render template: 'test_models/stacked_and_inline_helper'
+  describe 'stacked_radios and inline_radios with block and radio_value' do
+    let(:form_nr) { 1 }
 
-    expect(page).to have_css 'form#inline-radios div.form-group label'
+    it_behaves_like 'radio buttons'
+  end
 
-    expect(page).to have_css 'form#inline-radios div.form-group div label.radio-inline'
-    expect(page).to have_css 'form#inline-radios div.form-group div label.radio-inline input[type=radio][value=low]'
-    expect(page).to have_css 'form#inline-radios div.form-group div label.radio-inline input[type=radio][value=high]'
+# View
+#
+# = f.stacked_radios :priority, collection: [:low, :high]
+# = f.stacked_radios :priority, collection: { low: 'Low', high: 'High' }
+# = f.stacked_radios :priority, collection: [[low: 'Low'], [high: 'High']]
+#
+# = f.inline_radios :priority, collection: [:low, :high]
+# = f.inline_radios :priority, collection: { low: 'Low', high: 'High' }
+# = f.inline_radios :priority, collection: [[low: 'Low'], [high: 'High']]
+#
+# HTML
+#
+# same a above
+
+  describe 'stacked_radios and inline_radio with collection option and Array' do
+    let(:form_nr) { 2 }
+
+    it_behaves_like 'radio buttons'
+  end
+
+  describe 'stacked_radios and inline_radio with collection option and Hash' do
+    let(:form_nr) { 3 }
+
+    it_behaves_like 'radio buttons'
+  end
+
+  describe 'stacked_radios and inline_radio with collection option and nested '\
+           'Array' do
+    let(:form_nr) { 4 }
+
+    it_behaves_like 'radio buttons'
   end
 end
