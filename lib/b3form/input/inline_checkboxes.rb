@@ -1,13 +1,13 @@
 module B3Form
   class Input::InlineCheckboxes < Input
     def render(&block)
-      builder.modifier[:checkbox_layout] = :inline
-      builder.modifier[:checkbox_group]  = true
+      checkboxes_html = nil
 
-      checkboxes_html = block_given? ? builder.capture(&block) : ''
-      
-      builder.modifier[:checkbox_layout] = FormBuilder::DEFAULT_CHECKBOX_LAYOUT
-      builder.modifier.delete(:checkbox_group)
+      builder.change_checkbox_layout :inline do
+        builder.modifier[:checkbox_group]  = true
+        checkboxes_html = block_given? ? builder.capture(&block) : ''
+        builder.modifier.delete(:checkbox_group)
+      end
 
       render_wrapper do
         render_label +

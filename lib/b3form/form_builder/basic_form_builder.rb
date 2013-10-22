@@ -1,61 +1,17 @@
 module B3Form
   class FormBuilder::BasicFormBuilder < FormBuilder
-    def text_input(field, options = {})
-      Input::Text.new(self, field, options).render
-    end
-
-    def password_input(field, options = {})
-      Input::Password.new(self, field, options).render
-    end
-
-    def search_input(field, options = {})
-      Input::Search.new(self, field, options).render
-    end
-
-    def url_input(field, options = {})
-      Input::Url.new(self, field, options).render
-    end
-
-    def email_input(field, options = {})
-      Input::Email.new(self, field, options).render
-    end
-
-    def number_input(field, options = {})
-      Input::Number.new(self, field, options).render
-    end
-
-    def checkbox_input(field, options = {})
-      Input::Checkbox.new(self, field, options).render
-    end
-
-    def radio_option(value, options = {})
-      Input::RadioOption.new(self, value, options).render
-    end
-
-    def radio_options(collection, options = {})
-      Input::RadioOptions.new(self, collection, options).render
-    end
-
-    def text_area_input(value, options = {})
-      Input::TextArea.new(self, value, options).render
+    def initialize(*)
+      super
     end
 
 
-
-    def stacked_checkboxes(field = nil, options = {}, &block)
-      Input::StackedCheckboxes.new(self, field, options).render(&block)
+    def default_checkbox_layout
+      :stacked
     end
 
-    def inline_checkboxes(field = nil, options = {}, &block)
-      Input::InlineCheckboxes.new(self, field, options).render(&block)
-    end
 
-    def stacked_radios(field, options = {}, &block)
-      Input::StackedRadios.new(self, field, options).render(&block)
-    end
-
-    def inline_radios(field, options = {}, &block)
-      Input::InlineRadios.new(self, field, options).render(&block)
+    def default_radio_layout
+      :stacked
     end
   end
 end
