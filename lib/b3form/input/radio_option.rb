@@ -1,5 +1,5 @@
 module B3Form
-  class Input::Radio < Input
+  class Input::RadioOption < Input
     def render
       if builder.modifier[:radio_layout] == :inline
         render_label do
@@ -22,9 +22,9 @@ module B3Form
 
     private
     
-    # The "field"-parameter (being the first parameter) is used for the value
-    # of the actual field. The field is set by the stacked_radios and
-    # inline_radios helpers
+    # The "field" parameter (the first parameter of the helper) is used for the
+    # value of the actual field. The actual field is set by the stacked_radios
+    # and inline_radios helpers
     alias_method :field_orig, :field
     alias_method :value, :field_orig
     def field

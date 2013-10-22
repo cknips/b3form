@@ -29,7 +29,11 @@ module B3Form
     end
 
     def radio_option(value, options = {})
-      Input::Radio.new(self, value, options).render
+      Input::RadioOption.new(self, value, options).render
+    end
+
+    def radio_options(collection, options = {})
+      Input::RadioOptions.new(self, collection, options).render
     end
 
     def text_area_input(value, options = {})

@@ -19,20 +19,26 @@
     = f.radio_option :low
 
 = b3_form_for @test_model, html: { id: 'stacked-radios-2' } do |f|
-  = f.stacked_radios :priority, collection: [:high, :low]
+  = f.stacked_radios :priority do
+    = f.radio_options [:high, :low]
 
 = b3_form_for @test_model, html: { id: 'inline-radios-2' } do |f|
-  = f.inline_radios :priority, collection: [:high, :low]
+  = f.inline_radios :priority do
+    = f.radio_options [:high, :low]
 
 = b3_form_for @test_model, html: { id: 'stacked-radios-3' } do |f|
-  = f.stacked_radios :priority, collection: { high: 'High', low: 'Low' }
+  = f.stacked_radios :priority do
+    = f.radio_options({ high: 'High', low: 'Low' })
 
 = b3_form_for @test_model, html: { id: 'inline-radios-3' } do |f|
-  = f.inline_radios :priority, collection: { high: 'High', low: 'Low' }
+  = f.inline_radios :priority do
+    = f.radio_options({ high: 'High', low: 'Low' })
   
 = b3_form_for @test_model, html: { id: 'stacked-radios-4' } do |f|
-  = f.stacked_radios :priority, collection: [[:high, 'High'], [:low, 'Low']]
+  = f.stacked_radios :priority do
+    = f.radio_options [[:high, 'High'], [:low, 'Low']]
 
 = b3_form_for @test_model, html: { id: 'inline-radios-4' } do |f|
-  = f.inline_radios :priority, collection: [[:high, 'High'], [:low, 'Low']]
+  = f.inline_radios :priority do
+    = f.radio_options [[:high, 'High'], [:low, 'Low']]
   

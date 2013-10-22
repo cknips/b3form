@@ -268,10 +268,9 @@ to `radio_option`.
 </div>
 ```
 
-You can also pass a `collection` option if you don't want to render the radio
-button values one by one.
-
-The collection option must be:
+If you don't want to render the radio button values one by one, you can use the
+`radio_options` helper which takes an Enumerable. The first param of the helper
+(the enumerable) must be:
 
   * an Array of symbols: `[:value_1, :value_2]`. The entries are used as values
     for the radio buttons. The labels are taken from the translation file (see
@@ -281,13 +280,18 @@ The collection option must be:
   * a nested Array of the form: `[[:value_1, 'label for value_1'], [:value_2,
     'label for value_2']]`
 
-So to render the same HTML as above, you can do (using an Array and a Hash,
-usage of the nested Array is not shown):
+So to render the same HTML as above, you can do (showing the usage of an Array
+and a Hash, usage of the nested Array is not shown):
 
 ```haml
-= stacked_radios :priority, collection: [:high, :low]
-= inline_radios :priority, collection: { high: 'High', low: 'Low' }
+= stacked_radios :priority do
+  = radio_options [:high, :low]
+= inline_radios :priority do
+  = radio_options({ high: 'High', low: 'Low' })
 ```
+
+`radio_option` and `radio_options` can be used together in one block in any
+combination.
 
 
 
