@@ -332,7 +332,7 @@ en:
       task:
         title:       Title label
         done_states: Done states label
-        done: Done
+        done:        Done
         really_done: Really Done
         priority:    Priority label
     placeholders:
@@ -359,7 +359,7 @@ attribute of the model.
 ### Labels
 
 Labels are automatically read from `'helpers.labels'` in I18n. To manually set a
-label on an element, you can pass a `label`-option:
+label on an element, you can pass a `:label` option:
 
 ```haml
 = f.text_input :title, label: 'Custom label for title'
