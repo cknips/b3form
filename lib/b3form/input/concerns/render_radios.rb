@@ -15,12 +15,12 @@ module B3Form
           # [[:value_1, 'label_1'], [:value_2, 'label_2']]
           if collection.first.kind_of? Array
             Hash[collection].map { |value, label|
-              builder.radio_value value, label: label
+              builder.radio_option value, label: label
             }.join.html_safe
           # else treat as [:value_1, :value_2]
           else
             collection.map { |value|
-              builder.radio_value value
+              builder.radio_option value
             }.join.html_safe
           end
         else

@@ -28,7 +28,7 @@ module B3Form
       Input::Checkbox.new(self, field, options).render
     end
 
-    def radio_value(value, options = {})
+    def radio_option(value, options = {})
       Input::Radio.new(self, value, options).render
     end
 

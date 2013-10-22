@@ -220,16 +220,16 @@ If the virtual field is ommited, the label will not be rendered.
 
 Radio buttons can only rendered inside a `stacked_radios` or `inline_radios`
 helper. The field is set in the helper, the value is the first parameter passed
-to `radio_value`.
+to `radio_option`.
 
 ```haml
 = f.stacked_radios :priority do
-  = f.radio_value :high
-  = f.radio_value :low
+  = f.radio_option :high
+  = f.radio_option :low
 
 = f.inline_radios :priority do
-  = f.radio_value :high
-  = f.radio_value :low
+  = f.radio_option :high
+  = f.radio_option :low
 ```
 
 ```html

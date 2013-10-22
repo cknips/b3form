@@ -72,12 +72,12 @@ describe 'stacked_and_inline_helper' do
 # View
 #
 # = f.stacked_radios :priority do
-#   = f.radio_value :high
-#   = f.radio_value :low
+#   = f.radio_option :high
+#   = f.radio_option :low
 #
 # = f.inline_radios :priority do
-#   = f.radio_value :high
-#   = f.radio_value :low
+#   = f.radio_option :high
+#   = f.radio_option :low
 #
 # HTML
 #
@@ -137,7 +137,7 @@ describe 'stacked_and_inline_helper' do
     end
   end
 
-  describe 'stacked_radios and inline_radios with block and radio_value' do
+  describe 'stacked_radios and inline_radios with block and radio_option' do
     let(:form_nr) { 1 }
 
     it_behaves_like 'radio buttons'
