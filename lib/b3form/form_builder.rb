@@ -4,13 +4,19 @@ module B3Form
 
     attr_reader :modifier
 
-    def initialize(*)
+    def initialize(object_name, object, template, options)
       super
 
       @modifier = {
         checkbox_layout: default_checkbox_layout,
         radio_layout:    default_radio_layout
       }
+
+      column_params                  = options[:columns]     || {}
+      @modifier[:label_column_width] = column_params[:label]
+      @modifier[:input_column_width] = column_params[:input]
+      @modifier[:hint_column_width]  = column_params[:hint]
+      @modifier[:error_column_width] = column_params[:error]
     end
 
 

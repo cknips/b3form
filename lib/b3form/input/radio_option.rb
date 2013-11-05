@@ -38,13 +38,13 @@ module B3Form
 
 
     def label_html
+      label_options = options[:label_html] || {}
+
       if builder.modifier[:radio_layout] == :inline
-        label_options = super
         add_to_options(label_options, :class, 'radio-inline')
-        label_options
-      else
-        super
       end
+      
+      label_options
     end
 
 

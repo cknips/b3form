@@ -42,13 +42,13 @@ module B3Form
 
 
     def label_html
-      if builder.modifier[:checkbox_layout] == :inline
-        label_options = super
+      label_options = options[:label_html] || {}
+
+      if builder.modifier[:radio_layout] == :inline
         add_to_options(label_options, :class, 'checkbox-inline')
-        label_options
-      else
-        super
       end
+      
+      label_options
     end
   end
 end

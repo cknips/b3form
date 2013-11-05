@@ -1,8 +1,258 @@
-= b3_form_for @task do |f|
-  = f.text_input :title
+-# @task.errors.add :title, :blank
 
-  = f.inline_radios :title do
+-#= b3_form_for @task, columns: { input: 'col-lg-6' } do |f|
+  = f.text_input :title, hint: 'Title Hint'
+
+  = f.stacked_radios :description, label: 'Desc', hint: 'Desc Hint' do
     = f.radio_options({ bla: 'Bla Label', blub: 'Blub Label' })
     = f.radio_option :baz
 
   = f.submit_button
+
+.container
+  %h1 Basic-Form, Hilfetexte darunter
+  
+  = form_tag '#', class: 'form-basic' do
+    .form-group.row.has-error
+      .col-lg-12
+        = label_tag :title, 'Titel', class: 'control-label'
+      .col-lg-12
+        = text_field_tag :title, nil, class: 'form-control'
+        .hint-block
+          Hinweistext
+        .help-block
+          Fehlertext
+    .form-group.row.has-error
+      .col-lg-12
+        = label_tag :description, 'Beschreibung', class: 'control-label'
+      .col-lg-12
+        = text_area_tag :description, nil, class: 'form-control'
+        .hint-block
+          Hinweistext
+        .help-block
+          Fehlertext
+    .form-group.row.has-error
+      .col-lg-12
+        = label_tag :done_states, 'Bearbeitet', class: 'control-label'
+      .col-lg-12
+        .checkbox
+          = label_tag :done, class: 'control-label' do
+            = check_box_tag :done
+            erledigt
+        .checkbox
+          = label_tag :really_done, class: 'control-label' do
+            = check_box_tag :really_done
+            wirklich erledigt
+        .hint-block
+          Hinweistext
+        .help-block
+          Fehlertext
+    .form-group.row
+      .col-lg-12
+        = label_tag :category, 'Kategorie', class: 'control-label'
+      .col-lg-12
+        = label_tag :category, class: 'radio-inline control-label' do
+          = radio_button_tag :category, :private
+          Privat
+        = label_tag :category, class: 'radio-inline control-label' do
+          = radio_button_tag :category, :work
+          Arbeit
+        .hint-block
+          Hinweistext
+    .form-group.row.has-error
+      .col-lg-12
+        .checkbox
+          = label_tag :alone, class: 'control-label' do
+            = check_box_tag :alone
+            Checkbox ohne Überschrift
+        .hint-block
+          Hinweistext
+        .help-block
+          Fehlertext
+    .form-group.row
+      .col-lg-12
+        = submit_tag 'Speichern', class: 'btn btn-default'
+
+.container
+  %h1 Basic-Form, Hilfetexte daneben
+
+  = form_tag do
+    .form-group.row.has-error
+      .col-lg-12
+        = label_tag :title, 'Titel', class: 'control-label'
+      .col-lg-6
+        = text_field_tag :title, nil, class: 'form-control'
+        .help-block
+          Fehlertext
+      .col-lg-6.hint-block.aside
+        Hinweistext
+    .form-group.row.has-error
+      .col-lg-12
+        = label_tag :description, 'Beschreibung', class: 'control-label'
+      .col-lg-6
+        = text_area_tag :description, nil, class: 'form-control'
+        .help-block
+          Fehlertext
+      .col-lg-6.hint-block.aside
+        Hinweistext
+    .form-group.row.has-error
+      .col-lg-12
+        = label_tag :done_states, 'Bearbeitet', class: 'control-label'
+      .col-lg-6
+        .checkbox
+          = label_tag :done, class: 'control-label' do
+            = check_box_tag :done
+            erledigt
+        .checkbox
+          = label_tag :really_done, class: 'control-label' do
+            = check_box_tag :really_done
+            wirklich erledigt
+        .help-block
+          Fehlertext
+      .col-lg-6.hint-block.aside
+        Hinweistext
+    .form-group.row
+      .col-lg-12
+        = label_tag :category, 'Kategorie', class: 'control-label'
+      .col-lg-6
+        = label_tag :category, class: 'control-label radio-inline' do
+          = radio_button_tag :category, :private
+          Privat
+        = label_tag :category, class: 'control-label radio-inline' do
+          = radio_button_tag :category, :work
+          Arbeit
+      .col-lg-6.hint-block.aside
+        Hinweistext
+    .form-group.row.has-error
+      .col-lg-6
+        .checkbox
+          = label_tag :alone, class: 'control-label' do
+            = check_box_tag :alone
+            Checkbox ohne Überschrift
+        .help-block
+          Fehlertext
+      .col-lg-6.hint-block.aside
+        Hinweistext
+    .form-group.row
+      .col-lg-12
+        = submit_tag 'Speichern', class: 'btn btn-default'
+
+
+
+.container
+  %h1 Horizontal-Form, Hilfetexte darunter
+
+  = form_tag '#', class: 'form-horizontal' do
+    .form-group.row.has-error
+      = label_tag :title, 'Titel', class: 'control-label col-lg-2'
+      .col-lg-10
+        = text_field_tag :title, nil, class: 'form-control'
+        .hint-block
+          Hinweistext
+        .help-block
+          Fehlertext
+    .form-group.row.has-error
+      = label_tag :description, 'Beschreibung', class: 'control-label col-lg-2'
+      .col-lg-10
+        = text_area_tag :description, nil, class: 'form-control'
+        .hint-block
+          Hinweistext
+        .help-block
+          Fehlertext
+    .form-group.row.has-error
+      = label_tag :done_states, 'Bearbeitet', class: 'control-label col-lg-2'
+      .col-lg-10
+        .checkbox
+          = label_tag :done, class: 'control-label' do
+            = check_box_tag :done
+            erledigt
+        .checkbox
+          = label_tag :really_done, class: 'control-label' do
+            = check_box_tag :really_done
+            wirklich erledigt
+        .hint-block
+          Hinweistext
+        .help-block
+          Fehlertext
+    .form-group.row
+      = label_tag :category, 'Kategorie', class: 'control-label col-lg-2'
+      .col-lg-10
+        = label_tag :category, class: 'control-label radio-inline' do
+          = radio_button_tag :category, :private
+          Privat
+        = label_tag :category, class: 'control-label radio-inline' do
+          = radio_button_tag :category, :work
+          Arbeit
+        .hint-block
+          Hinweistext
+    .form-group.row
+      .col-lg-10.col-lg-offset-2
+        .checkbox
+          = label_tag :alone, class: 'control-label' do
+            = check_box_tag :alone
+            Checkbox ohne Überschrift
+        .hint-block
+          Hinweistext
+    .form-group.row
+      .col-lg-10.col-lg-offset-2
+        = submit_tag 'Speichern', class: 'btn btn-default'
+
+.container
+  %h1 Horizontal-Form, Hilfetexte daneben
+
+  = form_tag '#', class: 'form-horizontal' do
+    .form-group.row.has-error
+      = label_tag :title, 'Titel', class: 'control-label col-lg-2'
+      .col-lg-4
+        = text_field_tag :title, nil, class: 'form-control'
+        .help-block
+          Fehlertext
+      .col-lg-4.hint-block.aside
+        Hinweistext
+    .form-group.row.has-error
+      = label_tag :description, 'Beschreibung', class: 'control-label col-lg-2'
+      .col-lg-4
+        = text_area_tag :description, nil, class: 'form-control'
+        .help-block
+          Fehlertext
+      .col-lg-4.hint-block.aside
+        Hinweistext
+    .form-group.row.has-error.stacked-checkboxs
+      = label_tag :done_states, 'Bearbeitet', class: 'control-label col-lg-2'
+      .col-lg-4
+        .checkbox
+          = label_tag :done, class: 'control-label' do
+            = check_box_tag :done
+            erledigt
+        .checkbox
+          = label_tag :really_done, class: 'control-label' do
+            = check_box_tag :really_done
+            wirklich erledigt
+        .help-block
+          Fehlertext
+      .col-lg-4.hint-block.aside
+        Hinweistext
+    .form-group.row
+      = label_tag :category, 'Kategorie', class: 'control-label col-lg-2'
+      .col-lg-4
+        = label_tag :category, class: 'control-label radio-inline' do
+          = radio_button_tag :category, :private
+          Privat
+        = label_tag :category, class: 'control-label radio-inline' do
+          = radio_button_tag :category, :work
+          Arbeit
+      .col-lg-4.hint-block.aside
+        Hinweistext
+    .form-group.row.has-error
+      .col-lg-4.col-lg-offset-2
+        .checkbox
+          = label_tag :alone, class: 'control-label' do
+            = check_box_tag :alone
+            Checkbox ohne Überschrift
+        .help-block
+          Fehlertext
+      .col-lg-4.hint-block.aside
+        Hinweistext
+    .form-group.row
+      .col-lg-4.col-lg-offset-2
+        = submit_tag 'Speichern', class: 'btn btn-default'

@@ -20,4 +20,23 @@ describe 'form' do
       expect(page).to have_css 'form[role=form]'
     end
   end
+
+
+# View:
+#
+# = b3_horizontal_form_for @test_model do |f|
+#   &nbsb;
+#
+# HTML:
+#
+# <form class="form-horizontal" role="form">
+# </form>
+
+  describe 'b3_form_for' do
+    it 'renders a form with role = "form" attribute' do
+      render template: 'test_models/form_layouts'
+
+      expect(page).to have_css 'form[role=form][class=form-horizontal]'
+    end
+  end  
 end

@@ -1,5 +1,7 @@
 module B3Form
   class Input
+    include HelperMethods
+
     attr_reader :builder, :field, :options
 
     def initialize(builder, field, options)
@@ -35,7 +37,9 @@ module B3Form
 
 
     def render_input_column(&block)
-      builder.content_tag :div, &block
+      input_column_options = { class: builder.modifier[:input_column_width] }
+
+      builder.content_tag :div, input_column_options, &block
     end
 
 
@@ -77,7 +81,15 @@ module B3Form
 
 
     def label_html
-      options[:label_html] || {}
+      label_options = options[:label_html] || {}
+
+      add_to_options(label_options, :class, 'control-label')
+
+      if builder.modifier[:label_column_width]
+        add_to_options(label_options, :class, builder.modifier[:label_column_width])
+      end
+
+      label_options
     end
 
 
@@ -119,15 +131,6 @@ module B3Form
         false
       else
         translation.html_safe
-      end
-    end
-
-
-    def add_to_options(hash, key, value)
-      if hash.include? key
-        hash[key] << ' ' + value
-      else
-        hash[key] = value
       end
     end
 

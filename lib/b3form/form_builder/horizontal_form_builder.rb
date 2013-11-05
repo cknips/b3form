@@ -1,9 +1,11 @@
 module B3Form
-  class FormBuilder::BasicFormBuilder < FormBuilder
+  class FormBuilder::HorizontalFormBuilder < FormBuilder
     def initialize(object_name, object, template, options)
       super
 
-      modifier[:form_layout] = :basic
+      modifier[:form_layout]          = :horizontal
+      modifier[:label_column_width] ||= 'col-lg-3'
+      modifier[:input_column_width] ||= 'col-lg-9'
     end
 
 

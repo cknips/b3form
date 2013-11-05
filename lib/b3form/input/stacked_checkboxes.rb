@@ -5,7 +5,9 @@ module B3Form
 
       builder.change_checkbox_layout :stacked do
         builder.modifier[:checkbox_group]  = true
+        
         checkboxes_html = block_given? ? builder.capture(&block) : ''
+        
         builder.modifier.delete(:checkbox_group)
       end
 
