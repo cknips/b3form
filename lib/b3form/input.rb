@@ -90,6 +90,11 @@ module B3Form
     end
 
 
+    def render_input_group(&block)
+      block.call
+    end
+
+
     private
 
     def wrapper_html

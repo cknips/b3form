@@ -1,6 +1,30 @@
 module B3Form
   class Input::TextLike < Input::TopLevelElement
 
+    def render_input_group(&block)
+      input_prepend = options[:prepend]
+      input_append  = options[:append]
+
+      if input_prepend || input_append
+        content_tag :div, class: 'input-group' do
+          if input_prepend
+            content_tag :span, input_prepend, class: 'input-group-addon'
+          else
+            ''.html_safe
+          end +
+          block.call +
+          if input_append
+            content_tag :span, input_append, class: 'input-group-addon'
+          else
+            ''.html_safe
+          end
+        end
+      else
+        block.call
+      end
+    end
+    
+
     private
 
     def input_html

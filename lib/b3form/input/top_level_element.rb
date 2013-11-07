@@ -6,7 +6,9 @@ module B3Form
       render_wrapper do
         render_label +
         render_input_column do
-          render_field +
+          render_input_group do
+            render_field
+          end +
           (render_hints_aside?  ? '' : render_hint) +
           (render_errors_aside? ? '' : render_errors)
         end +
