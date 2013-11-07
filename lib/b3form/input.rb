@@ -156,6 +156,18 @@ module B3Form
       end
 
       if translation == '__missing__'
+        translation =
+          I18n.t "helpers.#{key}.default.#{field}",
+                  default: '__missing__'
+      end
+
+      if translation == '__missing__'
+        translation =
+          I18n.t "helpers.#{key}.default.#{field}_html",
+                  default: '__missing__'
+      end
+
+      if translation == '__missing__'
         false
       else
         translation.html_safe

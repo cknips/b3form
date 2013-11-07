@@ -426,6 +426,34 @@ en:
 state (*done* and *really_done*). It doesn't have to be an accessible
 attribute of the model.
 
+You can also use HTML translations. To make the HTML render properly you must
+append a `_html` suffix to the attribute name:
+
+```yaml
+en:
+  helpers:
+    label:
+      task:
+        really_done_html: '<b>Really</b> Done'
+```
+
+If a translation key is defined both with html and without the html suffix, the
+translation without the suffix is used.
+
+To define default translations for input parts there is also the reserved key
+`default` you can use instead of the model name:
+
+```yaml
+en:
+  helpers:
+    label:
+      default:
+        title: Title
+```
+
+As expected, setting a key specific for a model name, the default will be
+overridden.
+
 
 
 ### Labels
