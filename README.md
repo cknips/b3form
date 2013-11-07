@@ -507,9 +507,11 @@ automatically. You can add additional classes if you want.
 
 ### Extra options passed to the input
 
-TODO
-disabled
-size
+The following options are directly passed to the input field, so you don't have
+to use `:input_html` to set them:
+
+  - disabled (taking a boolean value)
+  - size (taking `'input-sm'` or `'input-lg'`)
 
 
 
