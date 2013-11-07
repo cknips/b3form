@@ -28,6 +28,7 @@ require 'b3form/input/form_actions'
 require 'b3form/helper'
 require 'b3form/helper/error_alert'
 require 'b3form/view_helpers/form_builder_helper'
+require 'b3form/view_helpers/glyphicon_helper'
 
 module B3Form
   # Your code goes here...

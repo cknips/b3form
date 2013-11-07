@@ -3,6 +3,7 @@ module B3Form
     initializer 'b3form.initialize' do
       ActionView::Base.class_eval do
         include ViewHelpers::FormBuilderHelper
+        include ViewHelpers::GlyphiconHelper
       end
     end
 
