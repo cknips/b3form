@@ -5,9 +5,14 @@ module B3Form
         render_inner
       else
         render_wrapper do
+          render_offset +
           render_input_column do
-            render_inner
-          end
+            render_inner +
+            (render_hints_aside?  ? '' : render_hint) +
+            (render_errors_aside? ? '' : render_errors)
+          end +
+          (render_hints_aside?  ? render_hint : '') +
+          (render_errors_aside? ? render_errors : '')
         end
       end
     end
@@ -23,26 +28,22 @@ module B3Form
     def render_inner
       if builder.modifier[:checkbox_layout] == :inline
         render_label do
-          render_field
+          render_field +
+          label_text
         end
       else
-        builder.content_tag(:div, class: 'checkbox') do
+        content_tag(:div, class: 'checkbox') do
           render_label do
-            render_field
-          end +
-          render_errors
+            render_field +
+            label_text
+          end
         end
       end
     end
 
-    
-    def label_text(&block)
-      block.call + super
-    end
-
 
     def label_html
-      label_options = options[:label_html] || {}
+      label_options = super
 
       if builder.modifier[:radio_layout] == :inline
         add_to_options(label_options, :class, 'checkbox-inline')

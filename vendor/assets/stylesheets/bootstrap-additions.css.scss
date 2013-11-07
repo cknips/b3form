@@ -1,0 +1,12 @@
+.hint-block {
+  display:       block;
+  margin-top:    5px;
+  margin-bottom: 10px;
+  color:         lighten($text-color, 25%);
+}
+
+.form-horizontal {
+  .hint-block.aside, .help-block.aside {
+    margin-top:  8px;
+  }
+}

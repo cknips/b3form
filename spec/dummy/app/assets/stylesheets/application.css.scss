@@ -12,23 +12,5 @@
  *= require_tree .
  */
 
- @import 'bootstrap';
-
-.hint-block {
-  display:       block;
-  margin-top:    5px;
-  margin-bottom: 10px;
-  color:         #737373;
-}
-
-.form-basic {
-  .hint-block.aside {
-    padding-top:   5px;
-  }
-}
-
-.form-horizontal {
-  .hint-block.aside {
-    padding-top:   5px;
-  }
-}
+@import 'bootstrap';
+@import 'b3form';

@@ -1,21 +1,23 @@
 module B3Form
-  class Input::InlineRadios < Input
-    def render(&block)
-      radios_html = nil
+  class Input::InlineRadios < Input::TopLevelElement
 
+    private
+
+    def render_field
+      radios_html = nil
       builder.change_radio_layout :inline do
         builder.modifier[:radio_field] = field
-        radios_html = block_given? ? builder.capture(&block) : ''
+        
+        radios_html = if render_called_with_block
+          builder.capture(&render_called_with_block)
+        else
+          ''
+        end
+        
         builder.modifier.delete(:radio_field)
       end
 
-      render_wrapper do
-        render_label + 
-        render_input_column do
-          radios_html
-        end +
-        render_errors
-      end
+      radios_html
     end
   end
 end

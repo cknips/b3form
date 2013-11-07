@@ -2,16 +2,28 @@ de:
   helpers:
     label:
       task:
-        title: Title
-        label_test: Label Test
-        label_test_html: Label <b>Test</b>
+        title: Titel
+        description: Beschreibung
+        done_states: Bearbeitet
+        done: erledigt
+        really_done: wirklich erledigt
+        category: Kategorie
+        public: öffentlich
     hint:
       task:
-        hint_test: Hint Test Description
-        hint_test_html: Hint Test <b>Description</b>
+        title: Titel Hilfetext
+        description: Beschreibung Hilfetext
+        done_states: Bearbeitet Hilfetext
+        category: Kategorie Hilfetext
+        public: öffentlich Hilfetext
     placeholder:
       task:
         placeholder_test: Placeholder Test
+    option:
+      task:
+        category:
+          private: Privat
+          work: Arbeit
     submit:
       task:
-        create: Submit Task (create)
+        create: Speichern

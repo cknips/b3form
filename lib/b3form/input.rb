@@ -2,7 +2,7 @@ module B3Form
   class Input
     include HelperMethods
 
-    attr_reader :builder, :field, :options
+    attr_reader :builder, :field, :options, :render_called_with_block
 
     def initialize(builder, field, options)
       @builder  = builder
@@ -10,42 +10,49 @@ module B3Form
       @options  = options
     end
 
-    delegate :object, to: :builder
+    delegate :object, :content_tag, to: :builder
 
 
-    def render
-      raise NotImplementedError, 'implement in subclass'
+    def render(&block)
+      @render_called_with_block = block if block_given?
     end
 
 
     def render_wrapper(&block)
-      builder.content_tag :div, wrapper_html, &block
+      content_tag :div, wrapper_html, &block
     end
 
 
     def render_label(&block)
-      rendered_label_text = label_text(&block)
-
-      if rendered_label_text
-        builder.label(field, label_html) do
-          rendered_label_text
+      builder.label(field, label_html) do
+        if block_given?
+          block.call
+        else
+          label_text
         end
-      else
-        ''.html_safe
       end
     end
 
 
     def render_input_column(&block)
-      input_column_options = { class: builder.modifier[:input_column_width] }
-
-      builder.content_tag :div, input_column_options, &block
+      if form_horizontal?
+        input_column_options = { class: input_column_width }
+        content_tag :div, input_column_options, &block
+      else
+        block.call
+      end
     end
 
 
     def render_errors
       errors.map { |message|
-        builder.content_tag :div, class: 'help-block' do
+        errors_class = if error_column_width
+          "help-block aside #{error_column_width}"
+        else
+          'help-block'
+        end
+
+        content_tag :div, class: errors_class do
           message
         end
       }.join(', ').html_safe
@@ -54,12 +61,32 @@ module B3Form
 
     def render_hint
       if hint_text
-        builder.content_tag :div, class: 'hint' do
+        hint_class = if hint_column_width
+          "hint-block aside #{hint_column_width}"
+        else
+          'hint-block'
+        end
+
+        content_tag :div, class: hint_class do
           hint_text
         end
       else
         ''.html_safe
       end
+    end
+
+
+    def render_offset
+      if label_column_width
+        content_tag :div, nil, class: label_column_width
+      else
+        ''.html_safe
+      end
+    end
+
+
+    def render_full_width_column(&block)
+      content_tag :div, class: 'col-xs-12 col-sm-12 col-md-12 col-lg-12', &block
     end
 
 
@@ -84,10 +111,6 @@ module B3Form
       label_options = options[:label_html] || {}
 
       add_to_options(label_options, :class, 'control-label')
-
-      if builder.modifier[:label_column_width]
-        add_to_options(label_options, :class, builder.modifier[:label_column_width])
-      end
 
       label_options
     end
@@ -142,6 +165,46 @@ module B3Form
 
     def has_error?
       @has_error ||= errors.any?
+    end
+
+
+    def render_hints_aside?
+      !!hint_column_width
+    end
+
+
+    def render_errors_aside?
+      !!error_column_width
+    end
+
+
+    def form_basic?
+      builder.modifier[:form_layout] == :basic
+    end
+
+    def form_horizontal?
+      builder.modifier[:form_layout] == :horizontal
+    end
+
+    def form_inline?
+      builder.modifier[:form_layout] == :inline
+    end
+
+
+    def label_column_width
+      builder.modifier[:label_column_width]
+    end
+
+    def input_column_width
+      builder.modifier[:input_column_width]
+    end
+
+    def hint_column_width
+      builder.modifier[:hint_column_width]
+    end
+
+    def error_column_width
+      builder.modifier[:error_column_width]
     end
   end
 end

@@ -24,9 +24,17 @@ Or install it yourself as:
 
 The Bootstrap 3 stylesheets and JavaScript files are not included in the gem.
 B3Form is tested with
-[bootstrap-sass](https://github.com/thomas-mcdonald/bootstrap-sass) but should
-also work if the stylesheets and JavaScript files are installed through
-another gem or manually.
+[bootstrap-sass](https://github.com/thomas-mcdonald/bootstrap-sass) and makes
+use of the Sass variables in the gem.
+
+Then import the stylesheets in your application's stylesheet manifest:
+
+```scss
+@import 'b3form';
+```
+
+Make sure the `b3form` import is below the `bootstrap` import from
+bootstrap-sass.
 
 
 
@@ -91,6 +99,65 @@ invoked with `form_for`.
 
 They can also be used as replacement for `form_tag` without passing an instance
 of a model. See the section *Forms without Models* further down.
+
+
+
+### Basic Forms
+
+The basic form renders all parts of an input (label, input field, hint and
+errors) stacked. The input are always set to 100% width as described in the
+Bootstrap 3 documentation.
+
+The basic form can also be used for rendering multiple column forms using the
+grid system provided by bootstrap:
+
+```haml
+.container
+  = b3_form_for @task do |f|
+    .row
+      .col-md-6
+        = f.text_input :title
+      .col-md-6
+        = f.text_input :description
+    .row
+      ...
+
+```
+
+
+
+### Horizontal Forms
+
+In a horizontal form a width can be assigned to the parts of an input. If the
+width is ommited the part is rendered above (labels) or below (hints and error
+messages) the input field. Setting the width of the input field is mandatory.
+
+The width settings can be passed as hash to the form builder:
+
+```haml
+= b3_horizontal_form_for columns: { label: 'col-md-2',
+                                    input: 'col-md-4',
+                                    hint:  'col-md-4' } do |f|
+  = f.text_field :title
+```
+
+This will render label, input field and hint side by side. The error messages
+are rendered below the input field since they have no width assigned. To assign
+a width to the error messages, use the `:error` key in the columns hash.
+
+If you don't want to pass a large hash to the form builder, you can also use the
+`set_column` helper method of the form builder:
+
+```haml
+= b3_horizontal_form_for do |f|
+  - set_column :label, 'col-md-2'
+  - set_column :input, 'col-md-4'
+  - set_column :hint,  'col-md-4'
+  = f.text_field :title
+```
+
+This will render the same as above. The `set_column` helper can also used to
+change the width settings in between the form elements.
 
 
 
@@ -164,7 +231,8 @@ To render a group of checkboxes and set another layout you can use the
 
 You can also pass a virtual field to the helper which is used as label and
 rendered above the checkboxes. The virtual field is translated like a real field
-of the object and is used *only* for translation purposes:
+of the object and is used for translation purposes. To render the errors for the
+field it must be defined as accessible attribute in the model however.
 
 ```haml
 = f.stacked_checkboxes :task_done_states do
@@ -332,22 +400,22 @@ end
 ```yaml
 en:
   helpers:
-    labels:
+    label:
       task:
         title:       Title label
         done_states: Done states label
         done:        Done
         really_done: Really Done
         priority:    Priority label
-    placeholders:
+    placeholder:
       task:
         title:       Title Placeholder
-    hints:
+    hint:
       task:
         title:       Small hint below the text field
         done_states: Small hint below the checkboxes
         priority:    Small hint below the radio button group
-    options:
+    option:
       task:
         priority:
           high:      High
@@ -362,7 +430,7 @@ attribute of the model.
 
 ### Labels
 
-Labels are automatically read from `'helpers.labels'` in I18n. To manually set a
+Labels are automatically read from `'helpers.label'` in I18n. To manually set a
 label on an element, you can pass a `:label` option:
 
 ```haml
@@ -415,6 +483,8 @@ TODO
 
 ### Radio button and select options
 
+TODO
+
 
 
 ## General Options
@@ -439,6 +509,7 @@ automatically. You can add additional classes if you want.
 
 TODO
 disabled
+size
 
 
 

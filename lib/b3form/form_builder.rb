@@ -11,12 +11,6 @@ module B3Form
         checkbox_layout: default_checkbox_layout,
         radio_layout:    default_radio_layout
       }
-
-      column_params                  = options[:columns]     || {}
-      @modifier[:label_column_width] = column_params[:label]
-      @modifier[:input_column_width] = column_params[:input]
-      @modifier[:hint_column_width]  = column_params[:hint]
-      @modifier[:error_column_width] = column_params[:error]
     end
 
 
@@ -45,6 +39,11 @@ module B3Form
       modifier[:radio_layout] = layout
       block.call      
       modifier[:radio_layout] = default_radio_layout
+    end
+
+
+    def set_column(column, value)
+      modifier[:"#{column}_column_width"] = value
     end
 
 
@@ -95,7 +94,7 @@ module B3Form
 
 
 #
-#   Input Helpers
+#   Input and Button Helpers
 #
 
 
@@ -115,6 +114,10 @@ module B3Form
       Input::InlineRadios.new(self, field, options).render(&block)
     end
 
+    def form_actions(options = {}, &block)
+      Input::FormActions.new(self, nil, options).render(&block)
+    end
+
 
 #
 #   Other Helpers
@@ -132,7 +135,7 @@ module B3Form
 
 
     def submit_button(options = {})
-      Button::Submit.new(self, options).render_button
+      Button::Submit.new(self, options).render
     end
   end
 end

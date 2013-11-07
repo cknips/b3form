@@ -3,9 +3,13 @@ module B3Form
     def initialize(object_name, object, template, options)
       super
 
-      modifier[:form_layout]          = :horizontal
-      modifier[:label_column_width] ||= 'col-lg-3'
-      modifier[:input_column_width] ||= 'col-lg-9'
+      modifier[:form_layout]        = :horizontal
+      
+      column_params                 = options[:columns] || {}
+      modifier[:label_column_width] = column_params[:label]
+      modifier[:input_column_width] = column_params[:input]
+      modifier[:hint_column_width]  = column_params[:hint]
+      modifier[:error_column_width] = column_params[:error]
     end
 
 

@@ -1,5 +1,5 @@
 module B3Form
-  class Railtie < Rails::Railtie
+  class Engine < Rails::Engine
     initializer 'b3form.initialize' do
       ActionView::Base.class_eval do
         include ViewHelpers::FormBuilderHelper

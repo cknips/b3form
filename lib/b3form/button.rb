@@ -8,6 +8,20 @@ module B3Form
     end
 
 
+    def render
+      raise NotImplementedError, 'implement in subclass'
+    end
+
+
+    def render_button
+      if label_text
+        builder.button(label_text, button_html)
+      else
+        builder.button(button_html)
+      end
+    end
+
+
     private
 
     def button_html

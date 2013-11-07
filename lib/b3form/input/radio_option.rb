@@ -3,12 +3,14 @@ module B3Form
     def render
       if builder.modifier[:radio_layout] == :inline
         render_label do
-          render_field
+          render_field +
+          label_option_or_translation
         end
       else
-        builder.content_tag(:div, class: 'radio') do
+        content_tag(:div, class: 'radio') do
           render_label do
-            render_field
+            render_field +
+            label_option_or_translation
           end
         end
       end
@@ -30,15 +32,10 @@ module B3Form
     def field
       builder.modifier[:radio_field]
     end
-
-
-    def label_text(&block)
-      block.call + label_option_or_translation
-    end
-
+    
 
     def label_html
-      label_options = options[:label_html] || {}
+      label_options = super
 
       if builder.modifier[:radio_layout] == :inline
         add_to_options(label_options, :class, 'radio-inline')
@@ -52,7 +49,7 @@ module B3Form
       return options[:label] if options[:label].present?
 
       translation =
-        I18n.t "helpers.options.#{object.class.model_name.i18n_key}.#{field}.#{value}",
+        I18n.t "helpers.option.#{object.class.model_name.i18n_key}.#{field}.#{value}",
                 default: '__missing__'
 
       if translation == '__missing__'
