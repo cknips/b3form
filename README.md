@@ -55,9 +55,7 @@ This will generate the markup as described in the Bootstrap 3 documentation:
 <form action="..." method="post" role="form">
   <div class="form-group">
     <label for="task_title" class="control-label">Title</label>
-    <div>
-      <input type="text" class="form-control" name="task[title]">
-    </div>
+    <input type="text" class="form-control" name="task[title]">
   </div>
   <button type="submit" class="btn btn-default">Create Task</button>
 </form>
@@ -183,9 +181,7 @@ This will render:
 ```html
 <div class="form-group">
   <label for="task_title" class="control-label">Title</label>
-  <div>
-    <input type="text" class="form-control" name="task[title]">
-  </div>
+  <input type="text" class="form-control" name="task[title]">
 </div>
 ```
 
@@ -215,13 +211,11 @@ below):
 
 ```html
 <div class="form-group">
-  <div>
-    <div class="checkbox">
-      <label for="task_done">
-        <input type="checkbox" name="task[done]">
-        Task done?
-      </label>
-    </div>
+  <div class="checkbox">
+    <label for="task_done">
+      <input type="checkbox" name="task[done]">
+      Task done?
+    </label>
   </div>
 </div>
 ```
@@ -247,36 +241,30 @@ field it must be defined as accessible attribute in the model however.
 ```html
 <div class="form-group">
   <label for="task_done_states">Task done states</label>
-  <div>
-    <div class="checkbox">
-      <label for="task_done">
-        <input type="checkbox" name="task[done]">
-        Task done?
-      </label>
-    </div>
+  <div class="checkbox">
+    <label for="task_done">
+      <input type="checkbox" name="task[done]">
+      Task done?
+    </label>
   </div>
-  <div>
-    <div class="checkbox">
-      <label for="task_really_done">
-        <input type="checkbox" name="task[really_done]">
-        Task really done?
-      </label>
-    </div>
+  <div class="checkbox">
+    <label for="task_really_done">
+      <input type="checkbox" name="task[really_done]">
+      Task really done?
+    </label>
   </div>
 </div>
 
 <div class="form-group">
   <label for="task_done_states">Task done states</label>
-  <div>
-    <label for="task_done" class="checkbox-inline">
-      <input type="checkbox" name="task[done]">
-      Task done?
-    </label>
-    <label for="task_really_done" class="checkbox-inline">
-      <input type="checkbox" name="task[really_done]">
-      Task really done?
-    </label>
-  </div>
+  <label for="task_done" class="checkbox-inline">
+    <input type="checkbox" name="task[done]">
+    Task done?
+  </label>
+  <label for="task_really_done" class="checkbox-inline">
+    <input type="checkbox" name="task[really_done]">
+    Task really done?
+  </label>
 </div>
 ```
 
@@ -303,36 +291,30 @@ to `radio_option`.
 ```html
 <div class="form-group">
   <label for="task_priority">Priority</label>
-  <div>
-    <div class="radio">
-      <label for="task_priority">
-        <input type="radio" name="task[priority]" value="high">
-        High
-      </label>
-    </div>
+  <div class="radio">
+    <label for="task_priority">
+      <input type="radio" name="task[priority]" value="high">
+      High
+    </label>
   </div>
-  <div>
-    <div class="radio">
-      <label for="task_priority">
-        <input type="radio" name="task[priority]" value="low">
-        Low
-      </label>
-    </div>
+  <div class="radio">
+    <label for="task_priority">
+      <input type="radio" name="task[priority]" value="low">
+      Low
+    </label>
   </div>
 </div>
 
 <div class="form-group">
   <label for="task_priority">Priority</label>
-  <div>
-    <label for="task_priority" class="radio-inline">
-      <input type="radio" name="task[priority]" value="high">
-      High
-    </label>
-    <label for="task_priority" class="radio-inline">
-      <input type="radio" name="task[priority]" value="low">
-      Low
-    </label>
-  </div>
+  <label for="task_priority" class="radio-inline">
+    <input type="radio" name="task[priority]" value="high">
+    High
+  </label>
+  <label for="task_priority" class="radio-inline">
+    <input type="radio" name="task[priority]" value="low">
+    Low
+  </label>
 </div>
 ```
 
@@ -468,9 +450,7 @@ label on an element, you can pass a `:label` option:
 ```html
 <div class="form-group">
   <label for="task_title" class="control-label">Custom label for title</label>
-  <div>
-    <input type="text" class="form-control" name="task[title]">
-  </div>
+  <input type="text" class="form-control" name="task[title]">
 </div>
 ```
 
@@ -547,10 +527,51 @@ to use `:input_html` to set them:
     `'btn-sm'` and `'btn-lg'` for buttons)
 
 
+### Input Groups
+
+To render a Bootstrap 3 input group, you can use the `:prepend` and `:append`
+options:
+
+```haml
+= f.text_field :price, prepend: '$', append: '.00'
+```
+
+```html
+<div class="form-group">
+  <label for="product_price" class="control-label">Price</label>
+  <div class="input-group">
+    <span class="input-group-addon">$</span>
+    <input type="text" class="form-control" name="product[price]">
+    <span class="input-group-addon">.00</span>
+  </div>
+</div>
+```
+
+`:prepend` and `:append` can be used together with the `glyphicon` helper to
+render a glyphicon before or after the input field.
+
+
 
 ## Forms without Models
 
 TODO
+
+
+
+## Helper Methods
+
+### Glyphicons
+
+Use the `glyphicon` helper to render a glyphicon. The list of available icons
+can be found in the [Bootstrap Documentation](http://getbootstrap.com/components/#glyphicons).
+
+```haml
+= glyphicon('search')
+```
+
+```html
+<span class="glyphicon glyphicon-search"></span>
+```
 
 
 
