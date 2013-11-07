@@ -37,6 +37,9 @@ module B3Form
         button_options[:class] = 'btn btn-default'
       end
 
+      add_to_options(button_options, :disabled, true)        if options[:disabled]
+      add_to_options(button_options, :class, options[:size]) if options[:size]
+
       button_options
     end
 

@@ -492,26 +492,31 @@ TODO
 To every input you can pass three options as hashes:
 
 `label_html` sets the HTML attributes of the label tag. The CSS class
-*control-label* is mandatory and will be set automatically. You can add
+`control-label` is mandatory and will be set automatically. You can add
 additional classes if you want.
 
 `input_html` sets the HTML attributes of the input tag. The CSS class
-*form-control* is mandatory and will be set automatically. You can add
+`form-control` is mandatory and will be set automatically. You can add
 additional classes if you want.
 
+`button_html` sets the HTML attributes of the button tag. The CSS class
+`btn` is mandatory and will be set automatically. If you don't set a button
+class, `btn-default` will be set. You can add additional classes if you want.
+
 `wrapper_html` sets the HTML attributes of the div wrapped around the label and
-the input tag. The CSS class *form-group* is mandatory and will be set
+the input tag. The CSS class `form-group` is mandatory and will be set
 automatically. You can add additional classes if you want.
 
 
 
-### Extra options passed to the input
+### Extra options passed to input fields and buttons
 
 The following options are directly passed to the input field, so you don't have
 to use `:input_html` to set them:
 
-  - disabled (taking a boolean value)
-  - size (taking `'input-sm'` or `'input-lg'`)
+  - `:disabled` (taking a boolean value)
+  - `:size (taking `'input-sm'` or `'input-lg'` for input fields and `'btn-xs'`,
+    `'btn-sm'` and `'btn-lg'` for buttons)
 
 
 
