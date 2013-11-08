@@ -10,7 +10,7 @@ module B3Form
       @options  = options
     end
 
-    delegate :object, :content_tag, to: :builder
+    delegate :object, :object_name, :content_tag, to: :builder
 
 
     def render(&block)
@@ -170,15 +170,8 @@ module B3Form
     def helper_text_from_i18n(key)
       return false unless field
 
-      model_name = 
-        if object.class.respond_to? :model_name
-          object.class.model_name.i18n_key
-        else
-          object.to_s
-        end
-
       translation =
-        I18n.t "helpers.#{key}.#{model_name}.#{field}",
+        I18n.t "helpers.#{key}.#{object_name}.#{field}",
                 default: '__missing__'
 
       if translation == '__missing__'
