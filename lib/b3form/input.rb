@@ -170,25 +170,20 @@ module B3Form
     def helper_text_from_i18n(key)
       return false unless field
 
+      model_name = 
+        if object.class.respond_to? :model_name
+          object.class.model_name.i18n_key
+        else
+          object.to_s
+        end
+
       translation =
-        I18n.t "helpers.#{key}.#{object.class.model_name.i18n_key}.#{field}",
+        I18n.t "helpers.#{key}.#{model_name}.#{field}",
                 default: '__missing__'
 
       if translation == '__missing__'
         translation =
-          I18n.t "helpers.#{key}.#{object.class.model_name.i18n_key}.#{field}_html",
-                  default: '__missing__'
-      end
-
-      if translation == '__missing__'
-        translation =
           I18n.t "helpers.#{key}.default.#{field}",
-                  default: '__missing__'
-      end
-
-      if translation == '__missing__'
-        translation =
-          I18n.t "helpers.#{key}.default.#{field}_html",
                   default: '__missing__'
       end
 
@@ -201,7 +196,8 @@ module B3Form
 
 
     def errors
-      @errors ||= object.errors.messages[field] || []
+      model_errors = object.try(:errors)
+      @errors    ||= (model_errors && model_errors.messages[field]) || []
     end
 
 

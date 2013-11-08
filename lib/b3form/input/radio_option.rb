@@ -48,12 +48,27 @@ module B3Form
     def label_option_or_translation
       return options[:label] if options[:label].present?
 
+      model_name = 
+        if object.class.respond_to? :model_name
+          object.class.model_name.i18n_key
+        else
+          object.to_s
+        end
+
       translation =
-        I18n.t "helpers.option.#{object.class.model_name.i18n_key}.#{field}.#{value}",
+        I18n.t "helpers.option.#{model_name}.#{field}.#{value}",
                 default: '__missing__'
 
       if translation == '__missing__'
+        translation =
+          I18n.t "helpers.options.default.#{field}.#{value}",
+                  default: '__missing__'
+      end
+
+      if translation == '__missing__'
         value
+      elsif translation == false
+        false
       else
         translation.html_safe
       end
