@@ -14,5 +14,16 @@ module B3Form
         end
       end
     end
+
+
+    private
+
+    def wrapper_html
+      wrapper_options = super
+
+      add_to_options(wrapper_options, :class, 'form-actions')
+
+      wrapper_options
+    end
   end
 end

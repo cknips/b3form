@@ -1,7 +1,7 @@
 module B3Form
   class Input::Checkbox < Input
     def render
-      if builder.modifier[:checkbox_group]
+      if builder.modifier[:inside_radio_group]
         render_inner
       else
         render_wrapper do
@@ -26,7 +26,7 @@ module B3Form
     private
 
     def render_inner
-      if builder.modifier[:checkbox_layout] == :inline
+      if builder.modifier[:radio_layout] == :inline
         render_label do
           render_field +
           label_text

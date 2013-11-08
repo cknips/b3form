@@ -8,42 +8,23 @@ module B3Form
       super
 
       @modifier = {
-        checkbox_layout: default_checkbox_layout,
-        radio_layout:    default_radio_layout
+        radio_layout: default_radio_layout
       }
     end
 
 
 
 #
-#   Modifier
+#   Modifier and defaults
 #
-
-
-    def default_checkbox_layout
-      raise NotImplementedError, 'implement in subclass'
-    end
-
-    def change_checkbox_layout(layout, &block)
-      modifier[:checkbox_layout] = layout
-      block.call      
-      modifier[:checkbox_layout] = default_checkbox_layout
-    end
-
-
-    def default_radio_layout
-      raise NotImplementedError, 'implement in subclass'
-    end
-
-    def change_radio_layout(layout, &block)
-      modifier[:radio_layout] = layout
-      block.call      
-      modifier[:radio_layout] = default_radio_layout
-    end
 
 
     def set_column(column, value)
       modifier[:"#{column}_column_width"] = value
+    end
+
+    def default_radio_layout
+      raise NotImplementedError, 'implement in subclass'
     end
 
 
@@ -98,21 +79,12 @@ module B3Form
 #
 
 
-    def stacked_checkboxes(field = nil, options = {}, &block)
-      Input::StackedCheckboxes.new(self, field, options).render(&block)
+    def radio_group(field = nil, options = {}, &block)
+      Input::RadioGroup.new(self, field, options).render(&block)
     end
+    
+    alias_method :checkbox_group, :radio_group
 
-    def inline_checkboxes(field = nil, options = {}, &block)
-      Input::InlineCheckboxes.new(self, field, options).render(&block)
-    end
-
-    def stacked_radios(field, options = {}, &block)
-      Input::StackedRadios.new(self, field, options).render(&block)
-    end
-
-    def inline_radios(field, options = {}, &block)
-      Input::InlineRadios.new(self, field, options).render(&block)
-    end
 
     def form_actions(options = {}, &block)
       Input::FormActions.new(self, nil, options).render(&block)

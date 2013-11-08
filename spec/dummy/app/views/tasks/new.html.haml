@@ -19,11 +19,11 @@
         = f.text_area_input :description
     .row
       .col-lg-6
-        = f.stacked_checkboxes :done_states do
+        = f.checkbox_group :done_states do
           = f.checkbox_input :done
           = f.checkbox_input :really_done
       .col-lg-6
-        = f.inline_radios :category do
+        = f.radio_group :category, layout: :inline do
           = f.radio_option :private
           = f.radio_option :work
     .row
@@ -43,10 +43,10 @@
 
     = f.text_input :title
     = f.text_area_input :description
-    = f.stacked_checkboxes :done_states do
+    = f.checkbox_group :done_states do
       = f.checkbox_input :done
       = f.checkbox_input :really_done
-    = f.inline_radios :category do
+    = f.radio_group :category, layout: :inline do
       = f.radio_option :private
       = f.radio_option :work
     = f.checkbox_input :public
@@ -63,10 +63,10 @@
 
     = f.text_input :title
     = f.text_area_input :description
-    = f.stacked_checkboxes :done_states do
+    = f.checkbox_group :done_states do
       = f.checkbox_input :done
       = f.checkbox_input :really_done
-    = f.inline_radios :category do
+    = f.radio_group :category, layout: :inline do
       = f.radio_option :private
       = f.radio_option :work
     = f.checkbox_input :public
@@ -84,10 +84,10 @@
 
     = f.text_input :title
     = f.text_area_input :description
-    = f.stacked_checkboxes :done_states do
+    = f.checkbox_group :done_states do
       = f.checkbox_input :done
       = f.checkbox_input :really_done
-    = f.inline_radios :category do
+    = f.radio_group :category, layout: :inline do
       = f.radio_option :private
       = f.radio_option :work
     = f.checkbox_input :public
