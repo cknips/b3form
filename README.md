@@ -221,7 +221,10 @@ below):
 ```
 
 To render a group of checkboxes and set another layout you can use the
-`stacked_checkboxes` and `inline_checkboxes` helpers.
+`checkbox_group` helper. The layout ist set with the `:layout` option, possible
+values are `:stacked` and `:inline`. If the option is ommited, the default
+layout for the form is used which is *stacked* for basic and horizontal forms
+and *inline* for inline forms.
 
 You can also pass a virtual field to the helper which is used as label and
 rendered above the checkboxes. The virtual field is translated like a real field
@@ -229,11 +232,11 @@ of the object and is used for translation purposes. To render the errors for the
 field it must be defined as accessible attribute in the model however.
 
 ```haml
-= f.stacked_checkboxes :task_done_states do
+= f.checkbox_group :task_done_states, layout: :stacked do
   = f.checkbox_input :done
   = f.checkbox_input :really_done
 
-= f.inline_checkboxes :task_done_states do
+= f.checkbox_group :task_done_states, layout: :inline do
   = f.checkbox_input :done
   = f.checkbox_input :really_done
 ```
@@ -274,16 +277,17 @@ If the virtual field is ommited, the label will not be rendered.
 
 ### Radio Buttons
 
-Radio buttons can only rendered inside a `stacked_radios` or `inline_radios`
-helper. The field is set in the helper, the value is the first parameter passed
-to `radio_option`.
+Radio buttons can only rendered inside a `radio_group` helper. The field is set
+in the helper, the value is the first parameter passed to `radio_option`.
+
+The layout of the group is set equivalent to the `checkbox_group`.
 
 ```haml
-= f.stacked_radios :priority do
+= f.radio_group :priority, layout: :stacked do
   = f.radio_option :high
   = f.radio_option :low
 
-= f.inline_radios :priority do
+= f.radio_group :priority, layout: :inline do
   = f.radio_option :high
   = f.radio_option :low
 ```
@@ -334,9 +338,9 @@ So to render the same HTML as above, you can do (showing the usage of an Array
 and a Hash, usage of the nested Array is not shown):
 
 ```haml
-= stacked_radios :priority do
+= radio_group :priority, layout: :stacked do
   = radio_options [:high, :low]
-= inline_radios :priority do
+= radios_group :priority, layout: :inline do
   = radio_options({ high: 'High', low: 'Low' })
 ```
 
@@ -456,8 +460,8 @@ label on an element, you can pass a `:label` option:
 
 The label option is used as:
 
-  * label for input elements, incl. values of checkboxes and radio buttons
-  * caption for buttons (`value` attribute in HTML)
+  - label for input elements, incl. values of checkboxes and radio buttons
+  - caption for buttons (`value` attribute in HTML)
 
 If no label is given (neither by label option or I18n lookup), the label is
 ommited or the default label (e.g. the value of a the radio button for radio
@@ -495,6 +499,46 @@ TODO
 
 
 
+### Required text(-like) fields
+
+To mark an input as required pass `required: true` as option:
+
+```haml
+= f.text_field :price, required: true
+```
+
+This modifies the label of the input. By default it adds a star:
+
+```html
+<div class="form-group">
+  <label for="task_title" class="control-label">Title*</label>
+  <input type="text" class="form-control" name="task[title]">
+</div>
+```
+
+The mark and layout can be set by I18n. The following example uses a paragraph
+sign (&para;) as mark and renders it italic:
+
+```yaml
+en:
+  b3form:
+    required_input_label: '%{label} <i>&para;</i>'
+```
+
+```html
+<div class="form-group">
+  <label for="task_title" class="control-label">Title <i>&para;</i></label>
+  <input type="text" class="form-control" name="task[title]">
+</div>
+```
+
+You can set the mark freely, the field does not have to have a validation for
+presence in the model. You can also leave out the mark for fields that are
+actually required if you tell it the user another way -- or don't tell them at
+all if you reach for bad user experience. :stuck_out_tongue:
+
+
+
 ## General Options
 
 To every input you can pass three options as hashes:
@@ -526,6 +570,7 @@ to use `:input_html` to set them:
   - `:disabled` taking a boolean value
   - `:size taking `'input-sm'` or `'input-lg'` for input fields and `'btn-xs'`,
     `'btn-sm'` and `'btn-lg'` for buttons
+
 
 
 ### Input Groups

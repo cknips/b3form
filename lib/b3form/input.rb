@@ -128,7 +128,20 @@ module B3Form
 
 
     def label_text(&block)
-      option_or_i18n(:label)
+      label_text = option_or_i18n(:label)
+
+      if options[:required]
+        translation = I18n.t 'b3form.required_input_label', label: label_text,
+                              default: '__missing__'
+
+        if translation == '__missing__'
+          "#{label_text}*".html_safe
+        else
+          translation.html_safe
+        end
+      else
+        label_text
+      end
     end
 
 
