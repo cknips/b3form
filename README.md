@@ -568,6 +568,7 @@ to use `:input_html` to set them:
   - `:disabled` taking a boolean value
   - `:size` taking `'input-sm'` or `'input-lg'` for input fields and `'btn-xs'`,
     `'btn-sm'` and `'btn-lg'` for buttons
+  - `:checked` taking a boolean value (can only be set on radio buttons)
 
 
 

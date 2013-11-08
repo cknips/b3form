@@ -45,6 +45,15 @@ module B3Form
     end
 
 
+    def input_html
+      input_options = super
+
+      add_to_options(input_options, :checked, true) if options[:checked]
+
+      input_options
+    end
+
+
     def label_option_or_translation
       return options[:label] if options[:label].present?
 
