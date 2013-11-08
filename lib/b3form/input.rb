@@ -24,12 +24,18 @@ module B3Form
 
 
     def render_label(&block)
-      builder.label(field, label_html) do
-        if block_given?
-          block.call
-        else
-          label_text
+      text = if block_given?
+        block.call
+      else
+        label_text
+      end
+
+      if text
+        builder.label(field, label_html) do
+          text
         end
+      else
+        ''.html_safe
       end
     end
 
@@ -127,10 +133,10 @@ module B3Form
     end
 
 
-    def label_text(&block)
+    def label_text
       label_text = option_or_i18n(:label)
 
-      if options[:required]
+      if label_text && options[:required]
         translation = I18n.t 'b3form.required_input_label', label: label_text,
                               default: '__missing__'
 

@@ -566,9 +566,9 @@ automatically. You can add additional classes if you want.
 The following options are directly passed to the input field, so you don't have
 to use `:input_html` to set them:
 
-  - `:id
+  - `:id`
   - `:disabled` taking a boolean value
-  - `:size taking `'input-sm'` or `'input-lg'` for input fields and `'btn-xs'`,
+  - `:size` taking `'input-sm'` or `'input-lg'` for input fields and `'btn-xs'`,
     `'btn-sm'` and `'btn-lg'` for buttons
 
 

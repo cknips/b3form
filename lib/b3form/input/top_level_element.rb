@@ -21,13 +21,26 @@ module B3Form
     private
 
     def render_label
-      if form_horizontal? &&
-         !label_column_width
-        render_full_width_column do
-          super
+      rendered_label = super
+
+      if form_horizontal?
+        if label_column_width
+          if rendered_label.blank?
+            render_offset
+          else
+            rendered_label
+          end
+        else
+          if rendered_label.blank?
+            ''.html_safe
+          else
+            render_full_width_column do
+              rendered_label
+            end
+          end
         end
       else
-        super
+        rendered_label
       end
     end
 
