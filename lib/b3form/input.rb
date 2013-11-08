@@ -192,7 +192,7 @@ module B3Form
                   default: '__missing__'
       end
 
-      if translation == '__missing__'
+      if translation == '__missing__' || translation == false
         false
       else
         translation.html_safe

@@ -438,7 +438,9 @@ en:
 ```
 
 As expected, setting a key specific for a model name, the default will be
-overridden.
+overridden. To unset a default for a field without overiding ist with another
+value (e.g. because you want to omit a label for a specific field where a
+default translation is already set) use `false` as translation.
 
 
 
@@ -464,8 +466,7 @@ The label option is used as:
   - caption for buttons (`value` attribute in HTML)
 
 If no label is given (neither by label option or I18n lookup), the label is
-ommited or the default label (e.g. the value of a the radio button for radio
-button labels) is used.
+ommited.
 
 
 
