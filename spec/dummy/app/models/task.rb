@@ -15,7 +15,5 @@
 #
 
 class Task < ActiveRecord::Base
-  attr_reader :done_states
-
   validates :title, presence: true
 end

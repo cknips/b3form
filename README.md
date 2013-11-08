@@ -229,7 +229,8 @@ and *inline* for inline forms.
 You can also pass a virtual field to the helper which is used as label and
 rendered above the checkboxes. The virtual field is translated like a real field
 of the object and is used for translation purposes. To render the errors for the
-field it must be defined as accessible attribute in the model however.
+field it must be defined as accessible attribute in the model. If you don't
+want to add errors to the virtual field, it does not have to be accessible.
 
 ```haml
 = f.checkbox_group :task_done_states, layout: :stacked do
