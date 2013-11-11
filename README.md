@@ -327,13 +327,16 @@ If you don't want to render the radio button values one by one, you can use the
 `radio_options` helper which takes an Enumerable. The first param of the helper
 (the enumerable) must be:
 
-  * an Array of symbols: `[:value_1, :value_2]`. The entries are used as values
+  - an Array of symbols: `[:value_1, :value_2]`. The entries are used as values
     for the radio buttons. The labels are taken from the translation file (see
     the I18n section below).
-  * a Hash of the form: `{ value_1: 'label for value_1', value_2: 'label for
-    value_2' }`.
-  * a nested Array of the form: `[[:value_1, 'label for value_1'], [:value_2,
-    'label for value_2']]`
+  - a Hash of the form: `{ 'label for value_1' => :value_1, 'label for
+    value_2' => :value_2 }`.
+  - a nested Array of the form: `[['label for value_1', :value_1], ['label for
+    value_2' => :value_2]]`
+
+The latter two are equivalent to the format of a Hash or Array you can pass to
+the select helper as choiches in the standard rails form builder.
 
 So to render the same HTML as above, you can do (showing the usage of an Array
 and a Hash, usage of the nested Array is not shown):
@@ -342,11 +345,66 @@ and a Hash, usage of the nested Array is not shown):
 = radio_group :priority, layout: :stacked do
   = radio_options [:high, :low]
 = radios_group :priority, layout: :inline do
-  = radio_options({ high: 'High', low: 'Low' })
+  = radio_options({ 'High' => :high, 'Low' => :low })
 ```
 
 `radio_option` and `radio_options` can be used together in one block in any
 combination.
+
+
+
+### Selects
+
+Selects are rendered with the `select_input` helper and need to be called with a
+block which defines their options. The syntax is quiet similar to `radio_group`:
+
+```haml
+= f.select_input :priority do
+  = f.blank_select_option
+  = f.select_option :high, selected: true
+  = f.select_option :low,  disabled: true
+```
+
+This renders a select with three options, including the blank option:
+
+```html
+<div class="form-group">
+  <label for="task_priority">Priority</label>
+  <select class="form-control" name="task[priority]">
+    <option value></option>
+    <option value="high">High</option>
+    <option value="low" disabled="disabled">Low</option>
+  </select>
+</div>
+```
+
+Like for radio buttons, there is a helper method taking a Hash or an Array as
+options:
+
+```haml
+= f.select_input :priority do
+  = f.select_options [:high, :low],
+    include_blank: true,
+    selected:      'high',
+    disabled:      [:low]
+```
+
+Like for radio buttons the first param of the helper (the enumerable) must be:
+
+  - an Array of symbols: `[:value_1, :value_2]`. The entries are used as values
+    for the select. The labels are taken from the translation file (see the I18n
+    section below).
+  - a Hash of the form: `{ 'label for value_1' => :value_1, 'label for
+    value_2' => :value_2 }`.
+  - a nested Array of the form: `[['label for value_1', :value_1], ['label for
+    value_2' => :value_2]]`
+
+This renders the same HTML as above. Equivalent to radio buttons,
+`select_option` and `select_options` can be used together in one block in any
+combination.
+
+The select option helpers don't render anything by themself so they can also be
+called with a starting minus sign in Haml or without the equal sign in ERB.
 
 
 

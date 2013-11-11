@@ -33,44 +33,60 @@ module B3Form
 #
 
 
-    def text_input(field, options = {})
-      Input::Text.new(self, field, options).render
+    def text_input(field, options = {}, &block)
+      Input::Text.new(self, field, options).render(&block)
     end
 
-    def password_input(field, options = {})
-      Input::Password.new(self, field, options).render
+    def password_input(field, options = {}, &block)
+      Input::Password.new(self, field, options).render(&block)
     end
 
-    def search_input(field, options = {})
-      Input::Search.new(self, field, options).render
+    def search_input(field, options = {}, &block)
+      Input::Search.new(self, field, options).render(&block)
     end
 
-    def url_input(field, options = {})
-      Input::Url.new(self, field, options).render
+    def url_input(field, options = {}, &block)
+      Input::Url.new(self, field, options).render(&block)
     end
 
-    def email_input(field, options = {})
-      Input::Email.new(self, field, options).render
+    def email_input(field, options = {}, &block)
+      Input::Email.new(self, field, options).render(&block)
     end
 
-    def number_input(field, options = {})
-      Input::Number.new(self, field, options).render
+    def number_input(field, options = {}, &block)
+      Input::Number.new(self, field, options).render(&block)
     end
 
-    def checkbox_input(field, options = {})
-      Input::Checkbox.new(self, field, options).render
+    def checkbox_input(field, options = {}, &block)
+      Input::Checkbox.new(self, field, options).render(&block)
     end
 
-    def radio_option(value, options = {})
-      Input::RadioOption.new(self, value, options).render
+    def radio_option(value, options = {}, &block)
+      Input::RadioOption.new(self, value, options).render(&block)
     end
 
-    def radio_options(collection, options = {})
-      Input::RadioOptions.new(self, collection, options).render
+    def radio_options(collection, options = {}, &block)
+      Input::RadioOptions.new(self, collection, options).render(&block)
     end
 
-    def text_area_input(value, options = {})
-      Input::TextArea.new(self, value, options).render
+    def text_area_input(value, options = {}, &block)
+      Input::TextArea.new(self, value, options).render(&block)
+    end
+
+    def select_input(value, options = {}, &block)
+      Input::Select.new(self, value, options).render(&block)
+    end
+
+    def select_option(value, options = {}, &block)
+      Input::SelectOption.new(self, value, options).render(&block)
+    end
+
+    def blank_select_option
+      Input::SelectOption.blank_select_option(self)
+    end
+
+    def select_options(collection, options = {}, &block)
+      Input::SelectOptions.new(self, collection, options).render(&block)
     end
 
 

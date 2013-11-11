@@ -4,13 +4,13 @@ module B3Form
       if builder.modifier[:radio_layout] == :inline
         render_label do
           render_field +
-          label_option_or_translation
+          label_option_or_translation(options, object_name, field, value)
         end
       else
         content_tag(:div, class: 'radio') do
           render_label do
             render_field +
-            label_option_or_translation
+            label_option_or_translation(options, object_name, field, value)
           end
         end
       end
@@ -25,8 +25,8 @@ module B3Form
     private
     
     # The "field" parameter (the first parameter of the helper) is used for the
-    # value of the actual field. The actual field is set by the stacked_radios
-    # and inline_radios helpers
+    # value of the actual field. The actual field is set by the radio_group
+    # helper
     alias_method :field_orig, :field
     alias_method :value, :field_orig
     def field
@@ -51,29 +51,6 @@ module B3Form
       add_to_options(input_options, :checked, true) if options[:checked]
 
       input_options
-    end
-
-
-    def label_option_or_translation
-      return options[:label] if options[:label].present?
-
-      translation =
-        I18n.t "helpers.option.#{object_name}.#{field}.#{value}",
-                default: '__missing__'
-
-      if translation == '__missing__'
-        translation =
-          I18n.t "helpers.options.default.#{field}.#{value}",
-                  default: '__missing__'
-      end
-
-      if translation == '__missing__'
-        value
-      elsif translation == false
-        false
-      else
-        translation.html_safe
-      end
     end
   end
 end
