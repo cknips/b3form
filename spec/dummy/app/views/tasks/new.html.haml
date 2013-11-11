@@ -20,6 +20,7 @@
     .row
       .col-lg-6
         = f.select_input :category do
+          = f.blank_select_option
           = f.select_option :private
           = f.select_option :work, disabled: true
           = f.select_options({foo: 'foo_value', bar: 'bar_value'}, disabled: 'foo_value')

@@ -353,10 +353,11 @@ combination.
 
 
 
-### Selects
+### Select fields
 
-Selects are rendered with the `select_input` helper and need to be called with a
-block which defines their options. The syntax is quiet similar to `radio_group`:
+Selects fields are rendered with the `select_input` helper and need to be called
+with a block which defines their options. The syntax is quiet similar to
+`radio_group`:
 
 ```haml
 = f.select_input :priority do
@@ -365,7 +366,7 @@ block which defines their options. The syntax is quiet similar to `radio_group`:
   = f.select_option :low,  disabled: true
 ```
 
-This renders a select with three options, including the blank option:
+This renders a select field with three options, including the blank option:
 
 ```html
 <div class="form-group">
@@ -402,9 +403,52 @@ Like for radio buttons the first param of the helper (the enumerable) must be:
 This renders the same HTML as above. Equivalent to radio buttons,
 `select_option` and `select_options` can be used together in one block in any
 combination.
-
+  
 The select option helpers don't render anything by themself so they can also be
 called with a starting minus sign in Haml or without the equal sign in ERB.
+
+
+
+### Composed Inputs
+
+You can combine several input fields to a composed input field. In the following
+example, `:minimum` and `:maximum' are attributes of the `Task` model.
+`:interval` is a virtual attribute used as label just as in a checkbox group:
+
+```haml
+= f.composed_input :interval do
+  from
+  = f.number_field :minimum
+  to
+  = f.number_field :maximum
+```
+
+This will render the fields for `:minimum` and `:maximum` side by side as in an
+inline form:
+
+```html
+<div class="form-group">
+  <label class="control-label" for="task[interval]">
+  <div class="form-inline">
+    from
+    <div class="form-group">
+      <input type="number" class="form-control" name="task[minimum]">
+    </div>
+    to
+    <div class="form-group">
+      <input type="number" class="form-control" name="task[minimum]">
+    </div>
+  </div>
+</div>
+```
+
+A composed form will *not* render the labels, hints and error messages for the
+inlined fields. However if there are errors on an inlined field, the field will
+be correctly highlighted.
+
+To render hints you can define them on the virtual attribute. To display error
+messages it is advised to create the messages manually for the error hash of the
+virtual attribute.
 
 
 
@@ -625,8 +669,11 @@ to use `:input_html` to set them:
   - `:id`
   - `:disabled` taking a boolean value
   - `:size` taking `'input-sm'` or `'input-lg'` for input fields and `'btn-xs'`,
-    `'btn-sm'` and `'btn-lg'` for buttons
+    `'btn-sm'` and `'btn-lg'` for buttons and is passed as class attribute
+    (merged with the already present class attribute values) to the input
   - `:checked` taking a boolean value (can only be set on radio buttons)
+  - `:select_size` taking an integer (can only be set on a select field) and is
+    passed as size attribute to the select field
 
 
 

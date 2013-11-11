@@ -24,6 +24,8 @@ module B3Form
 
 
     def render_label(&block)
+      return ''.html_safe if form_inline?
+
       text = if block_given?
         block.call
       else
@@ -51,6 +53,8 @@ module B3Form
 
 
     def render_errors
+      return ''.html_safe if form_inline?
+
       errors.map { |message|
         errors_class = if error_column_width
           "help-block aside #{error_column_width}"
@@ -66,6 +70,8 @@ module B3Form
 
 
     def render_hint
+      return ''.html_safe if form_inline?
+
       if hint_text
         hint_class = if hint_column_width
           "hint-block aside #{hint_column_width}"

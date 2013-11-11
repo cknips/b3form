@@ -102,6 +102,11 @@ module B3Form
     alias_method :checkbox_group, :radio_group
 
 
+    def composed_input(field, options = {}, &block)
+      Input::ComposedInput.new(self, field, options).render(&block)
+    end
+
+
     def form_actions(options = {}, &block)
       Input::FormActions.new(self, nil, options).render(&block)
     end

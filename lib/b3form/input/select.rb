@@ -29,7 +29,10 @@ module B3Form
       input_options = super
 
       add_to_options(input_options, :class, 'form-control')
-      add_to_options(input_options, :size,  options[:size]) if options[:size]
+      
+      if options[:select_size]
+        add_to_options(input_options, :size, options[:select_size])
+      end
 
       input_options
     end
