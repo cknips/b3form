@@ -21,7 +21,7 @@ module B3Form
     def wrapper_html
       wrapper_options = super
 
-      add_to_options(wrapper_options, :class, 'form-actions')
+      add_to_options(wrapper_options, :class, 'form-actions form-inline')
 
       wrapper_options
     end
