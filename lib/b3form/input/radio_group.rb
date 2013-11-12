@@ -11,16 +11,12 @@ module B3Form
       builder.modifier[:radio_layout]       = layout
       builder.modifier[:inside_radio_group] = true
       
-      html = if render_called_with_block
-        builder.capture(&render_called_with_block)
-      else
-        ''.html_safe
-      end
+      html = builder.capture(&render_called_with_block) if render_called_with_block
       
       builder.modifier.delete(:inside_radio_group)
       builder.modifier[:radio_layout] = builder.default_radio_layout
-
-      html
+      
+      html || ''.html_safe
     end
   end
 end
