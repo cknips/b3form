@@ -25,3 +25,13 @@
     margin-right: 10px;
   }
 }
+
+.panel-sectiontitle {
+  font-size: $font-size-base;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 10px 15px;
+  color: lighten($text-color, 25%);
+}
