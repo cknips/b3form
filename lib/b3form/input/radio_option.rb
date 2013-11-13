@@ -48,7 +48,7 @@ module B3Form
     def input_html
       input_options = super
 
-      add_to_options(input_options, :checked, true) if options[:checked]
+      input_options[:checked] = true if options[:checked]
 
       input_options
     end

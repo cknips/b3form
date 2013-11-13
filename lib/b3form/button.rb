@@ -34,10 +34,11 @@ module B3Form
       else
         add_to_options(button_options, :class, 'btn btn-default')
       end
-
-      add_to_options(button_options, :disabled, true)        if options[:disabled]
       add_to_options(button_options, :class, options[:size]) if options[:size]
-      add_to_options(button_options, :id, options[:id])      if options[:id]
+
+      button_options[:disabled] = true           if options[:disabled]
+      button_options[:id]       = options[:id]   if options[:id]
+      button_options[:name]     = options[:name] if options[:name]
 
       button_options
     end

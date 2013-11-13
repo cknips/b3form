@@ -124,9 +124,10 @@ module B3Form
     def input_html
       input_options = options[:input_html] || {}
 
-      add_to_options(input_options, :disabled, true)        if options[:disabled]
       add_to_options(input_options, :class, options[:size]) if options[:size]
-      add_to_options(input_options, :id, options[:id])      if options[:id]
+      
+      input_options[:disabled] = true         if options[:disabled]
+      input_options[:id]       = options[:id] if options[:id]
 
       input_options
     end
