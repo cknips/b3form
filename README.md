@@ -127,15 +127,15 @@ grid system provided by bootstrap:
 ### Horizontal Forms
 
 In a horizontal form a width can be assigned to the parts of an input. If the
-width is ommited the part is rendered above (labels) or below (hints and error
+width is omitted the part is rendered above (labels) or below (hints and error
 messages) the input field. Setting the width of the input field is mandatory.
 
 The width settings can be passed as hash to the form builder:
 
 ```haml
-= b3_horizontal_form_for columns: { label: 'col-md-2',
-                                    input: 'col-md-4',
-                                    hint:  'col-md-4' } do |f|
+= b3_horizontal_form_for @task, columns: { label: 'col-md-2',
+                                           input: 'col-md-4',
+                                           hint:  'col-md-4' } do |f|
   = f.text_field :title
 ```
 
@@ -156,6 +156,21 @@ If you don't want to pass a large hash to the form builder, you can also use the
 
 This will render the same as above. The `set_column` helper can also used to
 change the width settings in between the form elements.
+
+
+
+### Inline Forms
+
+To render an inline form, use the `b3_inline_form_for` helper:
+
+```haml
+= b3_inline_form_for @task do |f|
+  = f.text_field :title
+```
+
+An inline form only renders the input field. Labels, hints and errors are
+omitted. However when an error is present on a field the input field is
+correctly highlighted.
 
 
 
@@ -222,7 +237,7 @@ below):
 
 To render a group of checkboxes and set another layout you can use the
 `checkbox_group` helper. The layout ist set with the `:layout` option, possible
-values are `:stacked` and `:inline`. If the option is ommited, the default
+values are `:stacked` and `:inline`. If the option is omitted, the default
 layout for the form is used which is *stacked* for basic and horizontal forms
 and *inline* for inline forms.
 
@@ -272,7 +287,7 @@ want to add errors to the virtual field, it does not have to be accessible.
 </div>
 ```
 
-If the virtual field is ommited, the label will not be rendered.
+If the virtual field is omitted, the label will not be rendered.
 
 
 
@@ -565,7 +580,7 @@ The label option is used as:
   - caption for buttons (`value` attribute in HTML)
 
 If no label is given (neither by label option or I18n lookup), the label is
-ommited.
+omitted.
 
 
 

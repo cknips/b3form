@@ -24,12 +24,14 @@ module B3Form
 
 
     def render_label(&block)
-      return ''.html_safe if form_inline?
-
       text = if block_given?
         block.call
       else
-        label_text
+        if form_inline?
+          nil
+        else
+          label_text
+        end
       end
 
       if text

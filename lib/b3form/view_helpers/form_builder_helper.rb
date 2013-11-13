@@ -23,6 +23,17 @@ module B3Form
         
         form_for(object, options, &block)
       end
+
+
+      def b3_inline_form_for(object, options = {}, &block)
+        options[:builder] = B3Form::FormBuilder::InlineFormBuilder
+        options[:html]  ||= {}
+
+        add_to_options(options[:html], :class, 'form-inline')
+        add_to_options(options[:html], :role,  'form')
+        
+        form_for(object, options, &block)
+      end
     end
   end
 end
