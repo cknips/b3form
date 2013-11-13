@@ -3,6 +3,10 @@ module B3Form
     def render
       builder.modifier[:select_options].merge! select_options
 
+      if options[:include_blank]
+        builder.modifier[:select_modifier][:include_blank] = options[:include_blank]
+      end
+
       if options[:selected]
         builder.modifier[:select_modifier][:selected] = options[:selected]
       end

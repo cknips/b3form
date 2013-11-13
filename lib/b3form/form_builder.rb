@@ -81,8 +81,8 @@ module B3Form
       Input::SelectOption.new(self, value, options).render(&block)
     end
 
-    def blank_select_option
-      Input::SelectOption.blank_select_option(self)
+    def blank_select_option(blank_value = true)
+      Input::SelectOption.blank_select_option(self, blank_value)
     end
 
     def select_options(collection, options = {}, &block)

@@ -16,8 +16,8 @@ module B3Form
     end
 
 
-    def self.blank_select_option(builder)
-      builder.modifier[:select_modifier][:include_blank] = true
+    def self.blank_select_option(builder, blank_value = true)
+      builder.modifier[:select_modifier][:include_blank] = blank_value
     end
 
 
