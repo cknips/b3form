@@ -689,6 +689,8 @@ to use `:input_html` to set them:
   - `:checked` taking a boolean value (can only be set on radio buttons)
   - `:select_size` taking an integer (can only be set on a select field) and is
     passed as size attribute to the select field
+  - `:value` taking a string (can only be set on text-like input fields)
+  - `:name` taking a string
 
 
 
