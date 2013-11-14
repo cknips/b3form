@@ -1,11 +1,27 @@
 module B3Form
   class Input::RadioGroup < Input::TopLevelElement
+    attr_reader :layout
+
+    def initialize(*)
+      super
+
+      @layout = options[:layout] || builder.default_radio_layout
+    end
+
+
+    def render_label
+      if form_basic? && layout == :inline
+        super + '<br>'.html_safe
+      else
+        super
+      end
+    end
+
 
     private
 
     def render_field
-      html   = nil
-      layout = options[:layout] || builder.default_radio_layout
+      html = nil
       
       builder.modifier[:radio_field]        = field
       builder.modifier[:radio_layout]       = layout

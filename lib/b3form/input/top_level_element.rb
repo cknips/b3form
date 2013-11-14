@@ -18,8 +18,6 @@ module B3Form
     end
 
 
-    private
-
     def render_label
       rendered_label = super
 
@@ -44,6 +42,8 @@ module B3Form
       end
     end
 
+
+    private
 
     def label_html
       label_options = super
