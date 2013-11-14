@@ -596,7 +596,7 @@ The name of the object in the form ("task" in the example above) is taken from
 
   - the `:as` option you can pass to the form builder
   - `object.class.model_name.i18n_key` if the object is an ActiveModel
-  - `object.to_s` otherwise
+  - `object_name` otherwise
 
 Please note that this is different from the behaviour of the standard rails form
 builder. While the `:as` option behaves as usual, the standard rails form

@@ -1,7 +1,7 @@
 module B3Form
   class Input::SelectOption < Input
     def render
-      builder.modifier[:select_options][option_text_from_option_or_i18n] = value
+      builder.modifier[:select_options][option_text_from_option_or_i18n(value)] = value
       
       if options[:selected]
         builder.modifier[:select_modifier][:selected] = value

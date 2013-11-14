@@ -189,7 +189,7 @@ module B3Form
     end
 
 
-    def option_text_from_option_or_i18n
+    def option_text_from_option_or_i18n(value)
       return options[:label] if options[:label].present?
 
       translation = translate(:options, object, field, value)

@@ -12,7 +12,7 @@ module B3Form
     def i18n_key(object)
          builder.modifier[:object_i18n_key] \
       || object.class.try(:model_name).try(:i18n_key) \
-      || object.to_s
+      || builder.object_name
     end
 
 
