@@ -483,8 +483,8 @@ Avalable buttons are:
 ## I18n
 
 For labeling the different elements B3Form uses the standard I18n system. It
-uses the `helpers` section and extends it with it's own attributes. Here are the
-translations for a fictional task model (shown as annotated with the 
+uses the `b3_form` section. Here are the translations for a fictional task model
+(shown as annotated with the
 [Annotate](https://github.com/ctran/annotate_models) gem):
 
 ```ruby
@@ -508,23 +508,23 @@ end
 
 ```yaml
 en:
-  helpers:
-    label:
+  b3_form:
+    labels:
       task:
         title:       Title label
         done_states: Done states label
         done:        Done
         really_done: Really Done
         priority:    Priority label
-    placeholder:
+    placeholders:
       task:
         title:       Title Placeholder
-    hint:
+    hints:
       task:
         title:       Small hint below the text field
         done_states: Small hint below the checkboxes
         priority:    Small hint below the radio button group
-    option:
+    options:
       task:
         priority:
           high:      High
@@ -539,8 +539,8 @@ You can also use HTML translations:
 
 ```yaml
 en:
-  helpers:
-    label:
+  b3_form:
+    labels:
       task:
         really_done: '<i>Really</i> Done'
 ```
@@ -550,8 +550,8 @@ To define default translations for input parts there is also the reserved key
 
 ```yaml
 en:
-  helpers:
-    label:
+  b3_form:
+    labels:
       default:
         title: Title
 ```
@@ -565,7 +565,7 @@ default translation is already set) use `false` as translation.
 
 ### Labels
 
-Labels are automatically read from `'helpers.label'` in I18n. To manually set a
+Labels are automatically read from `'b3_form.label'` in I18n. To manually set a
 label on an element, you can pass a `:label` option:
 
 ```haml

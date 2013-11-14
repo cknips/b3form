@@ -89,6 +89,14 @@ module B3Form
       Input::SelectOptions.new(self, collection, options).render(&block)
     end
 
+    def submit_button(name_or_options = nil, options = {})
+      if name_or_options.kind_of? Hash
+        Input::SubmitButton.new(self, nil, name_or_options).render
+      else
+        Input::SubmitButton.new(self, name_or_options, options).render
+      end
+    end
+
 
 #
 #   Input and Button Helpers
@@ -119,16 +127,6 @@ module B3Form
 
     def error_alert(field, options = {})
       Helper::ErrorAlert.new(self, field, options).render
-    end
-
-
-#
-#   Buttons
-#
-
-
-    def submit_button(options = {})
-      Button::Submit.new(self, options).render
     end
   end
 end

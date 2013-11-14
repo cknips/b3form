@@ -10,7 +10,7 @@ module B3Form
       @options  = options
     end
 
-    delegate :object, :object_name, :content_tag, to: :builder
+    delegate :object, :content_tag, to: :builder
 
 
     def render(&block)
@@ -143,7 +143,7 @@ module B3Form
 
 
     def label_text
-      label_text = option_or_i18n(:label)
+      label_text = option_or_i18n(:labels)
 
       if label_text && options[:required]
         translation = I18n.t 'b3form.required_input_label', label: label_text,
@@ -161,7 +161,7 @@ module B3Form
 
 
     def hint_text
-      option_or_i18n(:hint)
+      option_or_i18n(:hints)
     end
 
 
@@ -169,27 +169,34 @@ module B3Form
       option = options[key]
 
       if option.nil?
-        helper_text_from_i18n(key)
+        label_text_from_i18n(key)
       else
         option
       end
     end
 
     
-    def helper_text_from_i18n(key)
+    def label_text_from_i18n(key)
       return false unless field
 
-      translation =
-        I18n.t "helpers.#{key}.#{object_name}.#{field}",
-                default: '__missing__'
-
-      if translation == '__missing__'
-        translation =
-          I18n.t "helpers.#{key}.default.#{field}",
-                  default: '__missing__'
-      end
+      translation = translate(key, object, field)
 
       if translation == '__missing__' || translation == false
+        false
+      else
+        translation.html_safe
+      end
+    end
+
+
+    def option_text_from_option_or_i18n
+      return options[:label] if options[:label].present?
+
+      translation = translate(:options, object, field, value)
+
+      if translation == '__missing__'
+        value
+      elsif translation == false
         false
       else
         translation.html_safe

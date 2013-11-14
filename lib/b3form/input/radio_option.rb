@@ -4,13 +4,13 @@ module B3Form
       if builder.modifier[:radio_layout] == :inline
         render_label do
           render_field +
-          label_option_or_translation(options, object_name, field, value)
+          option_text_from_option_or_i18n
         end
       else
         content_tag(:div, class: 'radio') do
           render_label do
             render_field +
-            label_option_or_translation(options, object_name, field, value)
+            option_text_from_option_or_i18n
           end
         end
       end

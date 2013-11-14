@@ -44,7 +44,7 @@ module B3Form
       # else treat as Array: [:value_1, :value_2]
       else
         collection.each_with_object({}) do |value, hash|
-          hash[label_option_or_translation({}, object_name, field, value)] = value
+          hash[option_text_from_option_or_i18n] = value
         end
       end
     end
