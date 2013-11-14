@@ -8,7 +8,8 @@ module B3Form
       super
 
       @modifier = {
-        radio_layout: default_radio_layout
+        radio_layout:    default_radio_layout,
+        object_i18n_key: options[:as]
       }
     end
 

@@ -504,8 +504,8 @@ The passed name is also used as I18n key (see below).
 
 ## I18n
 
-For labeling the different elements B3Form uses the standard I18n system. It
-uses the `b3_form` section. Here are the translations for a fictional task model
+For labeling the different elements B3Form uses the standard I18n system, using
+the `b3_form` section. Here are the translations for a fictional task model
 (shown as annotated with the
 [Annotate](https://github.com/ctran/annotate_models) gem):
 
@@ -586,6 +586,23 @@ As expected, setting a key specific for a model name, the default will be
 overridden. To unset a default for a field without overiding ist with another
 value (e.g. because you want to omit a label for a specific field where a
 default translation is already set) use `false` as translation.
+
+
+
+### Object names
+
+The name of the object in the form ("task" in the example above) is taken from
+(prioritized in the following order):
+
+  - the `:as` option you can pass to the form builder
+  - `object.class.model_name.i18n_key` if the object is an ActiveModel
+  - `object.to_s` otherwise
+
+Please note that this is different from the behaviour of the standard rails form
+builder. While the `:as` option behaves as usual, the standard rails form
+builder ignores namespaces of models for the translation of labels and submit
+buttons. B3Form uses the slash notation (`namespace/model_name`) as the object
+name that is also uses for the translation of the error messages.
 
 
 
