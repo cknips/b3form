@@ -478,6 +478,28 @@ Avalable buttons are:
 
   * submit_button
 
+```haml
+= f.submit_button
+```
+
+```html
+<button type="submit" class="btn btn-default">Submit</button>
+```
+
+You can pass an option to the button which is used as `name` attribute to
+identify the pressed button if you have multiple submit buttons per form:
+
+```haml
+= f.submit_button :ok
+= f.submit_button :cancel
+```
+
+```html
+<button type="submit" class="btn btn-default" name="ok">Do it</button>
+<button type="submit" class="btn btn-default" name="cancel">Don't do it</button>
+```
+
+The passed name is also used as I18n key (see below).
 
 
 ## I18n
@@ -529,6 +551,10 @@ en:
         priority:
           high:      High
           low:       Low
+    submit:
+      task:
+        create:      Create Task
+        update:      Update Task
 ```
 
 `done_states` is a virtual attribute to label the two checkboxes which set the
@@ -656,6 +682,13 @@ You can set the mark freely, the field does not have to have a validation for
 presence in the model. You can also leave out the mark for fields that are
 actually required if you tell it the user another way -- or don't tell them at
 all if you reach for bad user experience. :stuck_out_tongue:
+
+
+
+### Buttons
+
+TODO
+name/create/update/submit
 
 
 
