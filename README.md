@@ -418,6 +418,11 @@ Like for radio buttons the first param of the helper (the enumerable) must be:
 This renders the same HTML as above. Equivalent to radio buttons,
 `select_option` and `select_options` can be used together in one block in any
 combination.
+
+To give the blank a select option a name you can call `blank_select_option`
+and pass a string (which is used as name) or pass a string to the
+`:include_blank` option of `select_options` as you would do with the standard
+rails form builder and the `select` helper.
   
 The select option helpers don't render anything by themself so they can also be
 called with a starting minus sign in Haml or without the equal sign in ERB.
@@ -716,6 +721,28 @@ options:
 
 `:prepend` and `:append` can be used together with the `glyphicon` helper to
 render a glyphicon before or after the input field.
+
+To prepend or append buttons, you can use the `prepend_button` and
+`append_button` option. The following example shows an inline search form:
+
+```haml
+= b3_inline_form_for :search do |f|
+  - submit_button = f.submit_button
+  = f.text_input :text, append_button: submit_button
+```
+
+```html
+<form class="form-inline" role="form">
+  <div class="form-group">
+    <div class="input-group">
+      <input type="text" class="form-control" name="search[text]">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit">Search</button>
+      </div>
+    </div>
+  </div>
+</form>
+```
 
 
 
