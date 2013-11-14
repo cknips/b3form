@@ -42,6 +42,15 @@ module B3Form
     end
 
 
+    def input_html
+      input_options = super
+
+      input_options[:checked] = true if options[:checked]
+
+      input_options
+    end
+
+
     def label_html
       label_options = super
 

@@ -741,7 +741,8 @@ to use `:input_html` to set them:
   - `:size` taking `'input-sm'` or `'input-lg'` for input fields and `'btn-xs'`,
     `'btn-sm'` and `'btn-lg'` for buttons and is passed as class attribute
     (merged with the already present class attribute values) to the input
-  - `:checked` taking a boolean value (can only be set on radio buttons)
+  - `:checked` taking a boolean value (can only be set on radio buttons and
+     checkboxes)
   - `:select_size` taking an integer (can only be set on a select field) and is
     passed as size attribute to the select field
   - `:value` taking a string (can only be set on text-like input fields)
