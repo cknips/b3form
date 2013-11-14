@@ -57,7 +57,7 @@ module B3Form
 
 
     def placeholder_text
-      @placeholder_text ||= option_or_i18n(:placeholders)
+      @placeholder_text ||= option_or_i18n(:placeholder)
     end
   end
 end

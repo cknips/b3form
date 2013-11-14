@@ -143,7 +143,7 @@ module B3Form
 
 
     def label_text
-      label_text = option_or_i18n(:labels)
+      label_text = option_or_i18n(:label)
 
       if label_text && options[:required]
         translation = I18n.t 'b3form.required_input_label', label: label_text,
@@ -161,7 +161,7 @@ module B3Form
 
 
     def hint_text
-      option_or_i18n(:hints)
+      option_or_i18n(:hint)
     end
 
 
@@ -192,7 +192,7 @@ module B3Form
     def option_text_from_option_or_i18n(value)
       return options[:label] if options[:label].present?
 
-      translation = translate(:options, object, field, value)
+      translation = translate(:option, object, field, value)
 
       if translation == '__missing__'
         value

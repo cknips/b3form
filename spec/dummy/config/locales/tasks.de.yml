@@ -1,6 +1,6 @@
 de:
   b3_form:
-    labels:
+    label:
       task:
         title: Titel
         description: Beschreibung
@@ -9,17 +9,17 @@ de:
         really_done: wirklich erledigt
         category: Kategorie
         public: öffentlich
-    hints:
+    hint:
       task:
         title: Titel Hilfetext
         description: Beschreibung Hilfetext
         done_states: Bearbeitet Hilfetext
         category: Kategorie Hilfetext
         public: öffentlich Hilfetext
-    placeholders:
+    placeholder:
       task:
         placeholder_test: Placeholder Test
-    options:
+    option:
       task:
         category:
           private: Privat

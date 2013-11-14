@@ -531,22 +531,22 @@ end
 ```yaml
 en:
   b3_form:
-    labels:
+    label:
       task:
         title:       Title label
         done_states: Done states label
         done:        Done
         really_done: Really Done
         priority:    Priority label
-    placeholders:
+    placeholder:
       task:
         title:       Title Placeholder
-    hints:
+    hint:
       task:
         title:       Small hint below the text field
         done_states: Small hint below the checkboxes
         priority:    Small hint below the radio button group
-    options:
+    option:
       task:
         priority:
           high:      High
@@ -566,7 +566,7 @@ You can also use HTML translations:
 ```yaml
 en:
   b3_form:
-    labels:
+    label:
       task:
         really_done: '<i>Really</i> Done'
 ```
@@ -577,7 +577,7 @@ To define default translations for input parts there is also the reserved key
 ```yaml
 en:
   b3_form:
-    labels:
+    label:
       default:
         title: Title
 ```
@@ -807,7 +807,8 @@ TODO
 ### Glyphicons
 
 Use the `glyphicon` helper to render a glyphicon. The list of available icons
-can be found in the [Bootstrap Documentation](http://getbootstrap.com/components/#glyphicons).
+can be found in the
+[Bootstrap Documentation](http://getbootstrap.com/components/#glyphicons).
 
 ```haml
 = glyphicon('search')
