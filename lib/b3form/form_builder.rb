@@ -90,6 +90,10 @@ module B3Form
       Input::SelectOptions.new(self, collection, options).render(&block)
     end
 
+    def static_input(field, options = {}, &block)
+      Input::Static.new(self, field, options).render(&block)
+    end
+
     def submit_button(name_or_options = nil, options = {})
       if name_or_options.kind_of? Hash
         Input::SubmitButton.new(self, nil, name_or_options).render
