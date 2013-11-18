@@ -21,14 +21,14 @@ module B3Form
       if object.respond_to?(:persisted?)
         translation =
           if object.persisted?
-            translate(:submit, object, :update)
+            translate(:submit, builder.object_name, :update)
           else
-            translate(:submit, object, :create)
+            translate(:submit, builder.object_name, :create)
           end
         return translation unless translation == '__missing__'
       end
       
-      translation = translate(:submit, object, :submit)
+      translation = translate(:submit, builder.object_name, :submit)
       return translation unless translation == '__missing__'
 
       'Submit'

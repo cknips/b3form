@@ -9,30 +9,23 @@ module B3Form
     end
 
 
-    def i18n_key(object)
-         builder.modifier[:object_i18n_key] \
-      || object.class.try(:model_name).try(:i18n_key) \
-      || builder.object_name
-    end
-
-
-    def translate(primary_key, object, field, value = nil)
+    def translate(primary_key, object_name, field, value = nil)
       translation =
         if value
-          I18n.t "b3_form.#{primary_key}.#{i18n_key(object)}.#{field}.#{value}",
+          I18n.t "helpers.#{primary_key}.#{object_name}.#{field}.#{value}",
                   default: '__missing__'
         else
-          I18n.t "b3_form.#{primary_key}.#{i18n_key(object)}.#{field}",
+          I18n.t "helpers.#{primary_key}.#{object_name}.#{field}",
                   default: '__missing__'
         end
 
       if translation == '__missing__'
         translation =
           if value
-            I18n.t "b3_form.#{primary_key}.default.#{field}.#{value}",
+            I18n.t "helpers.#{primary_key}.default.#{field}.#{value}",
                     default: '__missing__'
           else
-            I18n.t "b3_form.#{primary_key}.default.#{field}",
+            I18n.t "helpers.#{primary_key}.default.#{field}",
                     default: '__missing__'
           end
       end

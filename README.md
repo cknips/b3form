@@ -505,8 +505,8 @@ The passed name is also used as I18n key (see below).
 ## I18n
 
 For labeling the different elements B3Form uses the standard I18n system, using
-the `b3_form` section. Here are the translations for a fictional task model
-(shown as annotated with the
+and extending the `helpers` section. Here are the translations for a fictional
+task model (shown as annotated with the
 [Annotate](https://github.com/ctran/annotate_models) gem):
 
 ```ruby
@@ -530,7 +530,7 @@ end
 
 ```yaml
 en:
-  b3_form:
+  helpers:
     label:
       task:
         title:       Title label
@@ -559,13 +559,13 @@ en:
 
 `done_states` is a virtual attribute to label the two checkboxes which set the
 state (*done* and *really_done*). It doesn't have to be an accessible
-attribute of the model.
+attribute of the model. However to assign errors to it, it has to be accessible.
 
 You can also use HTML translations:
 
 ```yaml
 en:
-  b3_form:
+  helpers:
     label:
       task:
         really_done: '<i>Really</i> Done'
@@ -576,14 +576,14 @@ To define default translations for input parts there is also the reserved key
 
 ```yaml
 en:
-  b3_form:
+  helpers:
     label:
       default:
         title: Title
 ```
 
 As expected, setting a key specific for a model name, the default will be
-overridden. To unset a default for a field without overiding ist with another
+overridden. To unset a default for a field without overiding it with another
 value (e.g. because you want to omit a label for a specific field where a
 default translation is already set) use `false` as translation.
 
@@ -592,17 +592,9 @@ default translation is already set) use `false` as translation.
 ### Object names
 
 The name of the object in the form ("task" in the example above) is taken from
-(prioritized in the following order):
-
-  - the `:as` option you can pass to the form builder
-  - `object.class.model_name.i18n_key` if the object is an ActiveModel
-  - `object_name` otherwise
-
-Please note that this is different from the behaviour of the standard rails form
-builder. While the `:as` option behaves as usual, the standard rails form
-builder ignores namespaces of models for the translation of labels and submit
-buttons. B3Form uses the slash notation (`namespace/model_name`) as the object
-name that is also uses for the translation of the error messages.
+the `#object_name` method of the form builder. It can be overridden by passing
+an `:as` option to the form builder. Both corresponds to the behaviour of the
+standard rails form builder.
 
 
 

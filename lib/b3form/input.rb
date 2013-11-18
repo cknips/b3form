@@ -179,7 +179,7 @@ module B3Form
     def label_text_from_i18n(key)
       return false unless field
 
-      translation = translate(key, object, field)
+      translation = translate(key, builder.object_name, field)
 
       if translation == '__missing__' || translation == false
         false
@@ -192,7 +192,7 @@ module B3Form
     def option_text_from_option_or_i18n(value)
       return options[:label] if options[:label].present?
 
-      translation = translate(:option, object, field, value)
+      translation = translate(:option, builder.object_name, field, value)
 
       if translation == '__missing__'
         value
