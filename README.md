@@ -812,6 +812,22 @@ can be found in the
 ```
 
 
+## CSS Additions
+
+### .panel-sectiontitle
+
+TODO
+
+
+
+### .no-gutter
+
+If you render a multi column form using `.row` and `.col-...` you may want to
+position the fields closer together. To do this add the `.no-gutter` CSS class
+to the `.row`. The fields will be rendered with a gutter of 10px instead of
+30px.
+
+
 
 # Contributing
 
