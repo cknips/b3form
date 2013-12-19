@@ -8,12 +8,15 @@ module B3Form
       #   - or a nested Array: [['label_1', :value_1], ['label_2', :value_2]]
       if collection.first.kind_of? Array
         Hash[collection].map { |label, value|
-          builder.radio_option value, label: label
+          builder.radio_option value, label: label,
+                                      checked: checked?(value),
+                                      disabled: disabled(value)
         }.join.html_safe
       # else treat as Array: [:value_1, :value_2]
       else
         collection.map { |value|
-          builder.radio_option value
+          builder.radio_option value, checked: checked?(value),
+                                      disabled: disabled?(value)
         }.join.html_safe
       end
     end
@@ -28,6 +31,18 @@ module B3Form
     alias_method :collection, :field_orig
     def field
       builder.modifier[:radio_field]
+    end
+
+
+    def checked?(radio_option)
+      radio_option == options[:checked]
+    end
+
+
+    def disabled?(radio_option)
+      @disabled_radio_options ||= Array[options[:disabled]]
+
+      @disabled_radio_options.include?(radio_option)
     end
   end
 end

@@ -351,7 +351,7 @@ If you don't want to render the radio button values one by one, you can use the
     value_2' => :value_2]]`
 
 The latter two are equivalent to the format of a Hash or Array you can pass to
-the select helper as choiches in the standard rails form builder.
+the select helper as choices in the standard rails form builder.
 
 So to render the same HTML as above, you can do (showing the usage of an Array
 and a Hash, usage of the nested Array is not shown):
@@ -362,6 +362,10 @@ and a Hash, usage of the nested Array is not shown):
 = radios_group :priority, layout: :inline do
   = radio_options({ 'High' => :high, 'Low' => :low })
 ```
+
+`radio_options` accepts an option `:checked` where you can set a radio button
+to be checked, referenced by it's value. There is also a `:disabled` option for
+disabling radio buttons, taking a value or an array of values.
 
 `radio_option` and `radio_options` can be used together in one block in any
 combination.
@@ -733,11 +737,14 @@ to use `:input_html` to set them:
   - `:size` taking `'input-sm'` or `'input-lg'` for input fields and `'btn-xs'`,
     `'btn-sm'` and `'btn-lg'` for buttons and is passed as class attribute
     (merged with the already present class attribute values) to the input
-  - `:checked` taking a boolean value (can only be set on radio buttons and
-     checkboxes)
-  - `:select_size` taking an integer (can only be set on a select field) and is
-    passed as size attribute to the select field
-  - `:value` taking a string (can only be set on text-like input fields)
+  - `:btn` taking the button styles and is passed as class attribute (merged
+    with the already present class attribute values). Can only be set on a
+    button.
+  - `:checked` taking a boolean value. Can only be set on radio buttons and
+     checkboxes.
+  - `:select_size` taking an integer and is passed as size attribute to the
+    select field. Can only be set on a select field
+  - `:value` taking a string. Can only be set on text-like input fields.
   - `:name` taking a string
 
 

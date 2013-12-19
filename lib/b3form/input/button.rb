@@ -10,6 +10,10 @@ module B3Form
     def input_html
       input_options = super
 
+      if options[:btn]
+        add_to_options(input_options, :class, options[:btn])
+      end
+
       if input_options[:class] =~ /btn-.*/
         add_to_options(input_options, :class, 'btn')
       else

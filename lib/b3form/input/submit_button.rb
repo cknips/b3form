@@ -1,13 +1,16 @@
 module B3Form
   class Input::SubmitButton < Input::Button
-    def render
-      input_html[:type] = :submit
-
-      super
-    end
-
 
     private
+
+    def input_html
+      input_options = super
+
+      add_to_options(input_options, :type, :submit)
+
+      input_options
+    end
+    
 
     def label_text
       translation = super
