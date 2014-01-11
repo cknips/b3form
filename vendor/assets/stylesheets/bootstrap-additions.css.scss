@@ -5,19 +5,6 @@
   color: lighten($text-color, 25%);
 }
 
-.form-horizontal {
-  .hint-block.aside, .help-block.aside {
-    margin-top: 8px;
-  }
-
-  /* a label in a horizontal form that is placed above the input field should
-   * look like a label in a basic form */
-  .col-xs-12.col-sm-12.col-md-12.col-lg-12 > label {
-    padding-top: 0;
-    margin-bottom: 5px;
-  }
-}
-
 .form-actions {
   a {
     display: inline-block;
