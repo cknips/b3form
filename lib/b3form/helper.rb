@@ -8,6 +8,6 @@ module B3Form
       @options = options
     end
 
-    delegate :object, to: :builder
+    delegate :object, :content_tag, to: :builder
   end
 end
