@@ -18,7 +18,7 @@ module B3Form
 
 
     def render_field
-      builder.radio_button(field, value, input_html)                                          
+      builder.radio_button(field, value, input_html)
     end
 
 
@@ -40,6 +40,7 @@ module B3Form
       if builder.modifier[:radio_layout] == :inline
         add_to_options(label_options, :class, 'radio-inline')
       end
+      label_options[:for] = input_id_attribute
       
       label_options
     end
@@ -49,8 +50,14 @@ module B3Form
       input_options = super
 
       input_options[:checked] = true if options[:checked]
+      input_options[:id]      = input_id_attribute
 
       input_options
+    end
+
+
+    def input_id_attribute
+      options[:id] || "#{builder.object_name}_#{field}_#{value}"
     end
   end
 end
