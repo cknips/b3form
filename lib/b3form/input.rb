@@ -111,6 +111,10 @@ module B3Form
 
     private
 
+    def sanitize_to_id(name)
+      name.to_s.delete(']').gsub(/[^-a-zA-Z0-9:.]/, "_")
+    end
+
     def wrapper_html
       wrapper_options = options[:wrapper_html] || {}
 
