@@ -57,7 +57,7 @@ module B3Form
 
 
     def input_id_attribute
-      options[:id] || "#{builder.object_name}_#{field}_#{value}"
+      options[:id] || sanitize_to_id("#{builder.object_name}_#{field}_#{value}")
     end
   end
 end
