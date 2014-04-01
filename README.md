@@ -374,9 +374,11 @@ combination.
 
 ### Select fields
 
-Selects fields are rendered with the `select_input` helper and need to be called
-with a block which defines their options. The syntax is quiet similar to
-`radio_group`:
+Selects fields are rendered with the `select_input` helper. They make use of the
+[Chosen jQuery Plugin](http://harvesthq.github.io/chosen), in conjuction with the
+[chosen-rails](https://github.com/tsechingho/chosen-rails) gem. The styling of the select fields is dragged in from [a custom CSS theme for Chosen](https://gist.github.com/koenpunt/6424137).
+Select fields need to be called with a block which defines their options.
+The syntax is quite similar to `radio_group`:
 
 ```haml
 = f.select_input :priority do
@@ -744,6 +746,8 @@ to use `:input_html` to set them:
      checkboxes.
   - `:select_size` taking an integer and is passed as size attribute to the
     select field. Can only be set on a select field
+  - `:multiple` taking a boolean value and sets the 'multiple' option for the
+    select, to set the behaviour for the Chosen jQuery plugin. Can only be set on a select field
   - `:value` taking a string. Can only be set on text-like input fields.
   - `:name` taking a string
 

@@ -18,7 +18,7 @@ module B3Form
 
         html
       else
-        raise ArgumentError, 'call with block to set the select options'
+        raise ArgumentError, "call with block to set the select options"
       end
     end
 
@@ -28,10 +28,14 @@ module B3Form
     def input_html
       input_options = super
 
-      add_to_options(input_options, :class, 'form-control')
+      add_to_options(input_options, :class, "form-control")
       
       if options[:select_size]
         add_to_options(input_options, :size, options[:select_size])
+      end
+
+      if options[:multiple]
+        add_to_options(input_options, :multiple, options[:multiple])
       end
 
       input_options
