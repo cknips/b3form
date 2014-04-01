@@ -31,23 +31,23 @@ describe 'error features' do
 
     it 'adds has-error class to form-group if object has an error on the field '\
        'and puts error message under input tag' do
-      render template: 'test_models/error'
+      html = render template: 'test_models/error'
 
-      expect(page).to have_css 'form div.form-group.has-error'
-      expect(page).to have_css 'form div.help-block'
+      expect(page(html)).to have_css 'form div.form-group.has-error'
+      expect(page(html)).to have_css 'form div.help-block'
     end
 
     it 'renderes the error messages for :base at the top of the form' do
-      render template: 'test_models/error'
+      html = render template: 'test_models/error'
 
-      expect(page).to have_css 'form div.alert.alert-danger'
-      expect(page).to have_content 'Translation for generic error'
+      expect(page(html)).to have_css 'form div.alert.alert-danger'
+      expect(page(html)).to have_content 'Translation for generic error'
     end
 
     it 'omits the field_with_errors div rendered by the rails by default' do
-      render template: 'test_models/error'
+      html = render template: 'test_models/error'
 
-      expect(page).to have_no_css 'form div.field_with_errors'
+      expect(page(html)).to have_no_css 'form div.field_with_errors'
     end
   end
 end

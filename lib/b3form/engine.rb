@@ -34,7 +34,7 @@ require "b3form/view_helpers/glyphicon_helper"
 
 unless Rails.env.production?
   require "pry-rails"
-  require "ap"
+  # require "ap"
 end
 
 

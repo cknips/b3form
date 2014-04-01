@@ -86,65 +86,65 @@ describe 'labels' do
 # </div>
 
   it 'omits the label if none is defined in translation file or passed as option' do
-    render template: 'test_models/labels'
+    html = render template: 'test_models/labels'
 
-    expect(page).to have_no_css 'form div.form-group:nth-child(2) label'
+    expect(page(html)).to have_no_css 'form div.form-group:nth-child(2) label'
   end
 
   it 'inserts a label if passed as option' do
-    render template: 'test_models/labels'
+    html = render template: 'test_models/labels'
 
-    expect(page).to have_css 'form div.form-group:nth-child(3) label'
-    expect(page).to have_content 'Overridden Omitted Label'
+    expect(page(html)).to have_css 'form div.form-group:nth-child(3) label'
+    expect(page(html)).to have_content 'Overridden Omitted Label'
   end
 
   it 'omits a label option `label: false` passed' do
-    render template: 'test_models/labels'
+    html = render template: 'test_models/labels'
 
-    expect(page).to have_no_css 'form div.form-group:nth-child(4) label'
+    expect(page(html)).to have_no_css 'form div.form-group:nth-child(4) label'
   end
 
   it 'inserts a label if defined in translation file' do
-    render template: 'test_models/labels'
+    html = render template: 'test_models/labels'
 
-    expect(page).to have_css 'form div.form-group:nth-child(5) label'
-    expect(page).to have_content 'Label Test'
+    expect(page(html)).to have_css 'form div.form-group:nth-child(5) label'
+    expect(page(html)).to have_content 'Label Test'
   end
 
   it 'inserts a label if defined in translation file but overridden by passed '\
      'option' do
-    render template: 'test_models/labels'
+    html = render template: 'test_models/labels'
 
-    expect(page).to have_css 'form div.form-group:nth-child(6) label'
-    expect(page).to have_content 'Overridden Label Test'
+    expect(page(html)).to have_css 'form div.form-group:nth-child(6) label'
+    expect(page(html)).to have_content 'Overridden Label Test'
   end
 
   it 'omits a label if option `label: false` passed although defined in '\
      'translation file' do
-    render template: 'test_models/labels'
+    html = render template: 'test_models/labels'
 
-    expect(page).to have_no_css 'form div.form-group:nth-child(7) label'
+    expect(page(html)).to have_no_css 'form div.form-group:nth-child(7) label'
   end
 
   it 'inserts a label if defined in translation file as html' do
-    render template: 'test_models/labels'
+    html = render template: 'test_models/labels'
 
-    expect(page).to have_css 'form div.form-group:nth-child(8) label'
-    expect(page).to have_css 'form div.form-group:nth-child(8) label b'
+    expect(page(html)).to have_css 'form div.form-group:nth-child(8) label'
+    expect(page(html)).to have_css 'form div.form-group:nth-child(8) label b'
   end
 
   it 'inserts a label if defined in translation file as html but overridden by '\
      'passed option' do
-    render template: 'test_models/labels'
+    html = render template: 'test_models/labels'
 
-    expect(page).to have_css 'form div.form-group:nth-child(9) label'
-    expect(page).to have_content 'Overridden Label Test Html'
+    expect(page(html)).to have_css 'form div.form-group:nth-child(9) label'
+    expect(page(html)).to have_content 'Overridden Label Test Html'
   end
 
   it 'omits a label if option `label: false` passed although defined in '\
      'translation file as html' do
-    render template: 'test_models/labels'
+    html = render template: 'test_models/labels'
 
-    expect(page).to have_no_css 'form div.form-group:nth-child(10) label'
+    expect(page(html)).to have_no_css 'form div.form-group:nth-child(10) label'
   end
 end

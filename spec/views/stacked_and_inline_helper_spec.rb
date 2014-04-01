@@ -51,21 +51,21 @@ describe 'stacked_and_inline_helper' do
 # </div>
 
   it 'renders the checkboxes stacked' do
-    render template: 'test_models/stacked_and_inline_helper'
+    html = render template: 'test_models/stacked_and_inline_helper'
 
-    expect(page).to have_css 'form#stacked-checkboxes div.form-group label'
+    expect(page(html)).to have_css 'form#stacked-checkboxes div.form-group label'
 
-    expect(page).to have_css 'form#stacked-checkboxes div.form-group div div.checkbox label'
-    expect(page).to have_css 'form#stacked-checkboxes div.form-group div div.checkbox label input[type=checkbox]'
+    expect(page(html)).to have_css 'form#stacked-checkboxes div.form-group div div.checkbox label'
+    expect(page(html)).to have_css 'form#stacked-checkboxes div.form-group div div.checkbox label input[type=checkbox]'
   end
 
   it 'renders the checkboxes inline' do
-    render template: 'test_models/stacked_and_inline_helper'
+    html = render template: 'test_models/stacked_and_inline_helper'
 
-    expect(page).to have_css 'form#inline-checkboxes div.form-group label'
+    expect(page(html)).to have_css 'form#inline-checkboxes div.form-group label'
 
-    expect(page).to have_css 'form#inline-checkboxes div.form-group div label.checkbox-inline'
-    expect(page).to have_css 'form#inline-checkboxes div.form-group div label.checkbox-inline input[type=checkbox]'
+    expect(page(html)).to have_css 'form#inline-checkboxes div.form-group div label.checkbox-inline'
+    expect(page(html)).to have_css 'form#inline-checkboxes div.form-group div label.checkbox-inline input[type=checkbox]'
   end
 
 
@@ -117,23 +117,23 @@ describe 'stacked_and_inline_helper' do
 
   shared_examples_for 'radio buttons' do
     it 'renders the radios stacked' do
-      render template: 'test_models/stacked_and_inline_helper'
+      html = render template: 'test_models/stacked_and_inline_helper'
 
-      expect(page).to have_css "form#stacked-radios-#{form_nr} div.form-group label"
+      expect(page(html)).to have_css "form#stacked-radios-#{form_nr} div.form-group label"
 
-      expect(page).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label"
-      expect(page).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label input[type=radio][value=low]"
-      expect(page).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label input[type=radio][value=high]"
+      expect(page(html)).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label"
+      expect(page(html)).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label input[type=radio][value=low]"
+      expect(page(html)).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label input[type=radio][value=high]"
     end
 
     it 'renders the radios inline' do
-      render template: 'test_models/stacked_and_inline_helper'
+      html = render template: 'test_models/stacked_and_inline_helper'
 
-      expect(page).to have_css "form#inline-radios-#{form_nr} div.form-group label"
+      expect(page(html)).to have_css "form#inline-radios-#{form_nr} div.form-group label"
 
-      expect(page).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline"
-      expect(page).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline input[type=radio][value=low]"
-      expect(page).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline input[type=radio][value=high]"
+      expect(page(html)).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline"
+      expect(page(html)).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline input[type=radio][value=low]"
+      expect(page(html)).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline input[type=radio][value=high]"
     end
   end
 

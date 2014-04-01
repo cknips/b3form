@@ -24,88 +24,98 @@ describe 'Hints' do
 # HTML:
 # --------
 # <div class="form-group">
-#   <label for="test_model_hint_test_omitted" class="control-label">Text</label>
-#   <div>
-#     <input type="text" class="form-control" name="test_model_hint_test_omitted">
-#   </div>
+#     <input class="form-control" id="test_model_hint_test_omitted" name=
+#     "test_model[hint_test_omitted]" type="text">
 # </div>
+#
 # <div class="form-group">
-#   <label for="test_model_hint_test" class="control-label">Text</label>
-#   <div>
-#     <input type="text" class="form-control" name="test_model_hint_test">
-#   </div>
-#   <div class="hint">Hint Test Description</div>
+#     <input class="form-control" id="test_model_hint_test" name=
+#     "test_model[hint_test]" type="text">
+#
+#     <div class="hint-block">
+#         Hint Test Description
+#     </div>
 # </div>
+#
 # <div class="form-group">
-#   <label for="test_model_hint_test_html" class="control-label">Text</label>
-#   <div>
-#     <input type="text" class="form-control" name="test_model_hint_test_html">
-#   </div>
-#   <div class="hint">Hint Test <b>Description</b></div>
+#     <input class="form-control" id="test_model_hint_test_html" name=
+#     "test_model[hint_test_html]" type="text">
+#
+#     <div class="hint-block">
+#         Hint Test <b>Description</b>
+#     </div>
 # </div>
+#
 # <div class="form-group">
-#   <label for="test_model_hint_test_omitted" class="control-label">Text</label>
-#   <div>
-#     <input type="text" class="form-control" name="test_model_hint_test_omitted">
-#   </div>
-#   <div class="hint">Overridden hint_test_omitted</div>
+#     <input class="form-control" id="test_model_hint_test_omitted" name=
+#     "test_model[hint_test_omitted]" type="text">
+#
+#     <div class="hint-block">
+#         Overridden Omitted
+#     </div>
 # </div>
+#
 # <div class="form-group">
-#   <label for="test_model_hint_test" class="control-label">Text</label>
-#   <div>
-#     <input type="text" class="form-control" name="test_model_hint_test">
-#   </div>
-#   <div class="hint">Overridden Hint Test</div>
+#     <input class="form-control" id="test_model_hint_test" name=
+#     "test_model[hint_test]" type="text">
+#
+#     <div class="hint-block">
+#         Overridden Hint Test
+#     </div>
 # </div>
+#
 # <div class="form-group">
-#   <label for="test_model_hint_test_html" class="control-label">Text</label>
-#   <div>
-#     <input type="text" class="form-control" name="test_model_hint_test_html">
-#   </div>
-#   <div class="hint">Overridden Hint Test Html</div>
+#     <input class="form-control" id="test_model_hint_test_html" name=
+#     "test_model[hint_test_html]" type="text">
+#
+#     <div class="hint-block">
+#         Overridden Hint Test Html
+#     </div>
 # </div>
+
+
+
 
   it 'does not show a hint if none is defined in translation file or passed' \
      'as option' do
-    render template: 'test_models/hints'
+    html = render template: 'test_models/hints'
 
-    expect(page).to have_no_css 'form div.form-group:nth-child(2) div.hint'
+    expect(page(html)).to have_no_css 'form div.form-group:nth-child(2) div.hint-block'
   end
 
   it 'shows a hint if defined in translation file' do
-    render template: 'test_models/hints'
+    html = render template: 'test_models/hints'
 
-    expect(page).to have_css 'form div.form-group:nth-child(3) div.hint'
-    expect(page).to have_content 'Hint Test Description'
+    expect(page(html)).to have_css 'form div.form-group:nth-child(3) div.hint-block'
+    expect(page(html)).to have_content 'Hint Test Description'
   end
 
   it 'shows a hint as html if defined in translation file' do
-    render template: 'test_models/hints'
+    html = render template: 'test_models/hints'
 
-    expect(page).to have_css 'form div.form-group:nth-child(4) div.hint'
-    expect(page).to have_css 'form div.form-group:nth-child(4) div.hint b'
+    expect(page(html)).to have_css 'form div.form-group:nth-child(4) div.hint-block'
   end
 
   it 'shows a hint if passed as option' do
-    render template: 'test_models/hints'
+    html = render template: 'test_models/hints'
 
-    expect(page).to have_css 'form div.form-group:nth-child(5) div.hint'
-    expect(page).to have_content 'Overridden Omitted'
+    expect(page(html)).to have_css 'form div.form-group:nth-child(5) div.hint-block'
+    expect(page(html)).to have_content 'Overridden Omitted'
   end
 
   it 'shows the hint passed as option even if another hint is defined in the '\
      'translation file' do
-    render template: 'test_models/hints'
+    html = render template: 'test_models/hints'
 
-    expect(page).to have_css 'form div.form-group:nth-child(6) div.hint'
-    expect(page).to have_content 'Overridden Hint Test'
+    expect(page(html)).to have_css 'form div.form-group:nth-child(6) div.hint-block'
+    expect(page(html)).to have_content 'Overridden Hint Test'
   end
 
   it 'shows the hint passed as option even if another hint is defined as '\
      'html in the translation file' do
-    render template: 'test_models/hints'
+    html = render template: 'test_models/hints'
 
-    expect(page).to have_css 'form div.form-group:nth-child(7) div.hint'
-    expect(page).to have_content 'Overridden Hint Test Html'
+    expect(page(html)).to have_css 'form div.form-group:nth-child(7) div.hint-block'
+    expect(page(html)).to have_content 'Overridden Hint Test Html'
   end
 end

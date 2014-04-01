@@ -15,9 +15,9 @@ describe 'form' do
 
   describe 'b3_form_for' do
     it 'renders a form with role = "form" attribute' do
-      render template: 'test_models/form_layouts'
+      html = render template: 'test_models/form_layouts'
 
-      expect(page).to have_css 'form[role=form]'
+      expect(page(html)).to have_css 'form[role=form]'
     end
   end
 
@@ -34,9 +34,9 @@ describe 'form' do
 
   describe 'b3_form_for' do
     it 'renders a form with role = "form" attribute' do
-      render template: 'test_models/form_layouts'
+      html = render template: 'test_models/form_layouts'
 
-      expect(page).to have_css 'form[role=form][class=form-horizontal]'
+      expect(page(html)).to have_css 'form[role=form][class=form-horizontal]'
     end
   end  
 end

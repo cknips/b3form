@@ -1,5 +1,5 @@
 module ViewHelpers
-  def page
+  def page(rendered)
     Capybara::Node::Simple.new(rendered)
   end
 end
