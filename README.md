@@ -221,7 +221,7 @@ Render a single checkbox:
 ```
 
 Default style is "stacked", the label is automatically rendered inline (the
-form helper for checkboxes also renders a hidden field, this in not shown
+form helper for checkboxes also renders a hidden field, this is not shown
 below):
 
 ```html

@@ -10,7 +10,7 @@ module B3Form
         Hash[collection].map { |label, value|
           builder.radio_option value, label: label,
                                       checked: checked?(value),
-                                      disabled: disabled(value)
+                                      disabled: disabled?(value)
         }.join.html_safe
       # else treat as Array: [:value_1, :value_2]
       else

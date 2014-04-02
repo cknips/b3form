@@ -1,44 +1,44 @@
 = b3_form_for @test_model, html: { id: 'stacked-checkboxes' } do |f|
-  = f.stacked_checkboxes do
+  = f.checkbox_group do
     = f.checkbox_input :done
     = f.checkbox_input :really_done
 
 = b3_form_for @test_model, html: { id: 'inline-checkboxes' } do |f|
-  = f.inline_checkboxes do
+  = f.checkbox_group layout: :inline do
     = f.checkbox_input :done
     = f.checkbox_input :really_done
     
 = b3_form_for @test_model, html: { id: 'stacked-radios-1' } do |f|
-  = f.stacked_radios :priority do
+  = f.radio_group :priority do
     = f.radio_option :high
     = f.radio_option :low
 
 = b3_form_for @test_model, html: { id: 'inline-radios-1' } do |f|
-  = f.inline_radios :priority do
+  = f.radio_group :priority, layout: :inline do
     = f.radio_option :high
     = f.radio_option :low
 
 = b3_form_for @test_model, html: { id: 'stacked-radios-2' } do |f|
-  = f.stacked_radios :priority do
+  = f.radio_group :priority do
     = f.radio_options [:high, :low]
 
 = b3_form_for @test_model, html: { id: 'inline-radios-2' } do |f|
-  = f.inline_radios :priority do
+  = f.radio_group :priority do
     = f.radio_options [:high, :low]
 
 = b3_form_for @test_model, html: { id: 'stacked-radios-3' } do |f|
-  = f.stacked_radios :priority do
+  = f.radio_group :priority do
     = f.radio_options({ high: 'High', low: 'Low' })
 
 = b3_form_for @test_model, html: { id: 'inline-radios-3' } do |f|
-  = f.inline_radios :priority do
+  = f.radio_group :priority, layout: :inline do
     = f.radio_options({ high: 'High', low: 'Low' })
   
 = b3_form_for @test_model, html: { id: 'stacked-radios-4' } do |f|
-  = f.stacked_radios :priority do
+  = f.radio_group :priority do
     = f.radio_options [[:high, 'High'], [:low, 'Low']]
 
 = b3_form_for @test_model, html: { id: 'inline-radios-4' } do |f|
-  = f.inline_radios :priority do
+  = f.radio_group :priority, layout: :inline do
     = f.radio_options [[:high, 'High'], [:low, 'Low']]
   
