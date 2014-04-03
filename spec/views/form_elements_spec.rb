@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'form_elements' do
   let(:test_model) { TestModel.new }
   before           { assign :test_model, test_model }
+  let(:html)       { render template: 'test_models/form_elements' }
 
 # View:
 #
@@ -57,8 +58,6 @@ describe 'form_elements' do
   shared_examples_for 'a text style input' do
     it 'renders an input field with class="form-control" and a label with '\
        'class="control-label", wrapped in a div with class="form-group"' do
-      html = render template: 'test_models/form_elements'
-
       expect(page(html)).to have_css "form div.form-group##{input_type} label[for=test_model_email]"
       expect(page(html)).to have_css "form div.form-group##{input_type} label.control-label"
 
@@ -108,8 +107,6 @@ describe 'form_elements' do
   describe 'checkbox_input' do
     it 'renders a checkbox field inside a label, wrapped in a div with '\
        'class="checkbox"' do
-      html = render template: 'test_models/form_elements'
-
       expect(page(html)).to have_css "form div.form-group#checkbox div.checkbox label[for=test_model_email]"
       expect(page(html)).to have_css "form div.form-group#checkbox div.checkbox label[for=test_model_email] input[type=checkbox]"
     end
@@ -119,8 +116,6 @@ describe 'form_elements' do
   describe 'text area input' do
     it 'renders a text area with class="form-control" and a label with '\
        'class="control-label", wrapped in a div with class="form-group"' do
-      html = render template: 'test_models/form_elements'
-
       expect(page(html)).to have_css "form div.form-group#text-area label[for=test_model_email]"
       expect(page(html)).to have_css "form div.form-group#text-area label.control-label"
 

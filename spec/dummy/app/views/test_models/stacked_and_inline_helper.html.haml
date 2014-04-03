@@ -28,17 +28,17 @@
 
 = b3_form_for @test_model, html: { id: 'stacked-radios-3' } do |f|
   = f.radio_group :priority do
-    = f.radio_options({ high: 'High', low: 'Low' })
+    = f.radio_options({ high: 'high', low: 'low' })
 
 = b3_form_for @test_model, html: { id: 'inline-radios-3' } do |f|
   = f.radio_group :priority, layout: :inline do
-    = f.radio_options({ high: 'High', low: 'Low' })
+    = f.radio_options({ high: 'high', low: 'low' })
   
 = b3_form_for @test_model, html: { id: 'stacked-radios-4' } do |f|
   = f.radio_group :priority do
-    = f.radio_options [[:high, 'High'], [:low, 'Low']]
+    = f.radio_options [[:high, 'high'], [:low, 'low']]
 
 = b3_form_for @test_model, html: { id: 'inline-radios-4' } do |f|
   = f.radio_group :priority, layout: :inline do
-    = f.radio_options [[:high, 'High'], [:low, 'Low']]
+    = f.radio_options [[:high, 'high'], [:low, 'low']]
   

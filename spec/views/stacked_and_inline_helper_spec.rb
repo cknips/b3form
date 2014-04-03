@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'stacked_and_inline_helper' do
   let(:test_model) { TestModel.new }
   before           { assign :test_model, test_model }
+  let(:html)       { render template: 'test_models/stacked_and_inline_helper' }
 
 # View
 #
@@ -61,8 +62,6 @@ describe 'stacked_and_inline_helper' do
 #  </form>
 
   it 'renders the checkboxes stacked' do
-    html = render template: 'test_models/stacked_and_inline_helper'
-
     expect(page(html)).to have_css 'form#stacked-checkboxes div.form-group label'
 
     expect(page(html)).to have_css 'form#stacked-checkboxes div.form-group div.checkbox label'
@@ -70,8 +69,6 @@ describe 'stacked_and_inline_helper' do
   end
 
   it 'renders the checkboxes inline' do
-    html = render template: 'test_models/stacked_and_inline_helper'
-
     expect(page(html)).to have_css 'form#inline-checkboxes div.form-group label'
 
     expect(page(html)).to have_css 'form#inline-checkboxes div.form-group div.checkbox label'
@@ -91,59 +88,54 @@ describe 'stacked_and_inline_helper' do
 #
 # HTML
 #
-# <div class="form-group">
-#   <label for="task_priority">Priority</label>
-#   <div>
+# <form accept-charset="UTF-8" action="/test_models" class="new_test_model"
+# id="stacked-radios-1" method="post" name="stacked-radios-1">
+#   <div class="form-group">
 #     <div class="radio">
-#       <label for="task_priority">
-#         <input type="radio" name="task[priority]" value="high">
-#         High
+#       <label class="control-label" for="test_model_priority_high">
+#         <input id="test_model_priority_high" name="test_model[priority]" type="radio" value="high" />
+#           high
 #       </label>
 #     </div>
-#   </div>
-#   <div>
-#     <div class="radio">
-#       <label for="task_priority">
-#         <input type="radio" name="task[priority]" value="low">
-#         Low
-#       </label>
-#     </div>
-#   </div>
-# </div>
 #
-# <div class="form-group">
-#   <label for="task_priority">Priority</label>
-#   <div>
-#     <label for="task_priority" class="radio-inline">
-#       <input type="radio" name="task[priority]" value="high">
-#       High
+#     <div class="radio">
+#       <label class="control-label" for="test_model_priority_low">
+#         <input id="test_model_priority_low" name="test_model[priority]" type="radio" value="low" />
+#         low
+#       </label>
+#     </div>
+#   </div>
+# </form>
+#
+#
+# <form accept-charset="UTF-8" action="/test_models" class="new_test_model"
+# id="inline-radios-1" method="post" name="inline-radios-1">
+#   <div class="form-group">
+#     <br />
+#     <label class="control-label radio-inline" for="test_model_priority_high">
+#       <input id="test_model_priority_high" name="test_model[priority]" type="radio" value="high" />
+#         high
 #     </label>
-#     <label for="task_priority" class="radio-inline">
-#       <input type="radio" name="task[priority]" value="low">
-#       Low
+#     <label class="control-label radio-inline" for="test_model_priority_low">
+#       <input id="test_model_priority_low" name="test_model[priority]" type="radio" value="low" />
+#         low
 #     </label>
 #   </div>
-# </div>
+# </form>
 
   shared_examples_for 'radio buttons' do
     it 'renders the radios stacked' do
-      html = render template: 'test_models/stacked_and_inline_helper'
-
-      expect(page(html)).to have_css "form#stacked-radios-#{form_nr} div.form-group label"
-
-      expect(page(html)).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label"
-      expect(page(html)).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label input[type=radio][value=low]"
-      expect(page(html)).to have_css "form#stacked-radios-#{form_nr} div.form-group div div.radio label input[type=radio][value=high]"
+      expect(page(html)).to have_css "form#stacked-radios-#{form_nr} div.form-group div.radio label"
+      expect(page(html)).to have_css "form#stacked-radios-#{form_nr} div.form-group div.radio label input[type=radio][value=high]"
+      expect(page(html)).to have_css "form#stacked-radios-#{form_nr} div.form-group div.radio label input[type=radio][value=low]"
     end
 
     it 'renders the radios inline' do
-      html = render template: 'test_models/stacked_and_inline_helper'
-
       expect(page(html)).to have_css "form#inline-radios-#{form_nr} div.form-group label"
 
-      expect(page(html)).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline"
-      expect(page(html)).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline input[type=radio][value=low]"
-      expect(page(html)).to have_css "form#inline-radios-#{form_nr} div.form-group div label.radio-inline input[type=radio][value=high]"
+      expect(page(html)).to have_css "form#inline-radios-#{form_nr} div.form-group label"
+      expect(page(html)).to have_css "form#inline-radios-#{form_nr} div.form-group label input[type=radio][value=high]"
+      expect(page(html)).to have_css "form#inline-radios-#{form_nr} div.form-group label input[type=radio][value=low]"
     end
   end
 
@@ -156,12 +148,12 @@ describe 'stacked_and_inline_helper' do
 # View
 #
 # = f.stacked_radios :priority, collection: [:low, :high]
-# = f.stacked_radios :priority, collection: { low: 'Low', high: 'High' }
-# = f.stacked_radios :priority, collection: [[low: 'Low'], [high: 'High']]
+# = f.stacked_radios :priority, collection: { low: 'low', high: 'high' }
+# = f.stacked_radios :priority, collection: [[low: 'low'], [high: 'high']]
 #
 # = f.inline_radios :priority, collection: [:low, :high]
-# = f.inline_radios :priority, collection: { low: 'Low', high: 'High' }
-# = f.inline_radios :priority, collection: [[low: 'Low'], [high: 'High']]
+# = f.inline_radios :priority, collection: { low: 'low', high: 'high' }
+# = f.inline_radios :priority, collection: [[low: 'low'], [high: 'high']]
 #
 # HTML
 #

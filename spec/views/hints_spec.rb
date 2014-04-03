@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'Hints' do
   let(:test_model) { TestModel.new }
   before           { assign :test_model, test_model }
+  let(:html)       { render template: 'test_models/hints' }
 
 # View:
 # --------
@@ -78,43 +79,31 @@ describe 'Hints' do
 
   it 'does not show a hint if none is defined in translation file or passed' \
      'as option' do
-    html = render template: 'test_models/hints'
-
     expect(page(html)).to have_no_css 'form div.form-group:nth-child(2) div.hint-block'
   end
 
   it 'shows a hint if defined in translation file' do
-    html = render template: 'test_models/hints'
-
     expect(page(html)).to have_css 'form div.form-group:nth-child(3) div.hint-block'
     expect(page(html)).to have_content 'Hint Test Description'
   end
 
   it 'shows a hint as html if defined in translation file' do
-    html = render template: 'test_models/hints'
-
     expect(page(html)).to have_css 'form div.form-group:nth-child(4) div.hint-block'
   end
 
   it 'shows a hint if passed as option' do
-    html = render template: 'test_models/hints'
-
     expect(page(html)).to have_css 'form div.form-group:nth-child(5) div.hint-block'
     expect(page(html)).to have_content 'Overridden Omitted'
   end
 
   it 'shows the hint passed as option even if another hint is defined in the '\
      'translation file' do
-    html = render template: 'test_models/hints'
-
     expect(page(html)).to have_css 'form div.form-group:nth-child(6) div.hint-block'
     expect(page(html)).to have_content 'Overridden Hint Test'
   end
 
   it 'shows the hint passed as option even if another hint is defined as '\
      'html in the translation file' do
-    html = render template: 'test_models/hints'
-
     expect(page(html)).to have_css 'form div.form-group:nth-child(7) div.hint-block'
     expect(page(html)).to have_content 'Overridden Hint Test Html'
   end
