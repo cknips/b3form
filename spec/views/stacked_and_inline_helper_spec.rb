@@ -14,49 +14,59 @@ describe 'stacked_and_inline_helper' do
 #   = f.checkbox_input :done
 #   = f.checkbox_input :really_done
 #
+#
 # HTML
 #
-# <div class="form-group">
-#   <label for="task_done_states">Task done states</label>
-#   <div>
+# <form accept-charset="UTF-8" action="/test_models" class="new_test_model"
+#   id="stacked-checkboxes" method="post" name="stacked-checkboxes">
+#   <div class="form-group">
 #     <div class="checkbox">
-#       <label for="task_done">
-#         <input type="checkbox" name="task[done]">
-#         Task done?
+#       <label class="control-label" for="test_model_done">
+#         <input name="test_model[done]" type="hidden" value="0" />
+#         <input id="test_model_done" name="test_model[done]" type="checkbox" value="1" />
+#           Task done?
 #       </label>
 #     </div>
-#   </div>
-#   <div>
-#     <div class="checkbox">
-#       <label for="task_really_done">
-#         <input type="checkbox" name="task[really_done]">
-#         Task really done?
-#       </label>
-#     </div>
-#   </div>
-# </div>
 #
-# <div class="form-group">
-#   <label for="task_done_states">Task done states</label>
-#   <div>
-#     <label for="task_done" class="checkbox-inline">
-#       <input type="checkbox" name="task[done]">
-#       Task done?
-#     </label>
-#     <label for="task_really_done" class="checkbox-inline">
-#       <input type="checkbox" name="task[really_done]">
-#       Task really done?
-#     </label>
+#     <div class="checkbox">
+#       <label class="control-label" for="test_model_really_done">
+#         <input name="test_model[really_done]" type="hidden" value="0" />
+#         <input id="test_model_really_done" name="test_model[really_done]" type="checkbox" value="1" />
+#           Task really done?
+#       </label>
+#     </div>
 #   </div>
-# </div>
+#  </form>
+#
+#
+# <form accept-charset="UTF-8" action="/test_models" class="new_test_model"
+#   id="inline-checkboxes" method="post" name="inline-checkboxes">
+#   <div class="form-group">
+#     <div class="checkbox">
+#       <label class="control-label" for="test_model_done">
+#         <input name="test_model[done]" type="hidden" value="0" />
+#         <input id="test_model_done" name="test_model[done]" type="checkbox" value="1" />
+#           Task done?
+#       </label>
+#     </div>
+#
+#     <div class="checkbox">
+#       <label class="control-label" for="test_model_really_done">
+#         <input name="test_model[really_done]" type="hidden" value="0" />
+#         <input id="test_model_really_done" name="test_model[really_done]" type="checkbox" value="1" />
+#           Task really done?
+#       </label>
+#     </div>
+#   </div>
+#  </form>
 
   it 'renders the checkboxes stacked' do
     html = render template: 'test_models/stacked_and_inline_helper'
 
     expect(page(html)).to have_css 'form#stacked-checkboxes div.form-group label'
 
-    expect(page(html)).to have_css 'form#stacked-checkboxes div.form-group div div.checkbox label'
-    expect(page(html)).to have_css 'form#stacked-checkboxes div.form-group div div.checkbox label input[type=checkbox]'
+    expect(page(html)).to have_css 'form#stacked-checkboxes div.form-group div.checkbox label'
+    expect(page(html)).to have_css 'form#stacked-checkboxes div.form-group div.checkbox label input[type=checkbox]'
   end
 
   it 'renders the checkboxes inline' do
@@ -64,8 +74,8 @@ describe 'stacked_and_inline_helper' do
 
     expect(page(html)).to have_css 'form#inline-checkboxes div.form-group label'
 
-    expect(page(html)).to have_css 'form#inline-checkboxes div.form-group div label.checkbox-inline'
-    expect(page(html)).to have_css 'form#inline-checkboxes div.form-group div label.checkbox-inline input[type=checkbox]'
+    expect(page(html)).to have_css 'form#inline-checkboxes div.form-group div.checkbox label'
+    expect(page(html)).to have_css 'form#inline-checkboxes div.form-group div.checkbox label input[type=checkbox]'
   end
 
 
