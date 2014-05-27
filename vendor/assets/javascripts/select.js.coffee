@@ -17,7 +17,7 @@ class B3Form.Select
   setLanguage: ->
     language = window.navigator.userLanguage or window.navigator.language
 
-    if language == "de-DE" or language == "de"
+    if language.match(/de-?.*/)
       @noResultText    = "Keine Ergebnisse für"
       @placeholderText = "Bitte auswählen"
     else
