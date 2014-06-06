@@ -16,7 +16,6 @@ test/tmp
 test/version_tmp
 tmp
 
-*.sublime-*
 bin/
 spec/dummy/tmp
 spec/dummy/log
