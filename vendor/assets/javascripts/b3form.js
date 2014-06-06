@@ -2,4 +2,4 @@
 //= require_self
 //= require select
 
-this.B3Form = {}
+window.B3Form = {};

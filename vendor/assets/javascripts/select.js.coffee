@@ -1,5 +1,5 @@
 class B3Form.Select
-  constructor: ->
+  @init: ->
     @setLanguage()
 
     for selectField in $("select.form-control")
@@ -14,7 +14,7 @@ class B3Form.Select
         disable_search_threshold:  searchThreshold
 
 
-  setLanguage: ->
+  @setLanguage: ->
     language = window.navigator.userLanguage or window.navigator.language
 
     if language.match(/de-?.*/)
@@ -26,4 +26,5 @@ class B3Form.Select
 
 
 $ ->
-  new B3Form.Select()
+  B3Form.Select.init()
+  $(document).on "page:load", -> B3Form.Select.init()
