@@ -7,7 +7,8 @@ module B3Form
       def b3_form_for(object, options = {}, &block)
         options[:builder] = B3Form::FormBuilder::BasicFormBuilder
         options[:html]  ||= {}
-        
+
+        add_to_options(options[:html], :class, 'form-basic')
         add_to_options(options[:html], :role,  'form')
 
         form_for(object, options, &block)
@@ -20,7 +21,7 @@ module B3Form
 
         add_to_options(options[:html], :class, 'form-horizontal')
         add_to_options(options[:html], :role,  'form')
-        
+
         form_for(object, options, &block)
       end
 
@@ -31,7 +32,7 @@ module B3Form
 
         add_to_options(options[:html], :class, 'form-inline')
         add_to_options(options[:html], :role,  'form')
-        
+
         form_for(object, options, &block)
       end
     end

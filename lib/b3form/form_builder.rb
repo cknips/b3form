@@ -93,6 +93,10 @@ module B3Form
       Input::Static.new(self, field, options).render(&block)
     end
 
+    def file_input(field, options = {}, &block)
+      Input::FileUpload.new(self, field, options).render(&block)
+    end
+
     def submit_button(name_or_options = nil, options = {})
       if name_or_options.kind_of? Hash
         Input::SubmitButton.new(self, nil, name_or_options).render
@@ -110,7 +114,7 @@ module B3Form
     def radio_group(field = nil, options = {}, &block)
       Input::RadioGroup.new(self, field, options).render(&block)
     end
-    
+
     alias_method :checkbox_group, :radio_group
 
 
@@ -127,7 +131,7 @@ module B3Form
 #
 #   Other Helpers
 #
-    
+
 
     def error_alert(field, options = {})
       Helper::ErrorAlert.new(self, field, options).render
