@@ -429,7 +429,7 @@ To give the blank a select option a name you can call `blank_select_option`
 and pass a string (which is used as name) or pass a string to the
 `:include_blank` option of `select_options` as you would do with the standard
 rails form builder and the `select` helper.
-  
+
 The select option helpers don't render anything by themself so they can also be
 called with a starting minus sign in Haml or without the equal sign in ERB.
 
@@ -735,7 +735,7 @@ The following options are directly passed to the input field, so you don't have
 to use `:input_html` to set them:
 
   - `:id`
-  - `:disabled` taking a boolean value
+  - `:disabled` and `:readonly` (only for input fields) taking a boolean value
   - `:size` taking `'input-sm'` or `'input-lg'` for input fields and `'btn-xs'`,
     `'btn-sm'` and `'btn-lg'` for buttons and is passed as class attribute
     (merged with the already present class attribute values) to the input

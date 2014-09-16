@@ -129,7 +129,7 @@ module B3Form
       input_options = options[:input_html] || {}
 
       add_to_options(input_options, :class, options[:size]) if options[:size]
-      
+
       input_options[:disabled] = true         if options[:disabled]
       input_options[:id]       = options[:id] if options[:id]
 
@@ -179,7 +179,7 @@ module B3Form
       end
     end
 
-    
+
     def label_text_from_i18n(key)
       return false unless field
 

@@ -40,7 +40,7 @@ module B3Form
         block.call
       end
     end
-    
+
 
     private
 
@@ -48,8 +48,9 @@ module B3Form
       input_options = super
 
       add_to_options(input_options, :class, 'form-control')
-      
+
       input_options[:placeholder] = placeholder_text if placeholder_text
+      input_options[:readonly]    = true             if options[:readonly]
       input_options[:value]       = options[:value]  if options[:value]
 
       input_options
