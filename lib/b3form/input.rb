@@ -131,6 +131,7 @@ module B3Form
       add_to_options(input_options, :class, options[:size]) if options[:size]
 
       input_options[:disabled] = true         if options[:disabled]
+      input_options[:readonly] = true         if options[:readonly]
       input_options[:id]       = options[:id] if options[:id]
 
       input_options
