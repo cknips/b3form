@@ -3,9 +3,6 @@
 B3Form is a form builder specifically made for
 [Bootstrap 3](http://getbootstrap.com).
 
-**It is in very early stage and by no means ready for production nor complete in
-any way.**
-
 
 
 # Installation
@@ -43,7 +40,7 @@ bootstrap-sass.
 B3Form is designed to be used as a form builder in Rails views. It is invoked
 using a helper method:
 
-```haml
+```slim
 = b3_form_for @task do |f|
   = f.text_input :title
   = f.submit_button
@@ -68,7 +65,7 @@ To manually render error messages for a field, you can use the
 `error_alert :field` helper. This is usually used to render the error messages
 for `:base` at the top of the form:
 
-```haml
+```slim
 = b3_form_for @task do |f|
   = f.error_alert :base
 ```
@@ -109,7 +106,7 @@ Bootstrap 3 documentation.
 The basic form can also be used for rendering multiple column forms using the
 grid system provided by bootstrap:
 
-```haml
+```slim
 .container
   = b3_form_for @task do |f|
     .row
@@ -132,7 +129,7 @@ messages) the input field. Setting the width of the input field is mandatory.
 
 The width settings can be passed as hash to the form builder:
 
-```haml
+```slim
 = b3_horizontal_form_for @task, columns: { label: 'col-md-2',
                                            input: 'col-md-4',
                                            hint:  'col-md-4' } do |f|
@@ -146,7 +143,7 @@ a width to the error messages, use the `:error` key in the columns hash.
 If you don't want to pass a large hash to the form builder, you can also use the
 `set_column` helper method of the form builder:
 
-```haml
+```slim
 = b3_horizontal_form_for do |f|
   - set_column :label, 'col-md-2'
   - set_column :input, 'col-md-4'
@@ -163,7 +160,7 @@ change the width settings in between the form elements.
 
 To render an inline form, use the `b3_inline_form_for` helper:
 
-```haml
+```slim
 = b3_inline_form_for @task do |f|
   = f.text_field :title
 ```
@@ -187,7 +184,7 @@ you want to render "non-bootstrapified" input elements.
 
 To render a text-like input use the form helper as shown on top of the read me:
 
-```haml
+```slim
 = f.text_input :title
 ```
 
@@ -216,7 +213,7 @@ Available text-like inputs are:
 
 Render a single checkbox:
 
-```haml
+```slim
 = f.checkbox_input :done
 ```
 
@@ -247,7 +244,7 @@ of the object and is used for translation purposes. To render the errors for the
 field it must be defined as accessible attribute in the model. If you don't
 want to add errors to the virtual field, it does not have to be accessible.
 
-```haml
+```slim
 = f.checkbox_group :task_done_states, layout: :stacked do
   = f.checkbox_input :done
   = f.checkbox_input :really_done
@@ -298,7 +295,7 @@ in the helper, the value is the first parameter passed to `radio_option`.
 
 The layout of the group is set equivalent to the `checkbox_group`.
 
-```haml
+```slim
 = f.radio_group :priority, layout: :stacked do
   = f.radio_option :high
   = f.radio_option :low
@@ -356,7 +353,7 @@ the select helper as choices in the standard rails form builder.
 So to render the same HTML as above, you can do (showing the usage of an Array
 and a Hash, usage of the nested Array is not shown):
 
-```haml
+```slim
 = radio_group :priority, layout: :stacked do
   = radio_options [:high, :low]
 = radios_group :priority, layout: :inline do
@@ -374,13 +371,15 @@ combination.
 
 ### Select fields
 
-Selects fields are rendered with the `select_input` helper. They make use of the
-[Chosen jQuery Plugin](http://harvesthq.github.io/chosen), in conjuction with the
-[chosen-rails](https://github.com/tsechingho/chosen-rails) gem. The styling of the select fields is dragged in from [a custom CSS theme for Chosen](https://gist.github.com/koenpunt/6424137).
-Select fields need to be called with a block which defines their options.
-The syntax is quite similar to `radio_group`:
+Selects fields are rendered with the `select_input` helper. They make use of
+the [Chosen jQuery Plugin](http://harvesthq.github.io/chosen), in conjuction
+with the [chosen-rails](https://github.com/tsechingho/chosen-rails) gem. The
+styling of the select fields is dragged in from
+[a custom CSS theme for Chosen](https://gist.github.com/koenpunt/6424137).
+Select fields need to be called with a block which defines their options. The
+syntax is quite similar to `radio_group`:
 
-```haml
+```slim
 = f.select_input :priority do
   = f.blank_select_option
   = f.select_option :high, selected: true
@@ -403,7 +402,7 @@ This renders a select field with three options, including the blank option:
 Like for radio buttons, there is a helper method taking a Hash or an Array as
 options:
 
-```haml
+```slim
 = f.select_input :priority do
   = f.select_options [:high, :low],
     include_blank: true,
@@ -441,11 +440,11 @@ You can combine several input fields to a composed input field. In the following
 example, `:minimum` and `:maximum' are attributes of the `Task` model.
 `:interval` is a virtual attribute used as label just as in a checkbox group:
 
-```haml
+```slim
 = f.composed_input :interval do
-  from
+  ' from
   = f.number_field :minimum
-  to
+  ' to
   = f.number_field :maximum
 ```
 
@@ -484,7 +483,7 @@ Avalable buttons are:
 
   * submit_button
 
-```haml
+```slim
 = f.submit_button
 ```
 
@@ -495,7 +494,7 @@ Avalable buttons are:
 You can pass an option to the button which is used as `name` attribute to
 identify the pressed button if you have multiple submit buttons per form:
 
-```haml
+```slim
 = f.submit_button :ok
 = f.submit_button :cancel
 ```
@@ -609,7 +608,7 @@ standard rails form builder.
 Labels are automatically read from `'b3_form.label'` in I18n. To manually set a
 label on an element, you can pass a `:label` option:
 
-```haml
+```slim
 = f.text_input :title, label: 'Custom label for title'
 ```
 
@@ -664,7 +663,7 @@ TODO
 
 To mark an input as required pass `required: true` as option:
 
-```haml
+```slim
 = f.text_field :price, required: true
 ```
 
@@ -747,7 +746,8 @@ to use `:input_html` to set them:
   - `:select_size` taking an integer and is passed as size attribute to the
     select field. Can only be set on a select field
   - `:multiple` taking a boolean value and sets the 'multiple' option for the
-    select, to set the behaviour for the Chosen jQuery plugin. Can only be set on a select field
+    select, to set the behaviour for the Chosen jQuery plugin. Can only be set
+    on a select field.
   - `:value` taking a string. Can only be set on text-like input fields.
   - `:name` taking a string
 
@@ -758,7 +758,7 @@ to use `:input_html` to set them:
 To render a Bootstrap 3 input group, you can use the `:prepend` and `:append`
 options:
 
-```haml
+```slim
 = f.text_field :price, prepend: '$', append: '.00'
 ```
 
@@ -779,7 +779,7 @@ render a glyphicon before or after the input field.
 To prepend or append buttons, you can use the `prepend_button` and
 `append_button` option. The following example shows an inline search form:
 
-```haml
+```slim
 = b3_inline_form_for :search do |f|
   - submit_button = f.submit_button
   = f.text_input :text, append_button: submit_button
@@ -814,12 +814,27 @@ Use the `glyphicon` helper to render a glyphicon. The list of available icons
 can be found in the
 [Bootstrap Documentation](http://getbootstrap.com/components/#glyphicons).
 
-```haml
-= glyphicon('search')
+```slim
+= glyphicon "search"
 ```
 
 ```html
 <span class="glyphicon glyphicon-search"></span>
+```
+
+To render a text (or any other HTML with a glyphicon at the beginning), you can
+use `with_glyphicon`. It will automatically put two non-breaking spaces between
+icon and text.
+
+```slim
+= with_glyphicon "plus" do
+  = link_to "Add task", new_task_path
+```
+
+```html
+<span class="glyphicon glyphicon-plus"></span>
+&nbsp;&nbsp;
+<a href="...">Add Task</a>
 ```
 
 
