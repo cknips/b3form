@@ -6,8 +6,8 @@ module B3Form
       end
 
 
-      def with_glyphicon(key, &block)
-        "#{glyphicon key}#{"&nbsp;&nbsp;"}#{capture &block}".html_safe
+      def with_glyphicon(key, spaces: 1, &block)
+        "#{glyphicon key}#{"&nbsp;" * spaces.to_i}#{capture &block}".html_safe
       end
     end
   end
