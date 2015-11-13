@@ -37,7 +37,7 @@ module B3Form
             render_field +
             label_text
           end
-        end
+        end.html_safe
       end
     end
 
@@ -57,7 +57,7 @@ module B3Form
       if builder.modifier[:radio_layout] == :inline
         add_to_options(label_options, :class, 'checkbox-inline')
       end
-      
+
       label_options
     end
   end
