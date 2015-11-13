@@ -3,6 +3,7 @@ module B3Form
     def render
       if builder.modifier[:inside_radio_group]
         render_inner
+        binding.pry
       else
         render_wrapper do
           render_offset +
@@ -37,7 +38,7 @@ module B3Form
             render_field +
             label_text
           end
-        end.html_safe
+        end
       end
     end
 
