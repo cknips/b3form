@@ -58,6 +58,7 @@ module B3Form
     end
 
     def checkbox_input(field, options = {}, &block)
+      binding.pry
       Input::Checkbox.new(self, field, options).render(&block)
     end
 
